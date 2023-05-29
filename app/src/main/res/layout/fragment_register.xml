@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_dialog"
+            android:layout_height="@dimen/_480sdp">
+            <TextView
+                android:id="@+id/textLogin"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Silahkan daftarkan diri anda"
+                style="@style/text_style_large"/>
+            <EditText
+                android:padding="@dimen/_5sdp"
+                style="@style/text_style"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="Nama"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/bg_form"
+                android:layout_below="@id/textLogin"
+                android:id="@+id/formName"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"/>
+            <EditText
+                android:padding="@dimen/_5sdp"
+                style="@style/text_style"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="No Handphone (08xxxxxxxxx)"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/bg_form"
+                android:layout_below="@id/formName"
+                android:id="@+id/formHandphone"
+                android:inputType="phone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"/>
+            <EditText
+                android:padding="@dimen/_5sdp"
+                style="@style/text_style"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="Email"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/bg_form"
+                android:layout_below="@id/formHandphone"
+                android:id="@+id/formUsername"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"/>
+            <EditText
+                android:padding="@dimen/_5sdp"
+                style="@style/text_style"
+                android:hint="Password"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/bg_form"
+                android:layout_below="@id/formUsername"
+                android:inputType="textPassword"
+                android:id="@+id/formPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"/>
+            <EditText
+                android:padding="@dimen/_5sdp"
+                style="@style/text_style"
+                android:hint="Konfirmasi Password"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/bg_form"
+                android:layout_below="@id/formPassword"
+                android:inputType="textPassword"
+                android:id="@+id/formConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"/>
+            <Button
+                android:layout_margin="@dimen/_10sdp"
+                android:id="@+id/btnRegistrasi"
+                android:text="Daftar"
+                android:layout_above="@id/btnLogin"
+                style="@style/btn_style"/>
+
+            <TextView
+                android:layout_margin="@dimen/_10sdp"
+                android:id="@+id/btnLogin"
+                android:layout_alignParentBottom="true"
+                style="@style/text_style"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/blue"
+                android:text="Anda sudah memiliki akun ? Silahkan Login "/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

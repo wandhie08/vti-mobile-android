@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/iconLogo"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/ic_logo" />
+
+        <ImageView
+            android:id="@+id/iconMenu"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/ic_menu" />
+
+        <ImageView
+            android:id="@+id/iconSearch"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconScan"
+            android:background="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/iconScan"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconMenu"
+            android:background="@drawable/scan" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@id/iconLogo"
+            android:background="#EFF2F7" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/view1"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/layoutProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/imageProfile"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/circle"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"/>
+                    <ImageView
+                        android:layout_marginTop="@dimen/_minus20sdp"
+                        android:layout_toRightOf="@id/imageProfile"
+                        android:background="@drawable/pencil"
+                        android:layout_below="@id/imageProfile"
+                        android:id="@+id/btnEditProfile"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"/>
+                    <TextView
+                        android:id="@+id/textName"
+                        android:layout_below="@id/imageProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/text_style"
+                        android:text="Nama"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:hint="Nama"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textName"
+                        android:id="@+id/formName"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+                    <TextView
+                        android:id="@+id/textEmail"
+                        android:layout_below="@id/formName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        style="@style/text_style"
+                        android:text="Email"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Email"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textEmail"
+                        android:inputType="text"
+                        android:id="@+id/formEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+                    <TextView
+                        android:id="@+id/textPhone"
+                        android:layout_below="@id/formEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:text="No Handphone"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="No Handphone"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textPhone"
+                        android:inputType="text"
+                        android:id="@+id/formPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+                    <Button
+                        android:id="@+id/btnSimpan"
+                        style="@style/btn_style"
+                        android:layout_below="@id/formPhone"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="Simpan" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutPassword"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layoutProfile">
+
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_5sdp"
+                        android:background="#EFF2F7" />
+                    <TextView
+                        android:id="@+id/textPasswordLama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        style="@style/text_style"
+                        android:text="Password Lama"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Password Lama"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textPasswordLama"
+                        android:inputType="textPassword"
+                        android:id="@+id/formPasswordOld"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+
+                    <TextView
+                        android:id="@+id/textPasswordBaru"
+                        android:layout_below="@id/formPasswordOld"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:text="Password Baru"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Password Baru"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textPasswordBaru"
+                        android:inputType="textPassword"
+                        android:id="@+id/formPasswordNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+
+                    <TextView
+                        android:id="@+id/textPasswordBaruUlangi"
+                        android:layout_below="@id/formPasswordNew"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:text="Password Baru"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Ulangi Password Baru"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textPasswordBaruUlangi"
+                        android:inputType="textPassword"
+                        android:id="@+id/formPasswordUlangi"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+                    <Button
+                        android:id="@+id/btnSimpanPassword"
+                        style="@style/btn_style"
+                        android:layout_below="@id/formPasswordUlangi"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="Simpan" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutAlamat"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layoutPassword">
+
+                    <View
+                        android:id="@+id/view9"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_5sdp"
+                        android:background="#EFF2F7" />
+                    <TextView
+                        android:id="@+id/textDataPenerima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        style="@style/text_style"
+                        android:text="Data Penerima"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <TextView
+                        android:id="@+id/textNamaPenerima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textDataPenerima"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        style="@style/text_style"
+                        android:text="Nama Penerima"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Nama Penerima"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textNamaPenerima"
+                        android:inputType="textPersonName"
+                        android:id="@+id/formNamaPenerima"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+
+                    <TextView
+                        android:id="@+id/textHandphonePenerima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/formNamaPenerima"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:text="No Handphone Penerima"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="No Handphone"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textHandphonePenerima"
+                        android:inputType="phone"
+                        android:id="@+id/formNoHandphonePenerima"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+                    <TextView
+                        android:id="@+id/textKodePos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/formNoHandphonePenerima"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:text="Kode Pos"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Kode Pos"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textKodePos"
+                        android:inputType="phone"
+                        android:id="@+id/formKodePos"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+
+                    <TextView
+                        android:id="@+id/textProvinsi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/formKodePos"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:text="Provinsi"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Provinsi"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textProvinsi"
+                        android:inputType="text"
+                        android:id="@+id/formProvinsi"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+
+                    <TextView
+                        android:id="@+id/textCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/formProvinsi"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:text="Kota/Kabupaten"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Kota/Kabupaten"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textCity"
+                        android:inputType="text"
+                        android:id="@+id/formCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+                    <TextView
+                        android:id="@+id/textKec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/formCity"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:text="Kecamatan/Kelurahan"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Kecamatan/Kelurahan"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textKec"
+                        android:inputType="text"
+                        android:id="@+id/formKec"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"/>
+                    <TextView
+                        android:id="@+id/textAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/formKec"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:text="Alamat"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/blue"/>
+                    <EditText
+                        android:padding="@dimen/_5sdp"
+                        style="@style/text_style"
+                        android:hint="Alamat Lengkap"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bg_form"
+                        android:layout_below="@id/textAddress"
+                        android:inputType="textMultiLine"
+                        android:id="@+id/formAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_65sdp"/>
+                    <Button
+                        android:id="@+id/btnSimpanAddress"
+                        style="@style/btn_style"
+                        android:layout_below="@id/formAddress"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="Simpan" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</layout>

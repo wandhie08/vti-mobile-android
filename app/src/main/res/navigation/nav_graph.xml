@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentHome">
+    <fragment
+        tools:layout="@layout/fragment_home"
+        android:id="@+id/fragmentHome"
+        android:name="com.rowantech.vti.views.FragmentHome"
+        android:label="FragmentHome" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentBrands"
+            app:destination="@id/fragmentBrands" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentDialogNotifications"
+            app:destination="@id/fragmentDialogNotifications" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_brands"
+        android:id="@+id/fragmentBrands"
+        android:name="com.rowantech.vti.views.FragmentBrands"
+        android:label="FragmentBrands" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentBrands_to_fragmentDescEvent"
+            app:destination="@id/fragmentDescEvent" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_desc_event"
+        android:id="@+id/fragmentDescEvent"
+        android:name="com.rowantech.vti.views.FragmentDescEvent"
+        android:label="FragmentDescEvent" >
+        <action
+            android:id="@+id/action_fragmentDescEvent_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/dialog_login"
+        android:id="@+id/fragmentLogin"
+        android:name="com.rowantech.vti.views.FragmentLogin"
+        android:label="FragmentLogin" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentRegister"
+            app:destination="@id/fragmentRegister" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/dialog_notification"
+        android:id="@+id/fragmentDialogNotifications"
+        android:name="com.rowantech.vti.views.FragmentDialogNotifications"
+        android:label="FragmentDialogNotifications" >
+        <action
+            android:id="@+id/action_fragmentDialogNotifications_to_fragmentEditProfile"
+            app:destination="@id/fragmentEditProfile" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_edit_profile"
+        android:id="@+id/fragmentEditProfile"
+        android:name="com.rowantech.vti.views.FragmentEditProfile"
+        android:label="FragmentEditProfile" />
+    <fragment
+        tools:layout="@layout/fragment_register"
+        android:id="@+id/fragmentRegister"
+        android:name="com.rowantech.vti.views.FragmentRegister"
+        android:label="FragmentRegister" />
+</navigation>

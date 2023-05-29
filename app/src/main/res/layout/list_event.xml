@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout
+    android:id="@+id/layoutEvent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/banner"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_180sdp"/>
+    <ImageView
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_below="@id/banner"
+        android:id="@+id/brand"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"/>
+    <TextView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_toRightOf="@id/brand"
+        android:layout_below="@id/banner"
+        style="@style/text_style"
+        android:id="@+id/titleEvent"
+        android:text="Jabar Lautan Kopi 2023"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_toRightOf="@id/brand"
+        android:layout_below="@id/titleEvent"
+        style="@style/text_style_small"
+        android:id="@+id/textStatus"
+        android:text="Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/iconStatus"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_toRightOf="@id/textStatus"
+        android:layout_below="@id/titleEvent"
+        android:background="@drawable/circle"
+        android:layout_width="@dimen/_10sdp"
+        android:layout_height="@dimen/_10sdp"/>
+    <TextView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_toRightOf="@id/iconStatus"
+        android:layout_below="@id/titleEvent"
+        style="@style/text_style_small"
+        android:id="@+id/valueStatus"
+        android:text="Dijadwalkan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_below="@id/titleEvent"
+        style="@style/text_style_small"
+        android:id="@+id/tanggalEvent"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_alignParentRight="true"
+        android:text="31 Januari 2024"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/iconTanggal"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_toLeftOf="@id/tanggalEvent"
+        android:layout_below="@id/titleEvent"
+        android:background="@drawable/calendar_event"
+        android:layout_width="@dimen/_10sdp"
+        android:layout_height="@dimen/_10sdp"/>
+</RelativeLayout>
+</layout>

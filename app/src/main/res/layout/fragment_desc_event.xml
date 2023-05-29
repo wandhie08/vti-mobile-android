@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/iconLogo"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/ic_logo" />
+
+        <ImageView
+            android:id="@+id/iconMenu"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/ic_menu" />
+
+        <ImageView
+            android:id="@+id/iconSearch"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconScan"
+            android:background="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/iconScan"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconMenu"
+            android:background="@drawable/scan" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@id/iconLogo"
+            android:background="#EFF2F7" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/view1"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/layoutSubscribeBrand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_185sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:scrollbars="horizontal"
+                        app:layoutManager="LinearLayoutManager"
+                        tools:listitem="@layout/list_banner" />
+
+                    <ImageView
+                        android:id="@+id/iconBrand"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@id/recycleViewBanner"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                         />
+
+                    <TextView
+                        android:layout_below="@id/recycleViewBanner"
+                        android:id="@+id/nameBrand"
+                        style="@style/text_style_large"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_45sdp"
+                        android:layout_toRightOf="@id/iconBrand"
+                         />
+
+
+                    <TextView
+                        android:id="@+id/companyBrand"
+                        style="@style/text_style"
+                        android:layout_below="@id/nameBrand"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_toRightOf="@id/iconBrand"
+                         />
+                    <ImageView
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:background="@drawable/share"
+                        android:layout_below="@id/recycleViewBanner"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"/>
+                    <RelativeLayout
+                        android:id="@+id/descBrand"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/iconBrand"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp">
+                        <RelativeLayout
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:id="@+id/btnBerbayar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/iconBerbayar"
+                                android:background="@drawable/tag"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"/>
+                            <TextView
+                                android:layout_below="@id/iconBerbayar"
+                                android:text="Berbayar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/text_style_small"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_toRightOf="@id/btnBerbayar"
+                            android:id="@+id/btnHadiah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/iconHadiah"
+                                android:background="@drawable/award"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"/>
+                            <TextView
+                                android:layout_below="@id/iconHadiah"
+                                android:text="Hadiah"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/text_style_small"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/btnPendaftaran"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/iconPendaftaran"
+                                android:background="@drawable/list_check"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"/>
+                            <TextView
+                                android:layout_below="@id/iconPendaftaran"
+                                android:text="Pendaftaran"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/text_style_small"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_marginRight="@dimen/_20sdp"
+                            android:layout_toLeftOf="@id/btnUpload"
+                            android:id="@+id/btnVerifikasi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/iconVerifikasi"
+                                android:background="@drawable/lock_open"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"/>
+                            <TextView
+                                android:layout_below="@id/iconVerifikasi"
+                                android:text="Verifikasi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/text_style_small"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_marginRight="@dimen/_25sdp"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/btnUpload"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/iconUpload"
+                                android:background="@drawable/upload"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"/>
+                            <TextView
+                                android:layout_below="@id/iconUpload"
+                                android:text="Upload"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/text_style_small"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnRegistrasi"
+                        style="@style/btn_style"
+                        android:layout_below="@id/descBrand"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="Registrasi" />
+                    <RelativeLayout
+                        android:id="@+id/layoutTentangEvent"
+                        android:layout_below="@id/btnRegistrasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tentangEventText"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_width="wrap_content"
+                            style="@style/text_style_large"
+                            android:text="Tentang Event Ini"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/descEvent"
+                            android:layout_below="@id/tentangEventText"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:layout_width="wrap_content"
+                            style="@style/text_style"
+
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/deskripsi"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_below="@id/descEvent"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            style="@style/text_style_small"
+                            android:text="Deskripsi"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/circle1"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_9sdp"
+                            android:layout_toRightOf="@id/deskripsi"
+                            android:layout_below="@id/descEvent"
+                            android:background="@drawable/circle"
+                            android:layout_width="@dimen/_7sdp"
+                            android:layout_height="@dimen/_7sdp"/>
+
+                        <TextView
+                            android:layout_toRightOf="@id/circle1"
+                            android:id="@+id/peraturan"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_below="@id/descEvent"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            style="@style/text_style_small"
+                            android:text="Peraturan"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/circle2"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_9sdp"
+                            android:layout_toRightOf="@id/peraturan"
+                            android:layout_below="@id/descEvent"
+                            android:background="@drawable/circle"
+                            android:layout_width="@dimen/_7sdp"
+                            android:layout_height="@dimen/_7sdp"/>
+                        <TextView
+                            android:layout_toRightOf="@id/circle2"
+                            android:id="@+id/hadiah"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_below="@id/descEvent"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            style="@style/text_style_small"
+                            android:text="Hadiah"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/circle3"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_9sdp"
+                            android:layout_toRightOf="@id/hadiah"
+                            android:layout_below="@id/descEvent"
+                            android:background="@drawable/circle"
+                            android:layout_width="@dimen/_7sdp"
+                            android:layout_height="@dimen/_7sdp"/>
+
+                        <TextView
+                            android:layout_toRightOf="@id/circle3"
+                            android:id="@+id/upload"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_below="@id/descEvent"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            style="@style/text_style_small"
+                            android:text="upload"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:id="@+id/rightEventIni"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:background="@drawable/chevron_blue" />
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutSelesai"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layoutSubscribeBrand">
+
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_5sdp"
+                        android:background="#EFF2F7" />
+
+                    <TextView
+                        android:id="@+id/textSelesai"
+                        style="@style/text_style_large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view7"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="Komentar dan Diskusi" />
+
+                    <ImageView
+                        android:id="@+id/rightSelesai"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_below="@id/view7"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/chevron_blue" />
+
+                    <View
+                        android:id="@+id/view8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_below="@id/textSelesai"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@color/grey" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewDiscussion"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_225sdp"
+                        android:layout_below="@id/view8"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:scrollbars="horizontal"
+                        app:layoutManager="LinearLayoutManager"
+                        tools:listitem="@layout/list_discussion" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutBrand"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layoutSelesai">
+
+                    <View
+                        android:id="@+id/view9"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_5sdp"
+                        android:background="#EFF2F7" />
+
+                    <TextView
+                        android:id="@+id/textBrand"
+                        style="@style/text_style_large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view9"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:text="Event Terkait" />
+
+                    <ImageView
+                        android:id="@+id/rightBrand"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_below="@id/view9"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/chevron_blue" />
+
+                    <View
+                        android:id="@+id/view10"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_below="@id/textBrand"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@color/grey" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewEventTerkait"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_225sdp"
+                        android:layout_below="@id/view10"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:scrollbars="horizontal"
+                        app:layoutManager="LinearLayoutManager"
+                        tools:listitem="@layout/list_event" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</layout>
