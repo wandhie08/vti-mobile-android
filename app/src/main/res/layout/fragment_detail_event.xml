@@ -30,7 +30,7 @@
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:lineSpacingMultiplier="1.39"
-                    android:text="@string/desc_event_sample" />
+                     />
 
                 <LinearLayout
                     android:layout_width="match_parent"
