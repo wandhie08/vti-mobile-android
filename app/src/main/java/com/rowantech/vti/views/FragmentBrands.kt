@@ -77,7 +77,7 @@ class FragmentBrands : BaseFragment(), Injectable {
         getEventByBrandRequest.brandId = data.brandId
         getBrandsRequest.companyId = data.companyId
 
-
+        getBrandsRequest.brandId = data.brandId
         if (!TextUtils.isEmpty(MainApplication().getStringPref(context, "dataLogin"))) {
             dataLogin = Gson().fromJson(MainApplication().getStringPref(context, "dataLogin"), LoginResponse::class.java)
 

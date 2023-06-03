@@ -7,6 +7,9 @@ data class GetBrandsTerkaitRequest(
 	@field:SerializedName("company_id")
 	var companyId: String? = null,
 
+	@field:SerializedName("brand_id")
+	var brandId: String? = null,
+
 	@field:SerializedName("size")
 	var size: Int? = null,
 

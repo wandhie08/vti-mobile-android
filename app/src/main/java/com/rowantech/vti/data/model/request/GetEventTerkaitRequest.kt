@@ -10,6 +10,9 @@ data class GetEventTerkaitRequest(
 	@field:SerializedName("size")
 	var size: Int? = null,
 
+	@field:SerializedName("event_id")
+	var eventId: String? = null,
+
 	@field:SerializedName("page")
 	var page: Int? = null
 )

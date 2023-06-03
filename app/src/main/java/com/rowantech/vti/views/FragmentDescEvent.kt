@@ -72,19 +72,26 @@ class FragmentDescEvent : BaseFragment(), Injectable {
         binding.companyBrand.text = data.companyName
         binding.descEvent.text = data.shortDescription
         getEventTerkaitRequest.companyId = data.companyId
-        getAllBanner(binding,data)
+        getEventTerkaitRequest.eventId = data.eventId
+        getAllBanner(binding, data)
         Glide.with(this).load(data.avatar).into(binding.iconBrand)
         if (!TextUtils.isEmpty(MainApplication().getStringPref(context, "dataLogin"))) {
-            dataLogin = Gson().fromJson(MainApplication().getStringPref(context, "dataLogin"), LoginResponse::class.java)
+            dataLogin = Gson().fromJson(
+                MainApplication().getStringPref(context, "dataLogin"),
+                LoginResponse::class.java
+            )
 
-            if (dataLogin.customer!=null){
+            if (dataLogin.customer != null) {
                 registerEventRequest.eventId = data.eventId
                 registerEventRequest.customerId = dataLogin.customer!!.customerId
             }
 
-            subscribeEvent(binding,Constant.STATUS_EVENT)
+            subscribeEvent(binding, Constant.STATUS_EVENT)
         }
-        getEventByType(binding,"REGISTRATION")
+        getEventByType(
+            binding,
+            "REGISTRATION|EVALUATION REGISTRATION|SUBMISSION|ONGOING|EVALUATION EVENT"
+        )
 
         binding.recycleViewDiscussion.visibility = View.GONE
         binding.layoutBrand.visibility = View.GONE
@@ -92,28 +99,36 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             if (TextUtils.isEmpty(MainApplication().getStringPref(context, "dataLogin"))) {
                 findNavController().navigate(R.id.fragmentLogin)
             } else {
-                if (binding.btnRegistrasi.text.toString() =="TERDAFTAR"){
+                if (binding.btnRegistrasi.text.toString() == "TERDAFTAR") {
 
-                }else{
-                    dataLogin = Gson().fromJson(MainApplication().getStringPref(context, "dataLogin"), LoginResponse::class.java)
+                } else {
+                    dataLogin = Gson().fromJson(
+                        MainApplication().getStringPref(context, "dataLogin"),
+                        LoginResponse::class.java
+                    )
 
-                    if (dataLogin.customer!=null){
+                    if (dataLogin.customer != null) {
                         registerEventRequest.eventId = data.eventId
                         registerEventRequest.customerId = dataLogin.customer!!.customerId
                     }
 
-                    subscribeEvent(binding,Constant.SUBSCRIBE_EVENT)
+                    subscribeEvent(binding, Constant.SUBSCRIBE_EVENT)
                 }
             }
         }
 
         binding.iconMenu.setOnClickListener {
-            if(TextUtils.isEmpty(MainApplication().getStringPref(context,"dataLogin"))){
+            if (TextUtils.isEmpty(MainApplication().getStringPref(context, "dataLogin"))) {
                 findNavController().navigate(R.id.fragmentLogin)
-            }else{
+            } else {
                 findNavController().navigate(R.id.fragmentDialogNotifications)
             }
         }
+
+        binding.layoutTentangEvent.setOnClickListener {
+            findNavController().navigate(R.id.fragmentTabsEvent)
+        }
+
         return binding.root
     }
 
@@ -122,7 +137,7 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
     }
 
-    fun getAllBanner(binding: FragmentDescEventBinding,eventsItem: EventsItem){
+    fun getAllBanner(binding: FragmentDescEventBinding, eventsItem: EventsItem) {
         val adapterBanner = ListAdapterBanner(
             dataBindingComponent,
             requireContext(),
@@ -208,15 +223,15 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
     private fun onClickDataEvent(binding: FragmentDescEventBinding, partItem: EventsItem) {
         val bundle = Bundle()
-        bundle.putString("data",Gson().toJson(partItem))
-        findNavController().navigate(R.id.fragmentDescEvent,bundle)
+        bundle.putString("data", Gson().toJson(partItem))
+        findNavController().navigate(R.id.fragmentDescEvent, bundle)
     }
 
     private fun onClickDataBanner(binding: FragmentDescEventBinding, partItem: BannersItem) {
 
     }
 
-    fun subscribeEvent(binding: FragmentDescEventBinding,typeSubscribe:String){
+    fun subscribeEvent(binding: FragmentDescEventBinding, typeSubscribe: String) {
         progressShow()
 
 
@@ -231,18 +246,17 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             if (result.status == Status.SUCCESS) {
 
 
-
-                if (typeSubscribe==Constant.STATUS_EVENT){
+                if (typeSubscribe == Constant.STATUS_EVENT) {
                     val response =
                         Gson().fromJson(result.data, GetStatusRegisterEventResponse::class.java)
-                    if (response.registrationStatus =="Y"){
+                    if (response.registrationStatus == "Y") {
                         binding.btnRegistrasi.setText("TERDAFTAR")
                         binding.btnRegistrasi.setBackgroundResource(R.drawable.button_grey)
-                    }else{
+                    } else {
                         binding.btnRegistrasi.setText("DAFTAR")
                         binding.btnRegistrasi.setBackgroundResource(R.drawable.button_blue)
                     }
-                }else   if (typeSubscribe==Constant.SUBSCRIBE_EVENT){
+                } else if (typeSubscribe == Constant.SUBSCRIBE_EVENT) {
                     Snackbar.make(
                         binding!!.root,
                         "Anda berhasil daftar event",

@@ -46,7 +46,22 @@ abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
     abstract fun contributeFragmentDialogNotifications(): FragmentDialogNotifications
 
-
     @ContributesAndroidInjector
     abstract fun contributeFragmentRegister(): FragmentRegister
+
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentSearchEvent(): FragmentSearchEvent
+
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentListEventOffline(): FragmentListEventOffline
+
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentListEventOnline(): FragmentListEventOnline
+
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentTabsEvent(): FragmentTabsEvent
+
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentDetailEvent(): FragmentDetailEvent
+
 }

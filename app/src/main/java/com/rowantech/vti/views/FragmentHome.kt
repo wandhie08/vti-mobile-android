@@ -52,6 +52,7 @@ class FragmentHome : BaseFragment(), Injectable {
     @Inject
     lateinit var appExecutors: AppExecutors
 
+    internal lateinit var data: LoginResponse
 
     private val mainViewModel: MainViewModel by viewModels {
         viewModelFactory
@@ -91,7 +92,7 @@ class FragmentHome : BaseFragment(), Injectable {
         getEventByType(binding,"REGISTRATION")
         getEventByType(binding,"UPCOMING")
         getEventByType(binding,"ONGOING")
-        getEventByType(binding,"CLOSE")
+        getEventByType(binding,"CLOSED")
 
         getAllBrand(binding)
         binding.iconMenu.setOnClickListener {
@@ -104,6 +105,22 @@ class FragmentHome : BaseFragment(), Injectable {
 
         binding.iconScan.setOnClickListener {
 
+        }
+
+        binding.btnAkanDatang.setOnClickListener {
+            findNavController().navigate(R.id.fragmentSearchEvent)
+        }
+
+        binding.btnSelesai.setOnClickListener {
+            findNavController().navigate(R.id.fragmentSearchEvent)
+        }
+
+        binding.btnDaftarSekarang.setOnClickListener {
+            findNavController().navigate(R.id.fragmentSearchEvent)
+        }
+
+        binding.btnSedangBerlangsung.setOnClickListener {
+            findNavController().navigate(R.id.fragmentSearchEvent)
         }
 
         binding.iconSearch.setOnClickListener {
@@ -120,6 +137,7 @@ class FragmentHome : BaseFragment(), Injectable {
 
 
     fun getEventByType(binding: FragmentHomeBinding,typeEvent:String){
+        var evenSelected :String=typeEvent
 
         val adapterEvent = ListAdapterEvent(
             dataBindingComponent,
@@ -133,8 +151,9 @@ class FragmentHome : BaseFragment(), Injectable {
             }) { contributor, imageView ->
         }
         this.adapterEvent = adapterEvent
-
+        getEventByTypeRequest.typeAccount = "Customer"
         if (typeEvent=="CLOSED"){
+            evenSelected="CLOSED|ANNOUNCEMENT"
             binding.recycleViewEventSelesai.adapter = adapterEvent
             binding.recycleViewEventSelesai.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -147,6 +166,8 @@ class FragmentHome : BaseFragment(), Injectable {
                     true
                 }
         }else if (typeEvent=="ONGOING"){
+            evenSelected="EVALUATION REGISTRATION|SUBMISSION|ONGOING|EVALUATION EVENT"
+
             binding.recycleViewEventSedangBerlangsung.adapter = adapterEvent
             binding.recycleViewEventSedangBerlangsung.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -159,6 +180,15 @@ class FragmentHome : BaseFragment(), Injectable {
                     true
                 }
         }else if (typeEvent=="REGISTRATION"){
+            evenSelected="REGISTRATION"
+
+            if(!TextUtils.isEmpty(MainApplication().getStringPref(context,"dataLogin"))){
+                data = Gson().fromJson(MainApplication().getStringPref(context, "dataLogin"), LoginResponse::class.java)
+                if (data.customer!!.typeCustomer=="Publisher"){
+                    evenSelected="DRAFT|REGISTRATION"
+                    getEventByTypeRequest.typeAccount = "Publisher"
+                }
+            }
             binding.recycleViewEventDaftarSekarang.adapter = adapterEvent
             binding.recycleViewEventDaftarSekarang.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -171,6 +201,8 @@ class FragmentHome : BaseFragment(), Injectable {
                     true
                 }
         }else if (typeEvent=="UPCOMING"){
+            evenSelected="UPCOMING"
+
             binding.recycleViewEvantAkanDatang.adapter = adapterEvent
             binding.recycleViewEvantAkanDatang.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -186,7 +218,8 @@ class FragmentHome : BaseFragment(), Injectable {
 
 
 
-        getEventByTypeRequest.typeEvent = typeEvent
+        getEventByTypeRequest.typeLocation = "all"
+        getEventByTypeRequest.typeEvent = evenSelected
         getEventByTypeRequest.page =0
         getEventByTypeRequest.size =100
         mainViewModel.paramWithBody(

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:scrollbars="none"
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_margin="@dimen/_5sdp"
+                android:id="@+id/layoutSearch"
+                android:padding="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAkanDatang"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:layout_width="@dimen/_90sdp"
+                    android:text="Akan Datang"
+                    android:textAllCaps="false"
+                    style="@style/text_style"
+                    android:textColor="@color/black"
+                    android:layout_height="@dimen/_30sdp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnPendaftaran"
+                    android:layout_toRightOf="@id/btnAkanDatang"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:layout_width="@dimen/_90sdp"
+                    android:text="Pendaftaran"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:textAllCaps="false"
+                    style="@style/text_style"
+                    android:textColor="@color/black"
+                    android:layout_height="@dimen/_30sdp"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBerlangsung"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_toRightOf="@id/btnPendaftaran"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:layout_width="@dimen/_90sdp"
+                    android:text="Berlangsung"
+                    android:textAllCaps="false"
+                    style="@style/text_style"
+                    android:textColor="@color/black"
+                    android:layout_height="@dimen/_30sdp"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSelesai"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_toRightOf="@id/btnBerlangsung"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:layout_width="@dimen/_90sdp"
+                    android:text="Selesai"
+                    android:textAllCaps="false"
+                    style="@style/text_style"
+                    android:textColor="@color/black"
+                    android:layout_height="@dimen/_30sdp"/>
+            </RelativeLayout>
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/recycleViewNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="horizontal"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/list_event" />
+    </LinearLayout>
+</layout>

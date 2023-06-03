@@ -62,7 +62,10 @@
                 android:id="@+id/layoutAkanDatang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
+                <RelativeLayout
+                    android:id="@+id/btnAkanDatang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/textAkanDatang"
                     style="@style/heading"
@@ -82,12 +85,13 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/chevron" />
-
+                </RelativeLayout>
                 <View
+
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
-                    android:layout_below="@id/textAkanDatang"
+                    android:layout_below="@id/btnAkanDatang"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@color/grey" />
@@ -117,13 +121,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_5sdp"
                     android:background="#EFF2F7" />
-
+                <RelativeLayout
+                    android:id="@+id/btnDaftarSekarang"
+                    android:layout_below="@id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/textDaftarSekarang"
                     style="@style/heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/view3"
+
                     android:layout_margin="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -136,17 +144,16 @@
                     android:id="@+id/rightDaftar"
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
-                    android:layout_below="@id/view3"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/chevron" />
-
+                </RelativeLayout>
                 <View
                     android:id="@+id/view4"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
-                    android:layout_below="@id/textDaftarSekarang"
+                    android:layout_below="@id/btnDaftarSekarang"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@color/grey" />
@@ -176,22 +183,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_5sdp"
                     android:background="#EFF2F7" />
+                <RelativeLayout
+                    android:id="@+id/btnSedangBerlangsung"
+                    android:layout_below="@id/view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textSedangBerlangsung"
                     style="@style/heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/view5"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:text="Sedang Berlangsung" />
 
                 <ImageView
-                    android:layout_below="@id/view5"
                     android:id="@+id/rightSedangBerlangsung"
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
@@ -199,12 +208,12 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/chevron" />
-
+                </RelativeLayout>
                 <View
                     android:id="@+id/view6"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
-                    android:layout_below="@id/textSedangBerlangsung"
+                    android:layout_below="@id/btnSedangBerlangsung"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@color/grey" />
@@ -234,22 +243,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_5sdp"
                     android:background="#EFF2F7" />
+                <RelativeLayout
+                    android:id="@+id/btnSelesai"
+                    android:layout_below="@id/view7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textSelesai"
                     style="@style/heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/view7"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:text="Selesai" />
 
                 <ImageView
-                    android:layout_below="@id/view7"
                     android:id="@+id/rightSelesai"
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
@@ -257,12 +268,12 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/chevron" />
-
+                </RelativeLayout>
                 <View
                     android:id="@+id/view8"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
-                    android:layout_below="@id/textSelesai"
+                    android:layout_below="@id/btnSelesai"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@color/grey" />

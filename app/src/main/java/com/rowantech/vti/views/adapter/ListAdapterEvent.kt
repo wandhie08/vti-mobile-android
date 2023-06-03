@@ -74,9 +74,11 @@ class ListAdapterEvent (
             binding.textStatus.text = "dijadwalkan"
 
         }
-        Glide.with(context).load(item.banners?.get(0)?.banner).into(binding.banner)
-        System.out.println("item.avatar :"+item.avatar)
-        System.out.println("item.banners?.get(0)?.banner :"+item.banners?.get(0)?.banner)
+        if (item.banners!!.size>0){
+            Glide.with(context).load(item.banners?.get(0)?.banner).into(binding.banner)
+            System.out.println("item.avatar :"+item.avatar)
+            System.out.println("item.banners?.get(0)?.banner :"+item.banners?.get(0)?.banner)
+        }
 
     }
 

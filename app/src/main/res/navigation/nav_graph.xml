@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentDialogNotifications"
             app:destination="@id/fragmentDialogNotifications" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentSearchEvent"
+            app:destination="@id/fragmentSearchEvent" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_brands"
@@ -39,6 +42,9 @@
         <argument
             android:name="data"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentDescEvent_to_fragmentTabsEvent"
+            app:destination="@id/fragmentTabsEvent" />
     </fragment>
     <fragment
         tools:layout="@layout/dialog_login"
@@ -68,4 +74,18 @@
         android:id="@+id/fragmentRegister"
         android:name="com.rowantech.vti.views.FragmentRegister"
         android:label="FragmentRegister" />
+    <fragment
+        tools:layout="@layout/fragment_search_event"
+        android:id="@+id/fragmentSearchEvent"
+        android:name="com.rowantech.vti.views.FragmentSearchEvent"
+        android:label="FragmentSearchEvent" >
+        <action
+            android:id="@+id/action_fragmentSearchEvent_to_fragmentDescEvent"
+            app:destination="@id/fragmentDescEvent" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_tabs_event"
+        android:id="@+id/fragmentTabsEvent"
+        android:name="com.rowantech.vti.views.FragmentTabsEvent"
+        android:label="FragmentTabsEvent" />
 </navigation>

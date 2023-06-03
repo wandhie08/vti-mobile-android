@@ -9,21 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
-import com.google.gson.Gson
-import com.rowantech.vti.MainApplication
-import com.rowantech.vti.R
 import com.rowantech.vti.data.AppExecutors
-import com.rowantech.vti.data.model.response.LoginResponse
-import com.rowantech.vti.databinding.DialogNotificationBinding
-import com.rowantech.vti.databinding.FragmentSearchEventBinding
+import com.rowantech.vti.databinding.FragmentTabsEventBinding
 import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.autoCleared
 import java.util.ArrayList
 import javax.inject.Inject
 
-class FragmentSearchEvent : BaseFragment(), Injectable {
+class FragmentTabsEvent : BaseFragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -31,24 +25,24 @@ class FragmentSearchEvent : BaseFragment(), Injectable {
     @Inject
     lateinit var appExecutors: AppExecutors
 
-    var binding by autoCleared<DialogNotificationBinding>()
+    var binding by autoCleared<FragmentTabsEventBinding>()
 
     internal var adapter: ViewPagerAdapter? = null
-    internal lateinit var fragmentListEventOffline: FragmentListEventOffline
-    internal lateinit var fragmentListEventOnline: FragmentListEventOnline
+    internal lateinit var fragmentListEventOffline: FragmentDetailEvent
+    internal lateinit var fragmentListEventOnline: FragmentDetailEvent
     @SuppressLint("HardwareIds")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentSearchEventBinding.inflate(inflater, container, false)
+        val binding = FragmentTabsEventBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
         adapter = ViewPagerAdapter(childFragmentManager)
 
-        adapter!!.addFragment(seArgsForFragment(FragmentListEventOnline()), "Online")
-        adapter!!.addFragment(seArgsForFragment(FragmentListEventOffline()), "Offline")
+        adapter!!.addFragment(seArgsForFragment(FragmentDetailEvent()), "Description")
+        adapter!!.addFragment(seArgsForFragment(FragmentDetailEvent()), "Offline")
 
 
         binding.viewpager.setOffscreenPageLimit(2)
@@ -69,8 +63,8 @@ class FragmentSearchEvent : BaseFragment(), Injectable {
 
             }
         })
-        fragmentListEventOnline = adapter!!.getItem(0) as FragmentListEventOnline
-        fragmentListEventOffline = adapter!!.getItem(1) as FragmentListEventOffline
+        fragmentListEventOnline = adapter!!.getItem(0) as FragmentDetailEvent
+        fragmentListEventOffline = adapter!!.getItem(1) as FragmentDetailEvent
 
         return binding.root
     }
