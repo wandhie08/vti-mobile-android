@@ -49,7 +49,7 @@ class FragmentDetailEvent : BaseFragment(), Injectable {
         context ?: return binding.root
 
 
-
+        binding.descriptionEvent.setText(arguments?.getString("desc"))
         return binding.root
     }
 

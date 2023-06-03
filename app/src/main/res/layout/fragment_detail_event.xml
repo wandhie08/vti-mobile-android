@@ -20,6 +20,8 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:padding="@dimen/_5sdp"
+                    android:id="@+id/descriptionEvent"
                     style="@style/text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

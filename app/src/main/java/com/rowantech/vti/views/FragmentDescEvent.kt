@@ -126,7 +126,9 @@ class FragmentDescEvent : BaseFragment(), Injectable {
         }
 
         binding.layoutTentangEvent.setOnClickListener {
-            findNavController().navigate(R.id.fragmentTabsEvent)
+            val bundle = Bundle()
+            bundle.putString("data",Gson().toJson(data))
+            findNavController().navigate(R.id.fragmentTabsEvent,bundle)
         }
 
         return binding.root

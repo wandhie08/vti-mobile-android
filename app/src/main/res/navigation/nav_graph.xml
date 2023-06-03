@@ -87,5 +87,9 @@
         tools:layout="@layout/fragment_tabs_event"
         android:id="@+id/fragmentTabsEvent"
         android:name="com.rowantech.vti.views.FragmentTabsEvent"
-        android:label="FragmentTabsEvent" />
+        android:label="FragmentTabsEvent" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
 </navigation>

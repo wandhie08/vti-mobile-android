@@ -10,7 +10,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.rowantech.vti.data.AppExecutors
+import com.rowantech.vti.data.model.response.EventsItem
+import com.rowantech.vti.data.model.response.FreeDataResponse
+import com.rowantech.vti.data.model.response.FreeDataResponseItem
 import com.rowantech.vti.databinding.FragmentTabsEventBinding
 import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.autoCleared
@@ -30,6 +35,8 @@ class FragmentTabsEvent : BaseFragment(), Injectable {
     internal var adapter: ViewPagerAdapter? = null
     internal lateinit var fragmentListEventOffline: FragmentDetailEvent
     internal lateinit var fragmentListEventOnline: FragmentDetailEvent
+    internal lateinit var data: EventsItem
+    internal lateinit var freeData3: FreeDataResponse
     @SuppressLint("HardwareIds")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,10 +46,20 @@ class FragmentTabsEvent : BaseFragment(), Injectable {
         val binding = FragmentTabsEventBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
+        data = Gson().fromJson(arguments?.getString("data"), EventsItem::class.java)
+
         adapter = ViewPagerAdapter(childFragmentManager)
 
-        adapter!!.addFragment(seArgsForFragment(FragmentDetailEvent()), "Description")
-        adapter!!.addFragment(seArgsForFragment(FragmentDetailEvent()), "Offline")
+        adapter!!.addFragment(seArgsForFragment(data.description!!,FragmentDetailEvent()), "Description")
+        if (data.freeData3!!.length>0){
+            val typeToken = object : TypeToken<List<FreeDataResponseItem>>() {}.type
+            val freeData3 = Gson().fromJson<List<FreeDataResponseItem>>(data.freeData3!!, typeToken)
+            if (!freeData3.isEmpty()){
+                for (item in freeData3) {
+                    adapter!!.addFragment(seArgsForFragment(item!!.content!!,FragmentDetailEvent()), item!!.title!!)
+                }
+            }
+        }
 
 
         binding.viewpager.setOffscreenPageLimit(2)
@@ -74,10 +91,11 @@ class FragmentTabsEvent : BaseFragment(), Injectable {
 
     }
 
-    private fun seArgsForFragment(fragment: Fragment): Fragment {
+    private fun seArgsForFragment(desc: String,fragment: Fragment): Fragment {
         val bundle = Bundle()
 
-        //bundle.putBoolean("isDraft", arguments!!.getBoolean("isDraft"))
+        bundle.putString("desc",desc)
+
         fragment.setArguments(bundle)
         return fragment
     }
