@@ -139,6 +139,7 @@
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"/>
                             <TextView
+                                android:id="@+id/textDateEvent"
                                 android:layout_below="@id/iconDateEvent"
                                 android:text="1 Juni 2022"
                                 android:layout_width="wrap_content"
@@ -157,6 +158,7 @@
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"/>
                             <TextView
+                                android:id="@+id/textTotalParticipant"
                                 android:layout_below="@id/iconParticipant"
                                 android:text="1/100"
                                 android:layout_width="wrap_content"
@@ -175,6 +177,7 @@
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"/>
                             <TextView
+                                android:id="@+id/textLocationType"
                                 android:layout_below="@id/iconLocationType"
                                 android:text="Online"
                                 android:layout_width="wrap_content"
@@ -229,6 +232,7 @@
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"/>
                             <TextView
+                                android:id="@+id/textBerbayar"
                                 android:layout_below="@id/iconBerbayar"
                                 android:text="Berbayar"
                                 android:layout_width="wrap_content"

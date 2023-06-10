@@ -73,6 +73,8 @@ class FragmentDescEvent : BaseFragment(), Injectable {
         binding.descEvent.text = data.shortDescription
         getEventTerkaitRequest.companyId = data.companyId
         getEventTerkaitRequest.eventId = data.eventId
+
+       // binding.textDateEvent.text = data.
         getAllBanner(binding, data)
         Glide.with(this).load(data.avatar).into(binding.iconBrand)
         if (!TextUtils.isEmpty(MainApplication().getStringPref(context, "dataLogin"))) {
