@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.rowantech.vti.data.AppExecutors
-import com.rowantech.vti.databinding.FragmentProductPaymentBinding
+import com.rowantech.vti.databinding.FragmentCreateInvoiceBinding
+import com.rowantech.vti.databinding.FragmentSuccessInvoiceBinding
 import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.autoCleared
 import com.rowantech.vti.viewmodels.MainViewModel
 import javax.inject.Inject
 
-class FragmentProductPayment : BaseFragment(), Injectable {
+class FragmentSuccessInvoice : BaseFragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -22,7 +23,7 @@ class FragmentProductPayment : BaseFragment(), Injectable {
     @Inject
     lateinit var appExecutors: AppExecutors
 
-    var binding by autoCleared<FragmentProductPaymentBinding>()
+    var binding by autoCleared<FragmentSuccessInvoiceBinding>()
 
     private val mainViewModel: MainViewModel by viewModels {
         viewModelFactory
@@ -35,7 +36,7 @@ class FragmentProductPayment : BaseFragment(), Injectable {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentProductPaymentBinding.inflate(inflater, container, false)
+        val binding = FragmentSuccessInvoiceBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
 

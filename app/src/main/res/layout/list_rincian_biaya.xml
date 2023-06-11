@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/textNamaBarang"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="1 Barang\n250 gr"
+        style="@style/text_style_large"/>
+    <TextView
+        android:textStyle="bold"
+        android:layout_alignParentRight="true"
+        android:id="@+id/textHargaBarang"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Rp. 1.034"
+        style="@style/text_style_large"/>
+</RelativeLayout>

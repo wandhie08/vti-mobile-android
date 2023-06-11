@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iconLogo"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/ic_logo" />
+
+        <ImageView
+            android:id="@+id/iconMenu"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/ic_menu" />
+
+        <ImageView
+            android:id="@+id/iconSearch"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconScan"
+            android:background="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/iconScan"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconMenu"
+            android:background="@drawable/scan" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_below="@id/iconLogo"
+            android:background="#EFF2F7" />
+
+        <RelativeLayout
+            android:layout_below="@id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/infoLayout"
+                android:background="#1A1B9DFB"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:background="@drawable/ic_info_label"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp" />
+
+                <TextView
+                    android:textColor="#5A6978"
+                    android:layout_gravity="center"
+                    android:text="Lengkapi form isian untuk melanjutkan"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    style="@style/text_style_large" />
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/layoutCheckbox"
+                android:layout_below="@id/infoLayout"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/layoutCheckbox"
+                android:layout_above="@id/btnRegistrasi"
+                android:orientation="vertical"
+                android:background="#F9FAFC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_14sdp"
+                    android:text="Syarat, Ketentuan dan Kebijakan Privasi"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_40sdp"
+                    android:layout_above="@id/termConditionCheck"
+                    style="@style/text_style_large" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:id="@+id/termConditionCheck"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    style="@style/text_style_small"
+                    android:text="Dengan ini saya menyetujui syarat dan ketentuan penggunaan Platform VTI yang berlaku"
+                    android:buttonTint="@color/blue" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_margin="@dimen/_10sdp"
+                android:id="@+id/btnRegistrasi"
+                android:text="Kirim"
+                android:layout_alignParentBottom="true"
+                style="@style/btn_style" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

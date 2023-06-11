@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iconLogo"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/ic_logo" />
+
+        <ImageView
+            android:id="@+id/iconMenu"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/ic_menu" />
+
+        <ImageView
+            android:id="@+id/iconSearch"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconScan"
+            android:background="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/iconScan"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconMenu"
+            android:background="@drawable/scan" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_below="@id/iconLogo"
+            android:background="#EFF2F7" />
+
+        <RelativeLayout
+            android:layout_below="@id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+           <TextView
+               android:fontFamily="@font/roboto_condensed_bold"
+               android:id="@+id/textDetailTransaksi"
+               android:layout_marginLeft="@dimen/_20sdp"
+               android:layout_marginTop="@dimen/_10sdp"
+               android:text="Detail Transaksi"
+               style="@style/text_style_large"/>
+
+            <TextView
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:layout_below="@id/textDetailTransaksi"
+                android:id="@+id/textAlamatPengiriman"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Alamat Pengiriman"
+                style="@style/text_style_large"/>
+            <TextView
+                android:layout_below="@id/textAlamatPengiriman"
+                android:id="@+id/textValueAlamatPengiriman"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Nata Endah B-60"
+                style="@style/text_style_large"/>
+            <View
+                android:id="@+id/viewAlamat"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/grey"
+                android:layout_below="@id/textValueAlamatPengiriman"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"/>
+
+            <TextView
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:layout_below="@id/viewAlamat"
+                android:id="@+id/textMetodePengiriman"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Metode Pengiriman"
+                style="@style/text_style_large"/>
+            <TextView
+                android:layout_below="@id/textMetodePengiriman"
+                android:id="@+id/textValueMetodePengiriman"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="JNE"
+                style="@style/text_style_large"/>
+            <View
+                android:id="@+id/viewPengiriman"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/grey"
+                android:layout_below="@id/textValueMetodePengiriman"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@id/viewPengiriman"
+                android:id="@+id/textMetodePembayaran"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Metode Pembayaran"
+                style="@style/text_style_large"/>
+            <TextView
+                android:layout_below="@id/textMetodePembayaran"
+                android:id="@+id/textValueMetodePembayaran"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Transfer Bank Mandiri"
+                style="@style/text_style_large"/>
+
+            <ImageView
+                android:layout_below="@id/textMetodePembayaran"
+                android:id="@+id/imageBank"
+                android:background="@drawable/bank_mandiri_logo"
+                android:layout_alignParentRight="true"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                />
+            <TextView
+                android:layout_below="@id/textValueMetodePembayaran"
+                android:id="@+id/textAccountName"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Nama Rekening : PT Datascript"
+                style="@style/text_style_large"/>
+
+            <TextView
+                android:layout_below="@id/textAccountName"
+                android:id="@+id/textAccountNumber"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Nomor Rekening : 224005656270"
+                style="@style/text_style_large"/>
+            <View
+                android:id="@+id/viewPEmbayaran"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/grey"
+                android:layout_below="@id/textAccountNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@id/viewPEmbayaran"
+                android:id="@+id/textRincianBiaya"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rincian Biaya"
+                style="@style/text_style_large"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/textRincianBiaya"
+                android:id="@+id/recycleViewBanner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:scrollbars="horizontal"
+                android:layout_above="@id/textBiayaPengiriman"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/list_rincian_biaya" />
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/textBiayaPengiriman"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Biaya Pengiriman"
+                android:layout_above="@id/textKodeUnik"
+                style="@style/text_style_large"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/textValueBiayaPengiriman"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rp. 9.000"
+                android:layout_above="@id/textKodeUnik"
+                style="@style/text_style_large"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_above="@id/btnRegistrasi"
+                android:id="@+id/textKodeUnik"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Kode Unik"
+                style="@style/text_style_large"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_above="@id/btnRegistrasi"
+                android:id="@+id/textValueKodeUnik"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rp. 1.034"
+                style="@style/text_style_large"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnRegistrasi"
+                style="@style/btn_style"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_toLeftOf="@id/totalValue"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Bayar" />
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/totalValue"
+                android:textStyle="bold"
+                android:textSize="@dimen/_16sdp"
+                style="@style/text_style_large"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="Rp 36.012"
+                android:textColor="@color/red"
+                />
+            <TextView
+                android:id="@+id/totalValueText"
+                android:textStyle="bold"
+                android:layout_above="@id/totalValue"
+                android:textSize="@dimen/_12sdp"
+                style="@style/text_style_large"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:text="Total Biaya"
+                android:textColor="@color/black"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

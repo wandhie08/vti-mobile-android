@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iconLogo"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/ic_logo" />
+
+        <ImageView
+            android:id="@+id/iconMenu"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/ic_menu" />
+
+        <ImageView
+            android:id="@+id/iconSearch"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconScan"
+            android:background="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/iconScan"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@id/iconMenu"
+            android:background="@drawable/scan" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_below="@id/iconLogo"
+            android:background="#EFF2F7" />
+
+        <RelativeLayout
+            android:layout_below="@id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageSuccess"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/new_status_pembayaran" />
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@id/imageSuccess"
+                android:id="@+id/textBatasAkhir"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Batas Akhir Pembayaran"
+                style="@style/text_style_large"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@id/textBatasAkhir"
+                android:id="@+id/textBatasAkhirValue"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Senin, 12 Juni 2023 12:58 WIB"
+                style="@style/text_style_large"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@id/textBatasAkhirValue"
+                android:id="@+id/textMetodePembayaran"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Metode Pembayaran"
+                style="@style/text_style_large"/>
+            <TextView
+                android:layout_below="@id/textMetodePembayaran"
+                android:id="@+id/textValueMetodePembayaran"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Transfer Bank Mandiri"
+                style="@style/text_style_large"/>
+            <ImageView
+                android:layout_below="@id/textMetodePembayaran"
+                android:id="@+id/imageBank"
+                android:background="@drawable/bank_mandiri_logo"
+                android:layout_alignParentRight="true"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                />
+            <TextView
+                android:layout_below="@id/textValueMetodePembayaran"
+                android:id="@+id/textAccountName"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Nama Rekening : PT Datascript"
+                style="@style/text_style_large"/>
+
+            <TextView
+                android:layout_below="@id/textAccountName"
+                android:id="@+id/textAccountNumber"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Nomor Rekening : 224005656270"
+                style="@style/text_style_large"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="@dimen/_20sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_toRightOf="@id/textAccountNumber"
+                android:layout_below="@id/textAccountName"
+                android:background="@drawable/ic_copy"
+                android:layout_height="@dimen/_20sdp"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@id/textAccountNumber"
+                android:id="@+id/textTotalPembayaran"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Total Pembayaran"
+                style="@style/text_style_large"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@id/textTotalPembayaran"
+                android:id="@+id/textTotalPembayaranValue"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Rp. 120.000"
+                style="@style/text_style_large"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="@dimen/_20sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_toRightOf="@id/textTotalPembayaranValue"
+                android:layout_below="@id/textTotalPembayaran"
+                android:background="@drawable/ic_copy"
+                android:layout_height="@dimen/_20sdp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_margin="@dimen/_10sdp"
+                android:id="@+id/btnRegistrasi"
+                android:text="Beranda"
+                android:layout_alignParentBottom="true"
+                style="@style/btn_style" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>
