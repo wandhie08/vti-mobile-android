@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_fragmentSearchEvent_to_fragmentDescEvent"
             app:destination="@id/fragmentDescEvent" />
+        <argument
+            android:name="data"
+            app:argType="string" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_tabs_event"
@@ -103,6 +106,9 @@
         <action
             android:id="@+id/action_fragmentCreateTemplate_to_fragmentProductPayment"
             app:destination="@id/fragmentProductPayment" />
+        <argument
+            android:name="data"
+            app:argType="string" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_product_payment"
@@ -112,6 +118,9 @@
         <action
             android:id="@+id/action_fragmentProductPayment_to_fragmentCreateInvoice"
             app:destination="@id/fragmentCreateInvoice" />
+        <argument
+            android:name="data"
+            app:argType="string" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_create_invoice"
@@ -121,10 +130,17 @@
         <action
             android:id="@+id/action_fragmentCreateInvoice_to_fragmentSuccessInvoice"
             app:destination="@id/fragmentSuccessInvoice" />
+        <argument
+            android:name="data"
+            app:argType="string" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_success_invoice"
         android:id="@+id/fragmentSuccessInvoice"
         android:name="com.rowantech.vti.views.FragmentSuccessInvoice"
-        android:label="FragmentSuccessInvoice" />
+        android:label="FragmentSuccessInvoice" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -19,6 +19,7 @@ object Constant {
     val EVENT_TERKAIT ="dashboard/eventListByCompanyMB"
     val EVENT_BYBRAND ="event/eventListByBrandMB"
     val CUSTOMER_BYID ="customer/byCustomer"
+    val FORM_TEMPLATE =" participant/formTemplateEvent"
 
     val UNSUBSCRIBE_BRAND ="subscriber/delete"
     val STATUS_SUBSCRIBE ="subscriber/byUser"

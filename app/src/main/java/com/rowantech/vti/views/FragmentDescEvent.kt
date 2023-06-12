@@ -102,7 +102,9 @@ class FragmentDescEvent : BaseFragment(), Injectable {
                 findNavController().navigate(R.id.fragmentLogin)
             } else {
                 if (binding.btnRegistrasi.text.toString() == "TERDAFTAR") {
-
+                    val bundle = Bundle()
+                    bundle.putString("data",Gson().toJson(data))
+                    findNavController().navigate(R.id.fragmentCreateTemplate,bundle)
                 } else {
                     dataLogin = Gson().fromJson(
                         MainApplication().getStringPref(context, "dataLogin"),

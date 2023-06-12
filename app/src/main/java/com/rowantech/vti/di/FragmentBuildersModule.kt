@@ -69,5 +69,10 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeFragmentProductPayment(): FragmentProductPayment
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentCreateInvoice(): FragmentCreateInvoice
+
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentSuccessInvoice(): FragmentSuccessInvoice
 
 }

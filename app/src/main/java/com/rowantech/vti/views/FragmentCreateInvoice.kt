@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
+import com.rowantech.vti.R
 import com.rowantech.vti.data.AppExecutors
+import com.rowantech.vti.data.model.response.EventsItem
 import com.rowantech.vti.databinding.FragmentCreateInvoiceBinding
 import com.rowantech.vti.databinding.FragmentProductPaymentBinding
 import com.rowantech.vti.di.Injectable
@@ -28,7 +32,7 @@ class FragmentCreateInvoice  : BaseFragment(), Injectable {
     private val mainViewModel: MainViewModel by viewModels {
         viewModelFactory
     }
-
+    internal lateinit var data: EventsItem
 
     @SuppressLint("HardwareIds")
     override fun onCreateView(
@@ -40,6 +44,12 @@ class FragmentCreateInvoice  : BaseFragment(), Injectable {
         context ?: return binding.root
 
 
+        data = Gson().fromJson(arguments?.getString("data"), EventsItem::class.java)
+        binding.btnRegistrasi.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("data", Gson().toJson(data))
+            findNavController().navigate(R.id.fragmentSuccessInvoice,bundle)
+        }
 
         return binding.root
     }

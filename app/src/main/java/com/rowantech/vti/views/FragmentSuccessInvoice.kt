@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
+import com.rowantech.vti.R
 import com.rowantech.vti.data.AppExecutors
 import com.rowantech.vti.databinding.FragmentCreateInvoiceBinding
 import com.rowantech.vti.databinding.FragmentSuccessInvoiceBinding
@@ -39,7 +42,9 @@ class FragmentSuccessInvoice : BaseFragment(), Injectable {
         val binding = FragmentSuccessInvoiceBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-
+        binding.btnRegistrasi.setOnClickListener {
+            findNavController().navigate(R.id.fragmentHome)
+        }
 
         return binding.root
     }
