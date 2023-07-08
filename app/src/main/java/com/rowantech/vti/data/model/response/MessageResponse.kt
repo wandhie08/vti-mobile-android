@@ -11,5 +11,8 @@ data class MessageResponse(
 	var error: String? = null,
 
 	@field:SerializedName("message")
-	var message: String? = null
+	var message: String? = null,
+
+	@field:SerializedName("status")
+	var status: Int? = null,
 )

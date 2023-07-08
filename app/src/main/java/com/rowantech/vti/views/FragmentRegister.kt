@@ -19,6 +19,7 @@ import com.rowantech.vti.data.Status
 import com.rowantech.vti.data.model.request.LoginRequest
 import com.rowantech.vti.data.model.request.RegisterRequest
 import com.rowantech.vti.data.model.response.LoginResponse
+import com.rowantech.vti.data.model.response.MessageResponse
 import com.rowantech.vti.databinding.FragmentRegisterBinding
 import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.Constant
@@ -133,11 +134,15 @@ class FragmentRegister : BaseFragment(), Injectable {
 
                     } else {
                         if (!TextUtils.isEmpty(result.data)) {
-                            Snackbar.make(
-                                binding!!.root,
-                                "Incorrect email or password or level, Please check again before login!",
-                                Snackbar.LENGTH_LONG
-                            ).show()
+                            val response =
+                                Gson().fromJson(result.data, MessageResponse::class.java)
+                            response.error?.let {
+                                Snackbar.make(
+                                    binding!!.root,
+                                    it,
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 })

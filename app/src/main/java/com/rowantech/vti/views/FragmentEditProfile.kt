@@ -21,6 +21,7 @@ import com.rowantech.vti.data.Status
 import com.rowantech.vti.data.model.request.*
 import com.rowantech.vti.data.model.response.GetByCustomerResponse
 import com.rowantech.vti.data.model.response.LoginResponse
+import com.rowantech.vti.data.model.response.MessageResponse
 import com.rowantech.vti.databinding.DialogNotificationBinding
 import com.rowantech.vti.databinding.FragmentEditProfileBinding
 import com.rowantech.vti.di.Injectable
@@ -105,11 +106,15 @@ class FragmentEditProfile : BaseFragment(), Injectable {
                         findNavController().navigate(R.id.fragmentHome)
                     } else {
                         if (!TextUtils.isEmpty(result.data)) {
-                            Snackbar.make(
-                                binding!!.root,
-                                "Please check again !",
-                                Snackbar.LENGTH_LONG
-                            ).show()
+                            val response =
+                                Gson().fromJson(result.data, MessageResponse::class.java)
+                            response.error?.let {
+                                Snackbar.make(
+                                    binding!!.root,
+                                    it,
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 })
@@ -156,11 +161,15 @@ class FragmentEditProfile : BaseFragment(), Injectable {
 
                     } else {
                         if (!TextUtils.isEmpty(result.data)) {
-                            Snackbar.make(
-                                binding!!.root,
-                                "Password lama tidak sesuai",
-                                Snackbar.LENGTH_LONG
-                            ).show()
+                            val response =
+                                Gson().fromJson(result.data, MessageResponse::class.java)
+                            response.error?.let {
+                                Snackbar.make(
+                                    binding!!.root,
+                                    it,
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 })
@@ -222,11 +231,15 @@ class FragmentEditProfile : BaseFragment(), Injectable {
 
                     } else {
                         if (!TextUtils.isEmpty(result.data)) {
-                            Snackbar.make(
-                                binding!!.root,
-                                "Data tidak sesuai",
-                                Snackbar.LENGTH_LONG
-                            ).show()
+                            val response =
+                                Gson().fromJson(result.data, MessageResponse::class.java)
+                            response.error?.let {
+                                Snackbar.make(
+                                    binding!!.root,
+                                    it,
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 })
@@ -289,11 +302,15 @@ class FragmentEditProfile : BaseFragment(), Injectable {
                 }
             } else {
                 if (!TextUtils.isEmpty(result.data)) {
-                    Snackbar.make(
-                        binding.root,
-                        "Incorrect email or password or level, Please check again before login!",
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    val response =
+                        Gson().fromJson(result.data, MessageResponse::class.java)
+                    response.error?.let {
+                        Snackbar.make(
+                            binding!!.root,
+                            it,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         })

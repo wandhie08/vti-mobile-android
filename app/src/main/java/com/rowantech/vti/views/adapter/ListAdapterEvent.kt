@@ -11,6 +11,9 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.bumptech.glide.Glide
 import com.rowantech.vti.R
 import com.rowantech.vti.data.AppExecutors
@@ -60,8 +63,8 @@ class ListAdapterEvent (
     override fun bind(binding: ListEventBinding, item: EventsItem) {
         binding.layoutEvent.setOnClickListener { clickListener(item) }
         binding.titleEvent.text = item.title
-        Glide.with(context).load(item.avatar).into(binding.brand)
-
+        //Glide.with(context).load(item.avatar).into(binding.brand)
+        item.avatar?.let { binding.brand.loadUrl(it) }
         if (item.status == "CLOSED") {
             binding.textStatus.text = "pengumuman pemenang"
         } else if (item.status == "ONGOING") {
@@ -75,11 +78,29 @@ class ListAdapterEvent (
 
         }
         if (item.banners!!.size>0){
-            Glide.with(context).load(item.banners?.get(0)?.banner).into(binding.banner)
+            //Glide.with(context).load(item.banners?.get(0)?.banner).into(binding.banner)
+            item.banners?.get(0)?.banner?.let { binding.banner.loadUrl(it) }
             System.out.println("item.avatar :"+item.avatar)
             System.out.println("item.banners?.get(0)?.banner :"+item.banners?.get(0)?.banner)
         }
 
     }
 
+    fun ImageView.loadUrl(url: String) {
+
+        val imageLoader = ImageLoader.Builder(this.context)
+            .componentRegistry { add(SvgDecoder(this@loadUrl.context)) }
+            .build()
+
+        val request = ImageRequest.Builder(this.context)
+            .crossfade(true)
+            .crossfade(500)
+            //.placeholder(R.drawable.ic_copy)
+            //.error(R.drawable.ic_copy)
+            .data(url)
+            .target(this)
+            .build()
+
+        imageLoader.enqueue(request)
+    }
 }

@@ -23,6 +23,7 @@ import com.rowantech.vti.data.model.request.GetEventByTypeRequest
 import com.rowantech.vti.data.model.response.EventsItem
 import com.rowantech.vti.data.model.response.GetEventByTypeResponse
 import com.rowantech.vti.data.model.response.LoginResponse
+import com.rowantech.vti.data.model.response.MessageResponse
 import com.rowantech.vti.databinding.FragmentHomeBinding
 import com.rowantech.vti.databinding.FragmentListEventBinding
 import com.rowantech.vti.databinding.FragmentNotificationBinding
@@ -123,11 +124,15 @@ class FragmentListEventOffline : BaseFragment(), Injectable {
                 }
             } else {
                 if (!TextUtils.isEmpty(result.data)) {
-                    Snackbar.make(
-                        binding.root,
-                        "Incorrect email or password or level, Please check again before login!",
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    val response =
+                        Gson().fromJson(result.data, MessageResponse::class.java)
+                    response.error?.let {
+                        Snackbar.make(
+                            binding!!.root,
+                            it,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         })

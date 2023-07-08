@@ -250,11 +250,15 @@ class FragmentHome : BaseFragment(), Injectable {
                 }
             } else {
                 if (!TextUtils.isEmpty(result.data)) {
-                    Snackbar.make(
-                        binding.root,
-                        "Incorrect email or password or level, Please check again before login!",
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    val response =
+                        Gson().fromJson(result.data, MessageResponse::class.java)
+                    response.error?.let {
+                        Snackbar.make(
+                            binding!!.root,
+                            it,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         })
@@ -299,11 +303,15 @@ class FragmentHome : BaseFragment(), Injectable {
                 adapterBrand.submitList(response.brands)
             } else {
                 if (!TextUtils.isEmpty(result.data)) {
-                    Snackbar.make(
-                        binding.root,
-                        "Incorrect email or password or level, Please check again before login!",
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    val response =
+                        Gson().fromJson(result.data, MessageResponse::class.java)
+                    response.error?.let {
+                        Snackbar.make(
+                            binding!!.root,
+                            it,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         })

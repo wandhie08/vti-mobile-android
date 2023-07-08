@@ -8,12 +8,16 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingComponent
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
@@ -69,7 +73,8 @@ class FragmentBrands : BaseFragment(), Injectable {
         val binding = FragmentBrandsBinding.inflate(inflater, container, false)
         context ?: return binding.root
         data = Gson().fromJson(arguments?.getString("data"), BrandsItem::class.java)
-        Glide.with(this).load(data.avatar).into(binding.iconBrand)
+        //Glide.with(this).load(data.avatar).into(binding.iconBrand)
+        data.avatar?.let { binding.iconBrand.loadUrl(it) }
         binding.descBrand.text = data.description
         binding.nameBrand.text = data.brandName
         binding.detailBrand.text = data.tagline
@@ -156,11 +161,15 @@ class FragmentBrands : BaseFragment(), Injectable {
                 }
             } else {
                 if (!TextUtils.isEmpty(result.data)) {
-                    Snackbar.make(
-                        binding.root,
-                        "Incorrect email or password or level, Please check again before login!",
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    val response =
+                        Gson().fromJson(result.data, MessageResponse::class.java)
+                    response.error?.let {
+                        Snackbar.make(
+                            binding!!.root,
+                            it,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         })
@@ -206,11 +215,15 @@ class FragmentBrands : BaseFragment(), Injectable {
                 adapterBrand.submitList(response.brands)
             } else {
                 if (!TextUtils.isEmpty(result.data)) {
-                    Snackbar.make(
-                        binding.root,
-                        "Incorrect email or password or level, Please check again before login!",
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    val response =
+                        Gson().fromJson(result.data, MessageResponse::class.java)
+                    response.error?.let {
+                        Snackbar.make(
+                            binding!!.root,
+                            it,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         })
@@ -277,13 +290,35 @@ class FragmentBrands : BaseFragment(), Injectable {
 
             } else {
                 if (!TextUtils.isEmpty(result.data)) {
-                    Snackbar.make(
-                        binding!!.root,
-                        "Incorrect email or password or level, Please check again before login!",
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    val response =
+                        Gson().fromJson(result.data, MessageResponse::class.java)
+                    response.error?.let {
+                        Snackbar.make(
+                            binding!!.root,
+                            it,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         })
+    }
+
+    fun ImageView.loadUrl(url: String) {
+
+        val imageLoader = ImageLoader.Builder(this.context)
+            .componentRegistry { add(SvgDecoder(this@loadUrl.context)) }
+            .build()
+
+        val request = ImageRequest.Builder(this.context)
+            .crossfade(true)
+            .crossfade(500)
+            //.placeholder(R.drawable.ic_copy)
+            //.error(R.drawable.ic_copy)
+            .data(url)
+            .target(this)
+            .build()
+
+        imageLoader.enqueue(request)
     }
 }

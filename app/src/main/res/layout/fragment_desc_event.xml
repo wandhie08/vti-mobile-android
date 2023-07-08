@@ -126,7 +126,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_10sdp">
+                        android:layout_marginRight="@dimen/_20sdp">
                         <RelativeLayout
                             android:layout_marginLeft="@dimen/_20sdp"
                             android:id="@+id/btnDateEvent"
@@ -298,6 +298,8 @@
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginRight="@dimen/_40sdp"
+
                             android:layout_alignParentRight="true"
                             android:id="@+id/btnUpload"
                             android:layout_width="wrap_content"

@@ -10,6 +10,9 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.bumptech.glide.Glide
 import com.rowantech.vti.R
 import com.rowantech.vti.data.AppExecutors
@@ -59,6 +62,24 @@ class ListAdapterBanner (
     override fun bind(binding: ListBannerBinding, item: BannersItem) {
 
         Glide.with(context).load(item.banner).into(binding.iconBanner)
+        item.banner?.let { binding.iconBanner.loadUrl(it) }
     }
 
+    fun ImageView.loadUrl(url: String) {
+
+        val imageLoader = ImageLoader.Builder(this.context)
+            .componentRegistry { add(SvgDecoder(this@loadUrl.context)) }
+            .build()
+
+        val request = ImageRequest.Builder(this.context)
+            .crossfade(true)
+            .crossfade(500)
+            //.placeholder(R.drawable.ic_copy)
+            //.error(R.drawable.ic_copy)
+            .data(url)
+            .target(this)
+            .build()
+
+        imageLoader.enqueue(request)
+    }
 }

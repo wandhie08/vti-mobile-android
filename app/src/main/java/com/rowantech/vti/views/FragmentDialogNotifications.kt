@@ -27,10 +27,7 @@ import com.rowantech.vti.data.AppExecutors
 import com.rowantech.vti.data.Status
 import com.rowantech.vti.data.model.request.GetByCustomerRequest
 import com.rowantech.vti.data.model.request.GetEventByBrandRequest
-import com.rowantech.vti.data.model.response.EventsItem
-import com.rowantech.vti.data.model.response.GetByCustomerResponse
-import com.rowantech.vti.data.model.response.GetEventByTypeResponse
-import com.rowantech.vti.data.model.response.LoginResponse
+import com.rowantech.vti.data.model.response.*
 import com.rowantech.vti.databinding.DialogNotificationBinding
 import com.rowantech.vti.databinding.FragmentBrandsBinding
 import com.rowantech.vti.di.Injectable
@@ -148,11 +145,15 @@ class FragmentDialogNotifications : BaseFragment(), Injectable {
                 }
             } else {
                 if (!TextUtils.isEmpty(result.data)) {
-                    Snackbar.make(
-                        binding.root,
-                        "Incorrect email or password or level, Please check again before login!",
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    val response =
+                        Gson().fromJson(result.data, MessageResponse::class.java)
+                    response.error?.let {
+                        Snackbar.make(
+                            binding!!.root,
+                            it,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         })
