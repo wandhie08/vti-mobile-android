@@ -22,6 +22,9 @@ data class GetStatusRegisterEventResponse(
 	@field:SerializedName("registration_status")
 	val registrationStatus: String? = null,
 
+	@field:SerializedName("status")
+	val status: String? = null,
+
 	@field:SerializedName("registration_id")
 	val registrationId: String? = null,
 

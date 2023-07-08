@@ -24,12 +24,14 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import com.rowantech.vti.MainApplication
 import com.rowantech.vti.R
 import com.rowantech.vti.data.AppExecutors
 import com.rowantech.vti.data.Status
+import com.rowantech.vti.data.model.request.CreateTemplateRequest
 import com.rowantech.vti.data.model.request.GetEventTerkaitRequest
-import com.rowantech.vti.data.model.response.EventsItem
-import com.rowantech.vti.data.model.response.GetFormTemplateResponse
+import com.rowantech.vti.data.model.request.TemplatesItem
+import com.rowantech.vti.data.model.response.*
 import com.rowantech.vti.databinding.FragmentCreateTemplateBinding
 import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.Constant
@@ -53,8 +55,15 @@ class FragmentCreateTemplate : BaseFragment(), Injectable {
     }
 
     internal lateinit var data: EventsItem
+    var isForm: Boolean = true
+    var isCheckbox: Boolean = false
+
     var getEventTerkaitRequest = GetEventTerkaitRequest()
+    var createTemplateRequest = CreateTemplateRequest()
+
     var getEventTerkaitResponse = GetFormTemplateResponse()
+    internal lateinit var dataLogin: LoginResponse
+    val listOfTemplate: MutableList<TemplatesItem> = mutableListOf()
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("HardwareIds")
     override fun onCreateView(
@@ -66,48 +75,94 @@ class FragmentCreateTemplate : BaseFragment(), Injectable {
         context ?: return binding.root
         data = Gson().fromJson(arguments?.getString("data"), EventsItem::class.java)
         getEventTerkaitRequest.eventId = data.eventId
+        createTemplateRequest.eventId = data.eventId
+        dataLogin = Gson().fromJson(MainApplication().getStringPref(context, "dataLogin"), LoginResponse::class.java)
+        println("data.customer!!.customerId :"+dataLogin.customer!!.customerId)
+        createTemplateRequest.customerId = dataLogin.customer!!.customerId
+
         binding.btnRegistrasi.setOnClickListener {
+            isForm =true
             for (item in getEventTerkaitResponse.templates!!) {
 
                 if (item!!.questionType=="Date"){
+                    if (item.required=="Y"){
 
+                    }
                 }
 
                 if (item!!.questionType=="Dropdown"){
+                    if (item.required=="Y"){
 
+                    }
                 }
 
                 if (item!!.questionType=="File Download"){
+                    if (item.required=="Y"){
 
+                    }
                 }
 
                 if (item!!.questionType=="File Upload"){
+                    if (item.required=="Y"){
 
+                    }
                 }
 
                 if (item!!.questionType=="Long Answer"){
-
+                    val editText = binding.root.findViewWithTag<EditText>(item.templateId)
+                    if (item.required=="Y"){
+                        if (TextUtils.isEmpty(editText.getText().toString())) {
+                            isForm =false
+                            Snackbar.make(binding.root, item.question.toString()+" tidak boleh kosong", Snackbar.LENGTH_LONG)
+                                .show()
+                        }
+                    }
                 }
 
                 if (item!!.questionType=="Multiple Choice"){
 
+                    val gson = GsonBuilder().create()
+                    val options = gson.fromJson<ArrayList<String>>(item!!.freeData1, object :
+                        TypeToken<ArrayList<String>>(){}.type)
+
+                    for (itemOps in options.indices) {
+                        val checkBox = binding.root.findViewWithTag<CheckBox>(item.templateId+"itemOptions"+itemOps)
+                        if (checkBox.isChecked ){
+                            isCheckbox=true
+                            println(options[itemOps]+":"+checkBox.text.toString())
+                        }
+                    }
+                    if (item.required=="Y"){
+                        if (!isCheckbox){
+                            isForm =false
+                            Snackbar.make(binding.root, item.question.toString()+" tidak boleh kosong", Snackbar.LENGTH_LONG)
+                                .show()
+                        }
+                    }
                 }
 
                 if (item!!.questionType=="Short Answer"){
                     val editText = binding.root.findViewWithTag<EditText>(item.templateId)
-                    if (TextUtils.isEmpty(editText.getText().toString())) {
-                        Snackbar.make(binding.root, item.question.toString()+" tidak boleh kosong", Snackbar.LENGTH_LONG)
-                            .show()
-                    }else{
-                        Snackbar.make(binding.root, editText.text.toString(), Snackbar.LENGTH_LONG)
-                            .show()
+                    if (item.required=="Y"){
+                        if (TextUtils.isEmpty(editText.getText().toString())) {
+                            isForm =false
+                            Snackbar.make(binding.root, item.question.toString()+" tidak boleh kosong", Snackbar.LENGTH_LONG)
+                                .show()
+                        }
                     }
-
                 }
 
 
                 if (item!!.questionType=="Single Choice"){
+                    val radioGroup = binding.root.findViewWithTag<RadioGroup>(item.templateId)
+                    val selectedId: Int = radioGroup.getCheckedRadioButtonId()
+                    if (item.required=="Y") {
 
+                        if (selectedId == -1) {
+                            Snackbar.make(binding.root, "Silahkan pilih salah satu", Snackbar.LENGTH_LONG)
+                                .show()
+                        }
+                    }
                 }
 
                 if (item!!.questionType=="Time"){
@@ -115,10 +170,126 @@ class FragmentCreateTemplate : BaseFragment(), Injectable {
                 }
 
             }
+            //isForm=false
+            if (isForm){
+                for (item in getEventTerkaitResponse.templates!!) {
+                    val templatesItem = TemplatesItem()
+                    templatesItem.templateId = item!!.templateId
+                    if (item!!.questionType=="Date"){
 
-            val bundle = Bundle()
-            bundle.putString("data",Gson().toJson(data))
-            findNavController().navigate(R.id.fragmentProductPayment,bundle)
+                    }
+
+                    if (item!!.questionType=="Dropdown"){
+
+                    }
+
+                    if (item!!.questionType=="File Download"){
+
+                    }
+
+                    if (item!!.questionType=="File Upload"){
+
+                    }
+
+                    if (item!!.questionType=="Long Answer"){
+                        val editText = binding.root.findViewWithTag<EditText>(item.templateId)
+                        templatesItem.answer = editText.getText().toString()
+                    }
+
+                    if (item!!.questionType=="Multiple Choice"){
+                        val gson = GsonBuilder().create()
+                        val options = gson.fromJson<ArrayList<String>>(item!!.freeData1, object :
+                            TypeToken<ArrayList<String>>(){}.type)
+                        templatesItem.answer=""
+                        for (itemOps in options.indices) {
+                            val checkBox = binding.root.findViewWithTag<CheckBox>(item.templateId+"itemOptions"+itemOps)
+                            if (checkBox.isChecked ){
+                                isCheckbox=true
+                                if (itemOps > 0){
+                                    templatesItem.answer=templatesItem.answer+","+checkBox.text.toString()
+                                }else{
+                                    templatesItem.answer=checkBox.text.toString()
+                                }
+
+
+                            }
+                        }
+                        println("templatesItem.answer:"+templatesItem.answer)
+                    }
+
+                    if (item!!.questionType=="Short Answer"){
+                        val editText = binding.root.findViewWithTag<EditText>(item.templateId)
+                        templatesItem.answer = editText.getText().toString()
+                    }
+
+
+                    if (item!!.questionType=="Single Choice"){
+                        val radioGroup = binding.root.findViewWithTag<RadioGroup>(item.templateId)
+                        val selectedId: Int = radioGroup.getCheckedRadioButtonId()
+
+                            if (selectedId == -1) {
+                                templatesItem.answer = ""
+                            }else{
+                                val radioButton = binding.root.findViewById(selectedId) as RadioButton
+                                templatesItem.answer = radioButton.getText().toString()
+
+                            }
+
+                    }
+
+                    if (item!!.questionType=="Time"){
+
+                    }
+                    println("templatesItem :"+templatesItem.answer)
+                    listOfTemplate.add(templatesItem)
+
+                }
+
+                println("templatesItem :"+listOfTemplate.size)
+
+                if (listOfTemplate.size>0) {
+                    progressShow()
+
+                    createTemplateRequest.templates = listOfTemplate
+                    mainViewModel.paramWithBody(
+                        "",
+                        Constant.CREATE_TEMPLATE,
+                        Gson().toJson(createTemplateRequest)
+                    )
+                    mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
+                        progressDismis()
+
+                        if (result.status == Status.SUCCESS) {
+
+
+                            if (data.eventType == "paid") {
+                                val bundle = Bundle()
+                                bundle.putString("data", Gson().toJson(data))
+                                findNavController().navigate(R.id.fragmentProductPayment, bundle)
+                            } else if (data.eventType == "free") {
+                                val bundle = Bundle()
+                                bundle.putString("data", Gson().toJson(data))
+                                findNavController().navigate(R.id.fragmentHome, bundle)
+
+                            }
+
+
+                        } else {
+                            if (!TextUtils.isEmpty(result.data)) {
+                                val response =
+                                    Gson().fromJson(result.data, MessageResponse::class.java)
+                                response.error?.let {
+                                    Snackbar.make(
+                                        binding!!.root,
+                                        it,
+                                        Snackbar.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
+                        }
+                    })
+                }
+            }
         }
         getFormTemplate(binding)
 
@@ -353,14 +524,16 @@ class FragmentCreateTemplate : BaseFragment(), Injectable {
                                 TypeToken<ArrayList<String>>(){}.type)
                             // create a radio group
                             binding.linearLayout.addView(textView)
-                            for (itemOptions in options){
+                            for (itemOps in options.indices) {
+                            //for (itemOptions in options){
                                 val rg = CheckBox(binding.root.context)
-                                rg.setText(itemOptions)
+                                rg.setText(options[itemOps])
                                 rg.setPadding(30, 30, 30, 30)
                                 val params = LinearLayout.LayoutParams(
                                     LinearLayout.LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT
                                 )
+                                rg.tag = item.templateId+"itemOptions"+itemOps
                                 rg.layoutParams = params
                                 val param = rg.layoutParams as ViewGroup.MarginLayoutParams
                                 param.setMargins(40,40,40,10)
@@ -431,6 +604,7 @@ class FragmentCreateTemplate : BaseFragment(), Injectable {
                             rg.setBackgroundResource(R.drawable.bg_form)
                             rg.orientation = RadioGroup.VERTICAL
                             rg.setPadding(30, 30, 30, 30)
+                            rg.tag = item!!.templateId
                             val params = LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT

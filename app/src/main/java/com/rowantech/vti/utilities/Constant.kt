@@ -16,6 +16,9 @@ object Constant {
     val LIST_DISCUSSION ="discussion/byEvent"
     val CREATE_COMMENT ="comments/create"
     val CREATE_DISCUSSION ="discussion/create"
+    val CREATE_TEMPLATE ="participant/createTemplate"
+    val GET_STATUS_TEMPLATE ="participant/statusTemplate"
+
     val EVENT_TERKAIT ="dashboard/eventListByCompanyMB"
     val EVENT_BYBRAND ="event/eventListByBrandMB"
     val CUSTOMER_BYID ="customer/byCustomer"

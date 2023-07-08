@@ -214,6 +214,7 @@
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"/>
                             <TextView
+                                android:id="@+id/textCheckIn"
                                 android:layout_below="@id/iconCheckIn"
                                 android:text="Check In"
                                 android:layout_width="wrap_content"
