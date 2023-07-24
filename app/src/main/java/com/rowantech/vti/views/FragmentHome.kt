@@ -1,46 +1,36 @@
 package com.rowantech.vti.views
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
-import android.widget.EditText
-import androidx.appcompat.widget.AppCompatButton
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.DataBindingComponent
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.Observer
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.rowantech.vti.MainApplication
 import com.rowantech.vti.R
+import com.rowantech.vti.binding.FragmentDataBindingComponent
 import com.rowantech.vti.data.AppExecutors
 import com.rowantech.vti.data.Status
+import com.rowantech.vti.data.model.request.GetBrandsRequest
 import com.rowantech.vti.data.model.request.GetEventByTypeRequest
-import com.rowantech.vti.data.model.request.LoginRequest
+import com.rowantech.vti.data.model.response.*
 import com.rowantech.vti.databinding.FragmentHomeBinding
 import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.Constant
 import com.rowantech.vti.utilities.autoCleared
 import com.rowantech.vti.viewmodels.MainViewModel
-import java.text.SimpleDateFormat
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.rowantech.vti.binding.FragmentDataBindingComponent
-import com.rowantech.vti.data.model.request.GetBrandsRequest
-import com.rowantech.vti.data.model.response.*
 import com.rowantech.vti.views.adapter.ListAdapterBrand
 import com.rowantech.vti.views.adapter.ListAdapterEvent
-
 import java.util.*
 import javax.inject.Inject
 
@@ -57,6 +47,7 @@ class FragmentHome : BaseFragment(), Injectable {
     private val mainViewModel: MainViewModel by viewModels {
         viewModelFactory
     }
+
     var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
     private var adapterBrand by autoCleared<ListAdapterBrand>()
     private var adapterEvent by autoCleared<ListAdapterEvent>()
@@ -95,7 +86,10 @@ class FragmentHome : BaseFragment(), Injectable {
         getEventByType(binding,"CLOSED")
 
         getAllBrand(binding)
-        binding.iconMenu.setOnClickListener {
+
+//        val headerBinding: HeaderBinding = HeaderBinding.bind(binding.root)
+//
+        binding.header.findViewById<AppCompatImageView>(R.id.iconMenu).setOnClickListener {
             if(TextUtils.isEmpty(MainApplication().getStringPref(context,"dataLogin"))){
                 findNavController().navigate(R.id.fragmentLogin)
             }else{
@@ -103,10 +97,13 @@ class FragmentHome : BaseFragment(), Injectable {
             }
         }
 
-        binding.iconScan.setOnClickListener {
+//        headerBinding.iconScan.setOnClickListener {
+//
+//        }
 
-        }
-
+//        headerBinding.iconSearch.setOnClickListener {
+//
+//        }
         binding.btnAkanDatang.setOnClickListener {
             findNavController().navigate(R.id.fragmentSearchEvent)
         }
@@ -123,9 +120,7 @@ class FragmentHome : BaseFragment(), Injectable {
             findNavController().navigate(R.id.fragmentSearchEvent)
         }
 
-        binding.iconSearch.setOnClickListener {
 
-        }
 
         return binding.root
     }

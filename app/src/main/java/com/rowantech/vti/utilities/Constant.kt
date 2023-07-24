@@ -34,6 +34,8 @@ object Constant {
     val BRAND_TERKAIT ="brand/mb/byCompany"
     val BRAND="brand"
     val EVENT_BYTYPE ="event/byTypeMB"
+    val PRODUCT="product/byEvent"
+    val UNIQUE_CODE="parameter/unique-code"
 
     val MESSAGE_CEK_KONEKSI = "Please check your connection"
 

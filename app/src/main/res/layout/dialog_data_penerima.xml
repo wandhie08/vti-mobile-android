@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/layout_rounded"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:id="@+id/layoutAlamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <View
+            android:id="@+id/view9"
+            android:background="@color/grey"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_2sdp" />
+        <TextView
+            android:id="@+id/textDataPenerima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            style="@style/text_style"
+            android:textStyle="bold"
+            android:textSize="@dimen/_14sdp"
+            android:text="Data Penerima"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/textNamaPenerima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textDataPenerima"
+            android:layout_marginTop="@dimen/_10sdp"
+            style="@style/text_style"
+            android:text="Nama Penerima"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/blue"/>
+        <EditText
+            android:padding="@dimen/_5sdp"
+            style="@style/text_style"
+            android:hint="Nama Penerima"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_form"
+            android:layout_below="@id/textNamaPenerima"
+            android:inputType="textPersonName"
+            android:id="@+id/formNamaPenerima"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/textHandphonePenerima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formNamaPenerima"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/text_style"
+            android:text="No Handphone Penerima"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/blue"/>
+        <EditText
+            android:padding="@dimen/_5sdp"
+            style="@style/text_style"
+            android:hint="No Handphone"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_form"
+            android:layout_below="@id/textHandphonePenerima"
+            android:inputType="phone"
+            android:id="@+id/formNoHandphonePenerima"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"/>
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/textProvinsi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formNoHandphonePenerima"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/text_style"
+            android:text="Provinsi"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/blue"/>
+        <EditText
+            android:padding="@dimen/_5sdp"
+            style="@style/text_style"
+            android:hint="Provinsi"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_form"
+            android:layout_below="@id/textProvinsi"
+            android:inputType="text"
+            android:id="@+id/formProvinsi"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/textCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formProvinsi"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/text_style"
+            android:text="Kota/Kabupaten"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/blue"/>
+        <EditText
+            android:padding="@dimen/_5sdp"
+            style="@style/text_style"
+            android:hint="Kota/Kabupaten"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_form"
+            android:layout_below="@id/textCity"
+            android:inputType="text"
+            android:id="@+id/formCity"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"/>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/textKec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formCity"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/text_style"
+            android:text="Kecamatan/Kelurahan"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/blue"/>
+        <EditText
+            android:padding="@dimen/_5sdp"
+            style="@style/text_style"
+            android:hint="Kecamatan/Kelurahan"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_form"
+            android:layout_below="@id/textKec"
+            android:inputType="text"
+            android:id="@+id/formKec"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"/>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/textAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formKec"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/text_style"
+            android:text="Alamat"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/blue"/>
+        <EditText
+            android:padding="@dimen/_5sdp"
+            style="@style/text_style"
+            android:hint="Alamat Lengkap"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_form"
+            android:layout_below="@id/textAddress"
+            android:inputType="textMultiLine"
+            android:id="@+id/formAddress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_65sdp"/>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/textKodePos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formAddress"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/text_style"
+            android:text="Kode Pos"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/blue"/>
+        <EditText
+            android:padding="@dimen/_5sdp"
+            style="@style/text_style"
+            android:hint="Kode Pos"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_form"
+            android:layout_below="@id/textKodePos"
+            android:inputType="phone"
+            android:id="@+id/formKodePos"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/textKurir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/formKodePos"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/text_style"
+            android:text="Catatan untuk kurir"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/blue"/>
+        <EditText
+            android:padding="@dimen/_5sdp"
+            style="@style/text_style"
+            android:hint="Catatan untuk kurir (opsional)"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_form"
+            android:layout_below="@id/textKodePos"
+            android:inputType="phone"
+            android:id="@+id/formKurir"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"/>
+        <Button
+            android:id="@+id/btnSimpanAddress"
+            style="@style/btn_style"
+            android:layout_below="@id/formKodePos"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="Simpan" />
+    </RelativeLayout>
+</RelativeLayout>

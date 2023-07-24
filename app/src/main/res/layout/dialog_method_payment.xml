@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:background="@drawable/layout_rounded"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_360sdp">
+
+        <View
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/grey"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_2sdp"/>
+        <TextView
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:id="@+id/textItem"
+            style="@style/text_style_large"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:text="Metode Pembayaran " />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textItem"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="#F9FAFC"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <RelativeLayout
+                android:padding="@dimen/_20sdp"
+                android:id="@+id/radio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_20sdp"
+                android:background="@drawable/shape_line_blue">
+
+                <RadioButton
+                    android:checked="true"
+                    android:id="@+id/qrisBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/blue" />
+                <ImageView
+                    android:id="@+id/qris"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/transferBtn"
+                    android:background="@drawable/qris_payment" />
+                <TextView
+                    android:id="@+id/qrisDesc"
+                    style="@style/text_style"
+                    android:layout_below="@id/qris"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/transferBtn"
+                    android:text="Scan QR Code dengan aplikasi e-Banking atau e-Wallet"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+                <RadioButton
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:id="@+id/transferBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/qrisDesc"
+                    android:buttonTint="@color/blue" />
+
+                <ImageView
+                    android:id="@+id/imageBank"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_below="@id/qrisDesc"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/transferBtn"
+                    android:background="@drawable/bank_mandiri_logo" />
+                <TextView
+                    style="@style/text_style"
+                    android:layout_below="@id/imageBank"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/transferBtn"
+                    android:text="Transfer secara manual dengan kirim bukti pembayaran"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iconInfo"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_below="@id/radio"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:background="@drawable/ic_info_label" />
+
+            <TextView
+                style="@style/text_style_large"
+                android:layout_below="@id/radio"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_toRightOf="@id/iconInfo"
+                android:text="Panduan Pembayaran"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRegistrasi"
+            style="@style/btn_style"
+            android:layout_width="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="Simpan"
+            android:visibility="visible" />
+    </RelativeLayout>
+</RelativeLayout>

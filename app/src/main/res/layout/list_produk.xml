@@ -35,6 +35,17 @@
             android:layout_marginBottom="@dimen/_12sdp"
             android:layout_toRightOf="@id/iconBrand"
             android:text="Rp. 300.000" />
+        <TextView
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/itemWajib"
+            style="@style/text_style"
+            android:textColor="@color/red"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:layout_toRightOf="@id/priceProduk"
+            android:text="*" />
         <View
             android:background="@color/grey"
             android:layout_alignParentBottom="true"

@@ -121,6 +121,9 @@
         <argument
             android:name="data"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentProductPayment_to_fragmentQRIS"
+            app:destination="@id/fragmentQRIS" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_create_invoice"
@@ -143,4 +146,9 @@
             android:name="data"
             app:argType="string" />
     </fragment>
+    <fragment
+        tools:layout="@layout/fragment_qris"
+        android:id="@+id/fragmentQRIS"
+        android:name="com.rowantech.vti.views.FragmentQRIS"
+        android:label="FragmentQRIS" />
 </navigation>

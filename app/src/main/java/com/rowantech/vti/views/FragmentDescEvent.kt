@@ -110,6 +110,11 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
         }
 
+        if (data.eventType == "paid") {
+            binding.btnBerbayar.setOnClickListener{
+
+            }
+        }
         if (data.formRegistration == "N") {
             binding.btnPendaftaran.visibility = View.GONE
         } else if (data.formRegistration == "Y") {
@@ -150,6 +155,21 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
         binding.recycleViewDiscussion.visibility = View.GONE
         binding.layoutBrand.visibility = View.GONE
+
+        if (data.type == "CLOSED") {
+            binding.btnRegistrasi.visibility = View.GONE
+        } else if (data.formValidation == "Y") {
+            binding.btnVerifikasi.visibility = View.VISIBLE
+
+        }
+        binding.btnRegistrasi.setBackgroundResource(R.drawable.button_blue)
+        if (data.type == "CLOSED") {
+            binding.btnRegistrasi.visibility = View.INVISIBLE
+        } else  if (data.type == "ONGOING|REGISTRATION"){
+            binding.btnRegistrasi.visibility = View.VISIBLE
+            binding.btnRegistrasi.setBackgroundResource(R.drawable.button_blue)
+        }
+
         binding.btnRegistrasi.setOnClickListener {
             if (TextUtils.isEmpty(MainApplication().getStringPref(context, "dataLogin"))) {
                 findNavController().navigate(R.id.fragmentLogin)

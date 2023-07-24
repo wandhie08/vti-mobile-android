@@ -2,14 +2,14 @@ package com.rowantech.vti.data.model.request
 
 import com.google.gson.annotations.SerializedName
 
-data class GetDiscussionRequest(
-
-	@field:SerializedName("event_id")
-	var eventId: String? = null,
+data class GetParameterRequest(
 
 	@field:SerializedName("size")
 	var size: Int? = null,
 
 	@field:SerializedName("page")
-	var page: Int? = null
+	var page: Int? = null,
+
+	@field:SerializedName("type")
+	var type: String? = null
 )

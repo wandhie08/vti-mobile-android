@@ -7,52 +7,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iconLogo"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/ic_logo" />
-
-        <ImageView
-            android:id="@+id/iconMenu"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:background="@drawable/ic_menu" />
-
-        <ImageView
-            android:id="@+id/iconSearch"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:layout_toLeftOf="@id/iconScan"
-            android:background="@drawable/search" />
-
-        <ImageView
-            android:id="@+id/iconScan"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:layout_toLeftOf="@id/iconMenu"
-            android:background="@drawable/scan" />
-
-        <View
-            android:id="@+id/view1"
+        <include
+            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_5sdp"
-            android:layout_below="@id/iconLogo"
-            android:background="#EFF2F7" />
+            android:layout_height="wrap_content"
+            layout="@layout/header" />
 
         <RelativeLayout
             android:id="@+id/layputCustomer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/view1">
+            android:layout_below="@id/header">
 
             <RelativeLayout
                 android:id="@+id/infoProfileLayout"
@@ -270,14 +235,14 @@
                 android:textSize="@dimen/_16sdp"
                 style="@style/text_style_large"
                 android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:text="Rp 36.012"
+                tools:text="Rp 3.600.012"
                 android:textColor="@color/red"
                 />
             <TextView
