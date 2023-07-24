@@ -1,11 +1,12 @@
 package com.rowantech.vti.views
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import androidx.databinding.DataBindingComponent
 import androidx.fragment.app.viewModels
@@ -70,6 +71,19 @@ class FragmentProductPayment : BaseFragment(), Injectable {
             bundle.putString("data", Gson().toJson(getProductEventResponse))
             findNavController().navigate(R.id.fragmentCreateInvoice,bundle)
         }
+
+        binding.btnHomeAddress.setOnClickListener({
+
+        })
+
+        binding.btnKurir.setOnClickListener({
+
+        })
+
+        binding.btnAccountBalance.setOnClickListener({
+            methodPayment(binding)
+        })
+
         getAllProduct(binding)
         return binding.root
     }
@@ -79,6 +93,25 @@ class FragmentProductPayment : BaseFragment(), Injectable {
 
     }
 
+    fun methodPayment(binding: FragmentProductPaymentBinding){
+        val dialogView = Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
+
+        dialogView.requestWindowFeature(
+            Window.FEATURE_NO_TITLE
+        )
+        dialogView.setContentView(R.layout.dialog_method_payment)
+
+        dialogView.getWindow()!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+        dialogView.getWindow()!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialogView.show()
+    }
     fun getAllProduct(binding: FragmentProductPaymentBinding){
         val adapterProduct = ListAdapterProduct(
             dataBindingComponent,

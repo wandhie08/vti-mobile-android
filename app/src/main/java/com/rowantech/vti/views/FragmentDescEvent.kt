@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.DataBindingComponent
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -248,7 +249,7 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             }
         }
 
-        binding.iconMenu.setOnClickListener {
+        binding.header.findViewById<AppCompatImageView>(R.id.iconMenu).setOnClickListener {
             if (TextUtils.isEmpty(MainApplication().getStringPref(context, "dataLogin"))) {
                 findNavController().navigate(R.id.fragmentLogin)
             } else {
