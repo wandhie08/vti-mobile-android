@@ -22,7 +22,6 @@ import com.rowantech.vti.data.model.request.*
 import com.rowantech.vti.data.model.response.GetByCustomerResponse
 import com.rowantech.vti.data.model.response.LoginResponse
 import com.rowantech.vti.data.model.response.MessageResponse
-import com.rowantech.vti.databinding.DialogNotificationBinding
 import com.rowantech.vti.databinding.FragmentEditProfileBinding
 import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.Constant

@@ -41,6 +41,7 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 style="@style/text_style_large" />
             <TextView
+                android:id="@+id/timer"
                 android:textStyle="bold"
                 android:layout_below="@id/textInfo1"
                 android:textColor="@color/black"
@@ -48,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:fontFamily="@font/roboto_condensed_bold"
-                android:text="5 Menit 13 Detik"
+
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 style="@style/text_style_large" />
@@ -102,6 +103,7 @@
                 style="@style/text_style_large" />
 
             <TextView
+                android:id="@+id/totalValueText"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/qris"
                 android:textStyle="bold"

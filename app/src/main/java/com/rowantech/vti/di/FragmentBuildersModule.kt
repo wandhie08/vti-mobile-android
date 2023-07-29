@@ -75,4 +75,7 @@ abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
     abstract fun contributeFragmentSuccessInvoice(): FragmentSuccessInvoice
 
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentQRIS(): FragmentQRIS
+
 }

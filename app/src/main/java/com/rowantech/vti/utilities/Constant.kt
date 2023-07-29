@@ -38,8 +38,14 @@ object Constant {
     val UNIQUE_CODE="parameter/unique-code"
 
     val MESSAGE_CEK_KONEKSI = "Please check your connection"
+    val GET_POSTAL_CODE ="parameter/integration/v1/master/locations/postalcode"
+    val CREATE_ORDER ="parameter/integration/v1/couriers/create-orders"
+    val CANCEL_ORDER ="parameter/integration/v1/couriers/cancel-orders"
+
+    val GET_PRICING ="parameter/integration/v1/couriers/pricing"
 
     val DB_NAME = "SICANTIKDB"
+
 
 
 
