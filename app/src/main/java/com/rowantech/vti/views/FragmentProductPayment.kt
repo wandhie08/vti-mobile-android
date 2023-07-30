@@ -98,70 +98,72 @@ class FragmentProductPayment : BaseFragment(), Injectable {
 //                    )
 //                        .show()
             } else {
-                    createOrderRequest.courier = "sicepat"
-                    createOrderRequest.courierService = "SIUNT"
-                    createOrderRequest.orderNumber = "00001"
-                    createOrderRequest.isCod = false
-                    createOrderRequest.isSendCompany = false
-                    createOrderRequest.deliveryType = "pickup"
-                    createOrderRequest.deliveryTime = "06/05/2022 04:52:00 PM +00:00"
-                    createOrderRequest.originNote = "Rumah Deket SD"
-                    createOrderRequest.originContactName = "Wandhie Dimyati"
-                    createOrderRequest.originContactPhone = "087730188988"
-                    createOrderRequest.originContactEmail = "wandhie.dimyati@gmail.com"
-                    createOrderRequest.originCityCode = "32.04"
-                    createOrderRequest.originCityName = "KAB. BANDUNG"
-                    createOrderRequest.originProvinceCode = "32"
-                    createOrderRequest.originProvinceName = "JAWA BARAT"
-                    createOrderRequest.originSubdistrictCode = "32.04.35"
-                    createOrderRequest.originSubdistrictName = "PASEH"
-                    createOrderRequest.originContactAddress =
-                        "Kapung Cihaneut Desa Drawati Kec Paseh"
-                    createOrderRequest.originPostalCode = "40383"
-                    println("dataLogin.customer!!.customerId :" + dataLogin.customer!!.customerId)
-                    transaction.customerId = dataLogin.customer!!.customerId
-                    transaction.eventId = data.eventId
-                    transaction.uniqueCode = 1
-                    transaction.shippingCharge = 0
-                    transaction.feeInsurance = 0
-                    transaction.isInsuranced = false
-                    transaction.discount = 0
-                    transaction.totalCod = 0
-                    transaction.packageCategory = "NORMAL"
-                    transaction.packageContent = getProductEventResponse.products!!.get(0)!!.title
+                createOrderRequest.courier = "sicepat"
+                createOrderRequest.courierService = "SIUNT"
+                createOrderRequest.orderNumber = "00001"
+                createOrderRequest.isCod = false
+                createOrderRequest.isSendCompany = false
+                createOrderRequest.deliveryType = "pickup"
+                createOrderRequest.deliveryTime = "06/05/2022 04:52:00 PM +00:00"
+                createOrderRequest.originNote = "Rumah Deket SD"
+                createOrderRequest.originContactName = "Wandhie Dimyati"
+                createOrderRequest.originContactPhone = "087730188988"
+                createOrderRequest.originContactEmail = "wandhie.dimyati@gmail.com"
+                createOrderRequest.originCityCode = "32.04"
+                createOrderRequest.originCityName = "KAB. BANDUNG"
+                createOrderRequest.originProvinceCode = "32"
+                createOrderRequest.originProvinceName = "JAWA BARAT"
+                createOrderRequest.originSubdistrictCode = "32.04.35"
+                createOrderRequest.originSubdistrictName = "PASEH"
+                createOrderRequest.originContactAddress =
+                    "Kapung Cihaneut Desa Drawati Kec Paseh"
+                createOrderRequest.originPostalCode = "40383"
+                println("dataLogin.customer!!.customerId :" + dataLogin.customer!!.customerId)
+                transaction.customerId = dataLogin.customer!!.customerId
+                transaction.eventId = data.eventId
+                transaction.uniqueCode = 0
+                transaction.shippingCharge = 0
+                transaction.feeInsurance = 0
+                transaction.isInsuranced = false
+                transaction.discount = 0
+                transaction.totalCod = 0
+                transaction.packageCategory = "NORMAL"
+                transaction.packageContent = getProductEventResponse.products!!.get(0)!!.title
 
 
-                    transaction.subtotal = 1012
-                    transaction.totalValue = 1012
-                    transaction.weight = 10
-                    transaction.width = 10
-                    transaction.height = 10
-                    transaction.length = 10
-                    transaction.coolie = 10
+                transaction.subtotal = 0
 
-                    createOrderRequest.transaction = transaction
-                    for (i in 0 until getProductEventResponse.products!!.size) {
-                        val itemOrder = ItemOrder()
-                        itemOrder.productId = getProductEventResponse.products!!.get(i)!!.productId
-                        itemOrder.name = getProductEventResponse.products!!.get(i)!!.title
-                        itemOrder.description =
-                            getProductEventResponse.products!!.get(i)!!.description
-                        itemOrder.weight = getProductEventResponse.products!!.get(i)!!.weight
-                        itemOrder.photo = getProductEventResponse.products!!.get(i)!!.photo
-                        itemOrder.weightUom = "gr"
-                        itemOrder.qty = getProductEventResponse.products!!.get(i)!!.stock
-                        itemOrder.value = getProductEventResponse.products!!.get(i)!!.price
-                        itemOrder.width = getProductEventResponse.products!!.get(i)!!.volumeWidth
-                        itemOrder.height = getProductEventResponse.products!!.get(i)!!.volumeHeight
-                        itemOrder.dimensionUom = "cm"
-                        itemOrder.length = getProductEventResponse.products!!.get(i)!!.volumeLength
-                        itemOrder.totalValue =
-                            getProductEventResponse.products!!.get(i)!!.stock?.times(
-                                getProductEventResponse.products!!.get(i)!!.price!!
-                            )
-                        listProductsItemOrder.add(itemOrder)
-                    }
-                    createOrderRequest.items = listProductsItemOrder
+                transaction.weight = 10
+                transaction.width = 10
+                transaction.height = 10
+                transaction.length = 10
+                transaction.coolie = 10
+
+                createOrderRequest.transaction = transaction
+                for (i in 0 until getProductEventResponse.products!!.size) {
+                    val itemOrder = ItemOrder()
+                    itemOrder.productId = getProductEventResponse.products!!.get(i)!!.productId
+                    itemOrder.name = getProductEventResponse.products!!.get(i)!!.title
+                    itemOrder.description =
+                        getProductEventResponse.products!!.get(i)!!.description
+                    itemOrder.weight = getProductEventResponse.products!!.get(i)!!.weight
+                    itemOrder.photo = getProductEventResponse.products!!.get(i)!!.photo
+                    itemOrder.weightUom = "gr"
+                    itemOrder.qty = getProductEventResponse.products!!.get(i)!!.stock
+                    itemOrder.value = getProductEventResponse.products!!.get(i)!!.price
+                    itemOrder.width = getProductEventResponse.products!!.get(i)!!.volumeWidth
+                    itemOrder.height = getProductEventResponse.products!!.get(i)!!.volumeHeight
+                    itemOrder.dimensionUom = "cm"
+                    itemOrder.length = getProductEventResponse.products!!.get(i)!!.volumeLength
+                    itemOrder.totalValue =
+                        getProductEventResponse.products!!.get(i)!!.stock?.times(
+                            getProductEventResponse.products!!.get(i)!!.price!!
+                        )
+                    transaction.subtotal = transaction.subtotal!! + itemOrder.totalValue!!
+                    listProductsItemOrder.add(itemOrder)
+                }
+                transaction.totalValue = transaction.subtotal
+                createOrderRequest.items = listProductsItemOrder
 //            if (binding.accountValue.text == "Transfer") {
 //                transaction.methodPayment = "transfer"
 //            } else {
@@ -208,12 +210,12 @@ class FragmentProductPayment : BaseFragment(), Injectable {
 //                    }
 //                }
 //            })
-                    val bundle = Bundle()
-                    bundle.putString("dataEvent", Gson().toJson(data))
-                    bundle.putString("address", binding.alamatValue.text.toString())
-                    bundle.putString("data", Gson().toJson(createOrderRequest))
-                    findNavController().navigate(R.id.fragmentPengiriman, bundle)
-                }
+                val bundle = Bundle()
+                bundle.putString("dataEvent", Gson().toJson(data))
+                bundle.putString("address", binding.alamatValue.text.toString())
+                bundle.putString("data", Gson().toJson(createOrderRequest))
+                findNavController().navigate(R.id.fragmentPengiriman, bundle)
+            }
         }
 
         binding.btnHomeAddress.setOnClickListener({

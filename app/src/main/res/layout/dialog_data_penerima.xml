@@ -221,17 +221,21 @@
             android:text="Catatan untuk kurir"
             android:layout_marginLeft="@dimen/_10sdp"
             android:textColor="@color/blue"/>
+
         <EditText
-            android:padding="@dimen/_5sdp"
-            style="@style/text_style"
-            android:hint="Catatan untuk kurir (opsional)"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/bg_form"
-            android:layout_below="@id/textKurir"
-            android:inputType="phone"
             android:id="@+id/formKurir"
+            style="@style/text_style"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"/>
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/textKurir"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bg_form"
+            android:hint="Catatan untuk kurir (opsional)"
+            android:inputType="text"
+            android:padding="@dimen/_5sdp" />
         <Button
             android:id="@+id/btnKodePos"
             style="@style/btn_style"

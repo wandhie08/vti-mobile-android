@@ -87,7 +87,7 @@ class FragmentPengiriman : BaseFragment(), Injectable {
             Gson().fromJson(arguments?.getString("data"), CreateOrderRequest::class.java)
 
         binding.alamatValue.text = arguments?.getString("address")
-        binding.totalValueText.text =
+        binding.totalValue.text =
             NumberUtil.moneyFormat(createOrderRequest.transaction!!.totalValue.toString())
         pageRequest.eventId = data.eventId
         binding.btnRegistrasi.setOnClickListener {
@@ -526,6 +526,15 @@ class FragmentPengiriman : BaseFragment(), Injectable {
         createOrderRequest.courier = partItem.courierCode
         createOrderRequest.courierService = partItem.service
         createOrderRequest.orderNumber = "00001"
+        createOrderRequest.transaction!!.subtotal = createOrderRequest.transaction!!.totalValue?.plus(
+            partItem.price!!
+        )
+
+        createOrderRequest.transaction!!.totalValue = createOrderRequest.transaction!!.totalValue?.plus(
+            partItem.price!!
+        )
+        binding.totalValue.text =
+            NumberUtil.moneyFormat(createOrderRequest.transaction!!.totalValue.toString())
         dialogViewCourier.dismiss()
     }
 
