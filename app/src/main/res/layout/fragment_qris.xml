@@ -89,7 +89,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="@dimen/_180sdp"
                 android:layout_height="@dimen/_180sdp"
-                android:background="@drawable/ic_qr_code" />
+                />
             <TextView
                 android:layout_below="@id/qris"
                 android:textStyle="bold"

@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/btnCourier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:background="@drawable/ic_up"
+            android:id="@+id/radioBtn"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/blue" />
+        <ImageView
+            android:layout_toRightOf="@id/radioBtn"
+            android:id="@+id/iconBrand"
+            android:background="@drawable/kurir_anteraja"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/icUp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/ic_up" />
+        <TextView
+            android:id="@+id/nameProduct"
+            style="@style/text_style"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@id/iconBrand"
+           />
+        <TextView
+            android:id="@+id/estimation"
+            style="@style/text_style"
+            android:textStyle="bold"
+            android:layout_below="@id/nameProduct"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@id/iconBrand"
+           />
+        <TextView
+            android:id="@+id/price"
+            style="@style/text_style"
+            android:textStyle="bold"
+
+            android:layout_marginTop="@dimen/_5sdp"
+
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+          />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@id/radioBtn"
+            android:visibility="gone"
+            android:id="@+id/recycleViewDetailCourier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:scrollbars="horizontal"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/list_rincian_biaya" />
+    </RelativeLayout>
+
+</layout>

@@ -43,34 +43,36 @@
                 android:id="@+id/radio"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:background="@drawable/shape_line_blue"
-                android:padding="@dimen/_10sdp">
+               >
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleViewBanner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
                     android:scrollbars="horizontal"
                     app:layoutManager="LinearLayoutManager"
-                    tools:listitem="@layout/list_rincian_biaya" />
+                    tools:listitem="@layout/list_jasa_pengiriman" />
             </RelativeLayout>
 
 
         </RelativeLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnRegistrasi"
             style="@style/btn_style"
+
             android:layout_width="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:text="Simpan"
-            android:visibility="visible" />
+            android:visibility="gone" />
     </RelativeLayout>
 </RelativeLayout>

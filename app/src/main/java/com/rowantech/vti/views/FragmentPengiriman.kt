@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.rowantech.vti.MainApplication
@@ -27,16 +28,18 @@ import com.rowantech.vti.data.model.request.*
 import com.rowantech.vti.data.model.request.Transaction
 import com.rowantech.vti.data.model.response.*
 import com.rowantech.vti.databinding.FragmentHomeBinding
-import com.rowantech.vti.databinding.FragmentProductPaymentBinding
+import com.rowantech.vti.databinding.FragmentPengirimanBinding
 import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.Constant
 import com.rowantech.vti.utilities.NumberUtil
 import com.rowantech.vti.utilities.autoCleared
 import com.rowantech.vti.viewmodels.MainViewModel
+import com.rowantech.vti.views.adapter.ListAdapterJasaPengiriman
 import com.rowantech.vti.views.adapter.ListAdapterProduct
+import com.rowantech.vti.views.adapter.ListAdapterProductPengiriman
 import javax.inject.Inject
 
-class FragmentProductPayment : BaseFragment(), Injectable {
+class FragmentPengiriman : BaseFragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -44,20 +47,26 @@ class FragmentProductPayment : BaseFragment(), Injectable {
     @Inject
     lateinit var appExecutors: AppExecutors
 
-    var binding by autoCleared<FragmentProductPaymentBinding>()
+    var binding by autoCleared<FragmentPengirimanBinding>()
 
     private val mainViewModel: MainViewModel by viewModels {
         viewModelFactory
     }
-    val listProductEvent: MutableList<ProductsItem> = mutableListOf()
+    val listProductEvent: MutableList<ItemOrder> = mutableListOf()
 
     var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
-    private var adapterProduct by autoCleared<ListAdapterProduct>()
+    private var adapterProduct by autoCleared<ListAdapterProductPengiriman>()
+    private var adapterJasaPengiriman by autoCleared<ListAdapterJasaPengiriman>()
+
     var pageRequest = GetDiscussionRequest()
     internal lateinit var data: EventsItem
+    internal lateinit var createOrderRequest: CreateOrderRequest
+    var getPricingRequest = GetPricingRequest()
     internal lateinit var getProductEventResponse: GetProductEventResponse
+    internal lateinit var getPricingResponse: GetPricingResponse
+
     internal lateinit var dataLogin: LoginResponse
-    val listProductsItemOrder: MutableList<ItemOrder> = mutableListOf()
+    val listItemOrderOrder: MutableList<ItemOrder> = mutableListOf()
 
     @SuppressLint("HardwareIds")
     override fun onCreateView(
@@ -65,7 +74,7 @@ class FragmentProductPayment : BaseFragment(), Injectable {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentProductPaymentBinding.inflate(inflater, container, false)
+        val binding = FragmentPengirimanBinding.inflate(inflater, container, false)
         context ?: return binding.root
         dataLogin = Gson().fromJson(
             MainApplication().getStringPref(context, "dataLogin"),
@@ -73,7 +82,13 @@ class FragmentProductPayment : BaseFragment(), Injectable {
         )
 
 
-        data = Gson().fromJson(arguments?.getString("data"), EventsItem::class.java)
+        data = Gson().fromJson(arguments?.getString("dataEvent"), EventsItem::class.java)
+        createOrderRequest =
+            Gson().fromJson(arguments?.getString("data"), CreateOrderRequest::class.java)
+
+        binding.alamatValue.text = arguments?.getString("address")
+        binding.totalValueText.text =
+            NumberUtil.moneyFormat(createOrderRequest.transaction!!.totalValue.toString())
         pageRequest.eventId = data.eventId
         binding.btnRegistrasi.setOnClickListener {
             if (binding.alamatValue.text == "-") {
@@ -83,137 +98,72 @@ class FragmentProductPayment : BaseFragment(), Injectable {
                     Snackbar.LENGTH_LONG
                 )
                     .show()
-//            } else if (binding.kurirValue.text == "-") {
-//                Snackbar.make(
-//                    binding.root,
-//                    "Silahkan Pilih Jasa Pengiriman",
-//                    Snackbar.LENGTH_LONG
-//                )
-//                    .show()
-//            } else if (binding.accountValue.text == "-") {
-//                    Snackbar.make(
-//                        binding.root,
-//                        "Silahkan Pilih Metode Pembayaran",
-//                        Snackbar.LENGTH_LONG
-//                    )
-//                        .show()
+            } else if (binding.kurirValue.text == "-") {
+                Snackbar.make(
+                    binding.root,
+                    "Silahkan Pilih Jasa Pengiriman",
+                    Snackbar.LENGTH_LONG
+                )
+                    .show()
+            } else if (binding.accountValue.text == "-") {
+                Snackbar.make(
+                    binding.root,
+                    "Silahkan Pilih Metode Pembayaran",
+                    Snackbar.LENGTH_LONG
+                )
+                    .show()
+
             } else {
-                    createOrderRequest.courier = "sicepat"
-                    createOrderRequest.courierService = "SIUNT"
-                    createOrderRequest.orderNumber = "00001"
-                    createOrderRequest.isCod = false
-                    createOrderRequest.isSendCompany = false
-                    createOrderRequest.deliveryType = "pickup"
-                    createOrderRequest.deliveryTime = "06/05/2022 04:52:00 PM +00:00"
-                    createOrderRequest.originNote = "Rumah Deket SD"
-                    createOrderRequest.originContactName = "Wandhie Dimyati"
-                    createOrderRequest.originContactPhone = "087730188988"
-                    createOrderRequest.originContactEmail = "wandhie.dimyati@gmail.com"
-                    createOrderRequest.originCityCode = "32.04"
-                    createOrderRequest.originCityName = "KAB. BANDUNG"
-                    createOrderRequest.originProvinceCode = "32"
-                    createOrderRequest.originProvinceName = "JAWA BARAT"
-                    createOrderRequest.originSubdistrictCode = "32.04.35"
-                    createOrderRequest.originSubdistrictName = "PASEH"
-                    createOrderRequest.originContactAddress =
-                        "Kapung Cihaneut Desa Drawati Kec Paseh"
-                    createOrderRequest.originPostalCode = "40383"
-                    println("dataLogin.customer!!.customerId :" + dataLogin.customer!!.customerId)
-                    transaction.customerId = dataLogin.customer!!.customerId
-                    transaction.eventId = data.eventId
-                    transaction.uniqueCode = 1
-                    transaction.shippingCharge = 0
-                    transaction.feeInsurance = 0
-                    transaction.isInsuranced = false
-                    transaction.discount = 0
-                    transaction.totalCod = 0
-                    transaction.packageCategory = "NORMAL"
-                    transaction.packageContent = getProductEventResponse.products!!.get(0)!!.title
+                createOrderRequest.transaction!!.uniqueCode = 1
 
+                if (binding.accountValue.text == "Transfer") {
+                    createOrderRequest.transaction!!.methodPayment = "transfer"
+                } else {
+                    createOrderRequest.transaction!!.methodPayment = "qris"
 
-                    transaction.subtotal = 1012
-                    transaction.totalValue = 1012
-                    transaction.weight = 10
-                    transaction.width = 10
-                    transaction.height = 10
-                    transaction.length = 10
-                    transaction.coolie = 10
-
-                    createOrderRequest.transaction = transaction
-                    for (i in 0 until getProductEventResponse.products!!.size) {
-                        val itemOrder = ItemOrder()
-                        itemOrder.productId = getProductEventResponse.products!!.get(i)!!.productId
-                        itemOrder.name = getProductEventResponse.products!!.get(i)!!.title
-                        itemOrder.description =
-                            getProductEventResponse.products!!.get(i)!!.description
-                        itemOrder.weight = getProductEventResponse.products!!.get(i)!!.weight
-                        itemOrder.photo = getProductEventResponse.products!!.get(i)!!.photo
-                        itemOrder.weightUom = "gr"
-                        itemOrder.qty = getProductEventResponse.products!!.get(i)!!.stock
-                        itemOrder.value = getProductEventResponse.products!!.get(i)!!.price
-                        itemOrder.width = getProductEventResponse.products!!.get(i)!!.volumeWidth
-                        itemOrder.height = getProductEventResponse.products!!.get(i)!!.volumeHeight
-                        itemOrder.dimensionUom = "cm"
-                        itemOrder.length = getProductEventResponse.products!!.get(i)!!.volumeLength
-                        itemOrder.totalValue =
-                            getProductEventResponse.products!!.get(i)!!.stock?.times(
-                                getProductEventResponse.products!!.get(i)!!.price!!
-                            )
-                        listProductsItemOrder.add(itemOrder)
-                    }
-                    createOrderRequest.items = listProductsItemOrder
-//            if (binding.accountValue.text == "Transfer") {
-//                transaction.methodPayment = "transfer"
-//            } else {
-//                transaction.methodPayment = "qris"
-//
-//            }
-//            mainViewModel.paramWithBody(
-//                "",
-//                Constant.CREATE_ORDER,
-//                Gson().toJson(createOrderRequest)
-//            )
-//            mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
-//
-//                if (result.status == Status.SUCCESS) {
-//                    if (binding.accountValue.text == "Transfer") {
-//                        val bundle = Bundle()
-//                        bundle.putString("dataEvent", Gson().toJson(data))
-//                        bundle.putString("address", Gson().toJson(data))
-//                        bundle.putString("courier", Gson().toJson(data))
-//                        bundle.putString("data", result.data)
-//                        findNavController().navigate(R.id.fragmentCreateInvoice, bundle)
-//
-//                    } else {
-//                        val bundle = Bundle()
-//                        bundle.putString("dataEvent", Gson().toJson(data))
-//                        bundle.putString("address", Gson().toJson(data))
-//                        bundle.putString("courier", Gson().toJson(data))
-//                        bundle.putString("data", result.data)
-//                        findNavController().navigate(R.id.fragmentQRIS, bundle)
-//
-//                    }
-//
-//                } else {
-//                    if (!TextUtils.isEmpty(result.data)) {
-//                        val response =
-//                            Gson().fromJson(result.data, MessageResponse::class.java)
-//                        response.error?.let {
-//                            Snackbar.make(
-//                                binding!!.root,
-//                                it,
-//                                Snackbar.LENGTH_LONG
-//                            ).show()
-//                        }
-//                    }
-//                }
-//            })
-                    val bundle = Bundle()
-                    bundle.putString("dataEvent", Gson().toJson(data))
-                    bundle.putString("address", binding.alamatValue.text.toString())
-                    bundle.putString("data", Gson().toJson(createOrderRequest))
-                    findNavController().navigate(R.id.fragmentPengiriman, bundle)
                 }
+                //createOrderRequest.transaction =transaction
+                mainViewModel.paramWithBody(
+                    "",
+                    Constant.CREATE_ORDER,
+                    Gson().toJson(createOrderRequest)
+                )
+                mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
+
+                    if (result.status == Status.SUCCESS) {
+                        if (binding.accountValue.text == "Transfer") {
+                            val bundle = Bundle()
+                            bundle.putString("dataEvent", Gson().toJson(data))
+                            bundle.putString("address", Gson().toJson(data))
+                            bundle.putString("courier", Gson().toJson(data))
+                            bundle.putString("data", result.data)
+                            findNavController().navigate(R.id.fragmentCreateInvoice, bundle)
+
+                        } else {
+                            val bundle = Bundle()
+                            bundle.putString("dataEvent", Gson().toJson(data))
+                            bundle.putString("address", Gson().toJson(data))
+                            bundle.putString("courier", Gson().toJson(data))
+                            bundle.putString("data", result.data)
+                            findNavController().navigate(R.id.fragmentQRIS, bundle)
+
+                        }
+
+                    } else {
+                        if (!TextUtils.isEmpty(result.data)) {
+                            val response =
+                                Gson().fromJson(result.data, MessageResponse::class.java)
+                            response.error?.let {
+                                Snackbar.make(
+                                    binding!!.root,
+                                    it,
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    }
+                })
+            }
         }
 
         binding.btnHomeAddress.setOnClickListener({
@@ -237,7 +187,7 @@ class FragmentProductPayment : BaseFragment(), Injectable {
 
     }
 
-    fun methodPayment(binding: FragmentProductPaymentBinding) {
+    fun methodPayment(binding: FragmentPengirimanBinding) {
         val dialogView =
             Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
 
@@ -285,37 +235,113 @@ class FragmentProductPayment : BaseFragment(), Injectable {
         dialogView.show()
     }
 
-    fun methodCourier(binding: FragmentProductPaymentBinding) {
-        val dialogView =
+    lateinit var dialogViewCourier: Dialog
+
+
+    fun methodCourier(binding: FragmentPengirimanBinding) {
+        dialogViewCourier =
             Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
 
-        dialogView.requestWindowFeature(
+        dialogViewCourier.requestWindowFeature(
             Window.FEATURE_NO_TITLE
         )
-        dialogView.setContentView(R.layout.dialog_jasa_pengiriman)
+        dialogViewCourier.setContentView(R.layout.dialog_jasa_pengiriman)
 
-        dialogView.getWindow()!!.setBackgroundDrawable(
+        dialogViewCourier.getWindow()!!.setBackgroundDrawable(
             ColorDrawable(
                 Color.TRANSPARENT
             )
         )
-        dialogView.getWindow()!!.setLayout(
+        dialogViewCourier.getWindow()!!.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
         )
 
-        val btnSave = dialogView.findViewById<AppCompatButton>(R.id.btnRegistrasi)
+        val btnSave = dialogViewCourier.findViewById<AppCompatButton>(R.id.btnRegistrasi)
         btnSave.setOnClickListener({
-            dialogView.dismiss()
+            dialogViewCourier.dismiss()
         })
-        dialogView.show()
+        val recycleViewJasaPengiriman =
+            dialogViewCourier.findViewById<RecyclerView>(R.id.recycleViewBanner)
+        val adapterJasaPengiriman = ListAdapterJasaPengiriman(
+            dataBindingComponent,
+            requireContext(),
+            appExecutors,
+            { partItem: DataCourier -> onClickDataBrands(binding, partItem) },
+            { partItem: DataCourier -> onClickDataAdd(binding, partItem) },
+            { partItem: DataCourier ->
+                onClickDataDelete(
+                    binding,
+                    partItem
+                )
+            }) { contributor, imageView ->
+        }
+
+        this.adapterJasaPengiriman = adapterJasaPengiriman
+
+        recycleViewJasaPengiriman.adapter = adapterJasaPengiriman
+        recycleViewJasaPengiriman.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        postponeEnterTransition()
+        recycleViewJasaPengiriman.getViewTreeObserver()
+            .addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+        getPricingRequest.destinationLat = createOrderRequest.destinationLat
+        getPricingRequest.destinationSubdistrictCode = createOrderRequest.destinationSubdistrictCode
+        getPricingRequest.destinationPostalCode = createOrderRequest.destinationPostalCode?.toInt()
+        getPricingRequest.originCityCode = createOrderRequest.originCityCode
+        getPricingRequest.destinationProvinceName = createOrderRequest.destinationProvinceName
+        getPricingRequest.originLong = createOrderRequest.originLong
+        getPricingRequest.isCod = createOrderRequest.isCod
+        getPricingRequest.originLat = createOrderRequest.originLat
+        getPricingRequest.originProvinceCode = createOrderRequest.originProvinceCode
+        getPricingRequest.originSubdistrictName = createOrderRequest.originSubdistrictName
+        getPricingRequest.originCityName = createOrderRequest.originCityName
+        getPricingRequest.destinationProvinceCode = createOrderRequest.destinationProvinceCode
+        getPricingRequest.originSubdistrictCode = createOrderRequest.originSubdistrictCode
+        getPricingRequest.originPostalCode = createOrderRequest.originPostalCode?.toInt()
+        getPricingRequest.destinationLong = createOrderRequest.destinationLong
+        getPricingRequest.originProvinceName = createOrderRequest.originProvinceName
+        getPricingRequest.destinationCityCode = createOrderRequest.destinationCityCode
+        getPricingRequest.destinationSubdistrictName = createOrderRequest.destinationSubdistrictName
+        getPricingRequest.items = createOrderRequest.items
+        getPricingRequest.destinationCityName = createOrderRequest.destinationCityName
+
+        mainViewModel.paramWithBody(
+            "",
+            Constant.GET_PRICING,
+            Gson().toJson(getPricingRequest)
+        )
+
+        mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
+            if (result.status == Status.SUCCESS) {
+                getPricingResponse =
+                    Gson().fromJson(result.data, GetPricingResponse::class.java)
+                adapterJasaPengiriman.submitList(getPricingResponse.data)
+            } else {
+                if (!TextUtils.isEmpty(result.data)) {
+                    val response =
+                        Gson().fromJson(result.data, MessageResponse::class.java)
+                    response.error?.let {
+                        Snackbar.make(
+                            binding!!.root,
+                            it,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }
+        })
+        dialogViewCourier.show()
     }
 
     var getPostalCodeResponse = GetPostalCodeResponse()
     var transaction = Transaction()
 
-    var createOrderRequest = CreateOrderRequest()
-    fun methodAddress(binding: FragmentProductPaymentBinding) {
+    fun methodAddress(binding: FragmentPengirimanBinding) {
         val dialogView =
             Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
 
@@ -448,14 +474,14 @@ class FragmentProductPayment : BaseFragment(), Injectable {
         dialogView.show()
     }
 
-    fun getAllProduct(binding: FragmentProductPaymentBinding) {
-        val adapterProduct = ListAdapterProduct(
+    fun getAllProduct(binding: FragmentPengirimanBinding) {
+        val adapterProduct = ListAdapterProductPengiriman(
             dataBindingComponent,
             requireContext(),
             appExecutors,
-            { partItem: ProductsItem -> onClickDataBrands(binding, partItem) },
-            { partItem: ProductsItem -> onClickDataAdd(binding, partItem) },
-            { partItem: ProductsItem ->
+            { partItem: ItemOrder -> onClickDataBrands(binding, partItem) },
+            { partItem: ItemOrder -> onClickDataAdd(binding, partItem) },
+            { partItem: ItemOrder ->
                 onClickDataDelete(
                     binding,
                     partItem
@@ -475,72 +501,36 @@ class FragmentProductPayment : BaseFragment(), Injectable {
                 startPostponedEnterTransition()
                 true
             }
-
-        pageRequest.page = 0
-        pageRequest.size = 100
-        mainViewModel.paramWithBody(
-            "",
-            Constant.PRODUCT,
-            Gson().toJson(pageRequest)
-        )
-
-        mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
-            if (result.status == Status.SUCCESS) {
-                getProductEventResponse =
-                    Gson().fromJson(result.data, GetProductEventResponse::class.java)
-                adapterProduct.submitList(getProductEventResponse.products)
-            } else {
-                if (!TextUtils.isEmpty(result.data)) {
-                    val response =
-                        Gson().fromJson(result.data, MessageResponse::class.java)
-                    response.error?.let {
-                        Snackbar.make(
-                            binding!!.root,
-                            it,
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun onClickDataBrands(binding: FragmentProductPaymentBinding, partItem: ProductsItem) {
+        adapterProduct.submitList(createOrderRequest.items)
 
     }
 
-    private fun onClickDataAdd(binding: FragmentProductPaymentBinding, partItem: ProductsItem) {
-        for (i in 0 until getProductEventResponse.products!!.size) {
-            if (getProductEventResponse.products!!.get(i)!!.productId == partItem.productId) {
-                getProductEventResponse.products!!.get(i)?.stock = partItem.stock?.plus(1)
-            }
-        }
+    private fun onClickDataBrands(binding: FragmentPengirimanBinding, partItem: ItemOrder) {
 
-        adapterProduct.notifyDataSetChanged()
-        totalTagihan(binding)
     }
 
-    private fun onClickDataDelete(binding: FragmentProductPaymentBinding, partItem: ProductsItem) {
-        for (i in 0 until getProductEventResponse.products!!.size) {
-            if (getProductEventResponse.products!!.get(i)!!.productId == partItem.productId) {
-                if (getProductEventResponse.products?.get(i)?.stock!! > 0) {
-                    getProductEventResponse.products?.get(i)?.stock = partItem.stock?.minus(1)
+    private fun onClickDataAdd(binding: FragmentPengirimanBinding, partItem: ItemOrder) {
 
-                }
-            }
-        }
-        adapterProduct.notifyDataSetChanged()
-        totalTagihan(binding)
     }
 
-    fun totalTagihan(binding: FragmentProductPaymentBinding) {
-        var totalTagihan: Int? = 0
-        for (layanan in getProductEventResponse.products!!) {
-            val totalHarga = layanan?.price?.times(layanan.stock!!)
-            if (totalTagihan != null) {
-                totalTagihan = totalTagihan + totalHarga!!
-            }
-        }
-        binding.totalValue.text = NumberUtil.moneyFormat(totalTagihan.toString())
+    private fun onClickDataDelete(binding: FragmentPengirimanBinding, partItem: ItemOrder) {
+
     }
+
+    private fun onClickDataBrands(binding: FragmentPengirimanBinding, partItem: DataCourier) {
+
+    }
+
+    private fun onClickDataAdd(binding: FragmentPengirimanBinding, partItem: DataCourier) {
+        binding.kurirValue.text = partItem.courier
+        createOrderRequest.courier = partItem.courierCode
+        createOrderRequest.courierService = partItem.service
+        createOrderRequest.orderNumber = "00001"
+        dialogViewCourier.dismiss()
+    }
+
+    private fun onClickDataDelete(binding: FragmentPengirimanBinding, partItem: DataCourier) {
+
+    }
+
 }

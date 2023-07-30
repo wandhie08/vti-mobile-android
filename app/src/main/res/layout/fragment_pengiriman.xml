@@ -20,6 +20,7 @@
             android:layout_below="@id/header">
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/infoProfileLayout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -45,6 +46,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/infoEmailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -71,6 +73,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/infoAlamatLayout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -142,7 +145,6 @@
                         android:textSize="@dimen/_12sdp" />
                 </RelativeLayout>
                 <RelativeLayout
-                    android:visibility="gone"
                     android:id="@+id/btnKurir"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -177,7 +179,6 @@
                         android:textSize="@dimen/_12sdp" />
                 </RelativeLayout>
                 <RelativeLayout
-                    android:visibility="gone"
                     android:id="@+id/btnAccountBalance"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -223,7 +224,7 @@
                 android:scrollbars="horizontal"
                 android:layout_above="@id/btnRegistrasi"
                 app:layoutManager="LinearLayoutManager"
-                tools:listitem="@layout/list_add_product" />
+                tools:listitem="@layout/list_product_payment" />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRegistrasi"
                 style="@style/btn_style"

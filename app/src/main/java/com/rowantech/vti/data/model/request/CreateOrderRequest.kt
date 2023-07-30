@@ -47,10 +47,10 @@ data class CreateOrderRequest(
 	var originPostalCode: String? = null,
 
 	@field:SerializedName("destination_lat")
-	var destinationLat: Any? = null,
+	var destinationLat: String? = null,
 
 	@field:SerializedName("destination_long")
-	var destinationLong: Any? = null,
+	var destinationLong: String? = null,
 
 	@field:SerializedName("origin_province_name")
 	var originProvinceName: String? = null,
@@ -68,13 +68,13 @@ data class CreateOrderRequest(
 	var destinationProvinceName: String? = null,
 
 	@field:SerializedName("origin_long")
-	var originLong: Any? = null,
+	var originLong: String? = null,
 
 	@field:SerializedName("delivery_note")
 	var deliveryNote: String? = null,
 
 	@field:SerializedName("origin_lat")
-	var originLat: Any? = null,
+	var originLat: String? = null,
 
 	@field:SerializedName("origin_province_code")
 	var originProvinceCode: String? = null,
@@ -147,6 +147,9 @@ data class ItemOrder(
 
 	@field:SerializedName("weight")
 	var weight: Int? = null,
+
+	@field:SerializedName("photo")
+	var photo: String? = null,
 
 	@field:SerializedName("value")
 	var value: Int? = null,

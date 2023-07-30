@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_90sdp">
+        <ImageView
+            android:visibility="visible"
+            android:id="@+id/iconBrand"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            />
+
+        <TextView
+            android:id="@+id/nameProduct"
+            style="@style/text_style"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@id/iconBrand"
+            android:text="Mapped Coloring Contest : Learning Style" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_below="@id/nameProduct"
+            android:id="@+id/heightProduk"
+            style="@style/text_style"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@id/iconBrand"
+            android:text="2 barang(400 gr)" />
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:id="@+id/priceProduk"
+            style="@style/text_style"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:layout_toRightOf="@id/iconBrand"
+            android:text="Rp. 300.000" />
+        <TextView
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/itemWajib"
+            style="@style/text_style"
+            android:textColor="@color/red"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:layout_toRightOf="@id/priceProduk"
+            android:text="*" />
+        <View
+            android:background="@color/grey"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
+    </RelativeLayout>
+</layout>

@@ -124,6 +124,9 @@
         <action
             android:id="@+id/action_fragmentProductPayment_to_fragmentQRIS"
             app:destination="@id/fragmentQRIS" />
+        <action
+            android:id="@+id/action_fragmentProductPayment_to_fragmentPengiriman"
+            app:destination="@id/fragmentPengiriman" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_create_invoice"
@@ -151,4 +154,25 @@
         android:id="@+id/fragmentQRIS"
         android:name="com.rowantech.vti.views.FragmentQRIS"
         android:label="FragmentQRIS" />
+    <fragment
+        tools:layout="@layout/fragment_pengiriman"
+        android:id="@+id/fragmentPengiriman"
+        android:name="com.rowantech.vti.views.FragmentPengiriman"
+        android:label="FragmentPengiriman" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="dataEvent"
+            app:argType="string" />
+        <argument
+            android:name="address"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentPengiriman_to_fragmentQRIS"
+            app:destination="@id/fragmentQRIS" />
+        <action
+            android:id="@+id/action_fragmentPengiriman_to_fragmentCreateInvoice"
+            app:destination="@id/fragmentCreateInvoice" />
+    </fragment>
 </navigation>
