@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:textStyle="bold"
+        android:id="@+id/textNamaForm"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="1. Nama Peserta"
+        style="@style/text_style_large"/>
+    <TextView
+        android:layout_below="@id/textNamaForm"
+        android:id="@+id/textDetailNamaForm"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="@dimen/_32sdp"
+        android:text="Sekolah peserta saat ini"
+        style="@style/text_style"/>
+    <TextView
+        android:layout_toRightOf="@id/textNamaForm"
+        android:textStyle="bold"
+        android:id="@+id/textItemWajib"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="*"
+        android:textColor="@color/red"
+        style="@style/text_style_large"/>
+    <View
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_below="@id/textDetailNamaForm"
+        android:background="#969FAA"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"/>
+</RelativeLayout>

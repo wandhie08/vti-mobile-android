@@ -63,6 +63,8 @@ class ListAdapterBanner (
 
         Glide.with(context).load(item.banner).into(binding.iconBanner)
         item.banner?.let { binding.iconBanner.loadUrl(it) }
+
+        binding.iconBanner.setOnClickListener { clickListener(item) }
     }
 
     fun ImageView.loadUrl(url: String) {

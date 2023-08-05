@@ -175,4 +175,12 @@
             android:id="@+id/action_fragmentPengiriman_to_fragmentCreateInvoice"
             app:destination="@id/fragmentCreateInvoice" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentDetailBanner"
+        android:name="com.rowantech.vti.views.FragmentDetailBanner"
+        android:label="FragmentDetailBanner" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
 </navigation>

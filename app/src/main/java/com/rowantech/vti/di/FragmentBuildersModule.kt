@@ -81,4 +81,7 @@ abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
     abstract fun contributeFragmentPengiriman(): FragmentPengiriman
 
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentDetailBanner(): FragmentDetailBanner
+
 }

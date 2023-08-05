@@ -1,14 +1,15 @@
 package com.rowantech.vti.views
 
 import android.annotation.SuppressLint
-import android.content.Intent
+import android.app.Dialog
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.DataBindingComponent
 import androidx.fragment.app.viewModels
@@ -20,6 +21,8 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.rowantech.vti.MainApplication
@@ -29,17 +32,15 @@ import com.rowantech.vti.data.AppExecutors
 import com.rowantech.vti.data.Status
 import com.rowantech.vti.data.model.request.*
 import com.rowantech.vti.data.model.response.*
-import com.rowantech.vti.databinding.FragmentBrandsBinding
 import com.rowantech.vti.databinding.FragmentDescEventBinding
-import com.rowantech.vti.databinding.FragmentHomeBinding
 import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.Constant
 import com.rowantech.vti.utilities.autoCleared
 import com.rowantech.vti.viewmodels.MainViewModel
 import com.rowantech.vti.views.adapter.ListAdapterBanner
-import com.rowantech.vti.views.adapter.ListAdapterBrand
 import com.rowantech.vti.views.adapter.ListAdapterEvent
 import javax.inject.Inject
+
 
 class FragmentDescEvent : BaseFragment(), Injectable {
 
@@ -164,8 +165,13 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
         }
         binding.btnRegistrasi.setBackgroundResource(R.drawable.button_blue)
+        println("data.type :"+data.type)
         if (data.type == "CLOSED") {
-            binding.btnRegistrasi.visibility = View.INVISIBLE
+            println("data.type SELESAI:"+data.type)
+            binding.btnRegistrasi.visibility = View.VISIBLE
+            binding.btnRegistrasi.setBackgroundResource(R.drawable.button_grey)
+            binding.btnRegistrasi.setText("SELESAI")
+            //binding.btnRegistrasi.isEnabled =false
         } else  if (data.type == "ONGOING|REGISTRATION"){
             binding.btnRegistrasi.visibility = View.VISIBLE
             binding.btnRegistrasi.setBackgroundResource(R.drawable.button_blue)
@@ -361,8 +367,60 @@ class FragmentDescEvent : BaseFragment(), Injectable {
         findNavController().navigate(R.id.fragmentDescEvent, bundle)
     }
 
-    private fun onClickDataBanner(binding: FragmentDescEventBinding, partItem: BannersItem) {
 
+    private fun onClickDataBanner(binding: FragmentDescEventBinding, partItem: BannersItem) {
+//        val bundle = Bundle()
+//        bundle.putString("data", Gson().toJson(partItem))
+//        findNavController().navigate(R.id.fragmentDetailBanner, bundle)
+
+        val dialogView =
+            Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
+
+        dialogView.requestWindowFeature(
+            Window.FEATURE_NO_TITLE
+        )
+        dialogView.setContentView(R.layout.dialog_image)
+
+        dialogView.getWindow()!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+
+        val btnClose = dialogView.findViewById<AppCompatButton>(R.id.btnClose)
+        val imageBanner = dialogView.findViewById<ZoomImageView>(R.id.imageBanner)
+
+        //Glide.with(this).load(partItem.banner).into(imageBanner)
+        Glide.with(this)
+            .asBitmap()
+            .load(partItem.banner)
+            .into(object : SimpleTarget<Bitmap?>() {
+                override fun onResourceReady(bitmap: Bitmap, transition: Transition<in Bitmap?>?) {
+                    val w = bitmap.width
+                    val h = bitmap.height
+                    imageBanner.setImageBitmap(bitmap)
+
+                    if (w >h){
+
+                    }else{
+
+                    }
+                }
+
+            })
+       // partItem.banner?.let { imageBanner.loadUrl(it) }
+        btnClose.setOnClickListener({
+            dialogView.dismiss()
+        })
+        imageBanner.swipeToDismissEnabled = true
+        imageBanner.onDismiss = {
+            dialogView.show()
+        }
+        dialogView.getWindow()!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialogView.show()
     }
 
     fun subscribeEvent(binding: FragmentDescEventBinding, typeSubscribe: String) {
@@ -383,12 +441,14 @@ class FragmentDescEvent : BaseFragment(), Injectable {
                 if (typeSubscribe == Constant.STATUS_EVENT) {
                     val response =
                         Gson().fromJson(result.data, GetStatusRegisterEventResponse::class.java)
-                    if (response.registrationStatus == "Y") {
-                        binding.btnRegistrasi.setText("TERDAFTAR")
-                        binding.btnRegistrasi.setBackgroundResource(R.drawable.button_grey)
-                    } else {
-                        binding.btnRegistrasi.setText("DAFTAR")
-                        binding.btnRegistrasi.setBackgroundResource(R.drawable.button_blue)
+                    if (data.type != "CLOSED") {
+                        if (response.registrationStatus == "Y") {
+                            binding.btnRegistrasi.setText("TERDAFTAR")
+                            binding.btnRegistrasi.setBackgroundResource(R.drawable.button_grey)
+                        } else {
+                            binding.btnRegistrasi.setText("DAFTAR")
+                            binding.btnRegistrasi.setBackgroundResource(R.drawable.button_blue)
+                        }
                     }
                 } else if (typeSubscribe == Constant.SUBSCRIBE_EVENT) {
                     Snackbar.make(
@@ -428,6 +488,7 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             //.placeholder(R.drawable.ic_copy)
             //.error(R.drawable.ic_copy)
             .data(url)
+
             .target(this)
             .build()
 

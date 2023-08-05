@@ -25,26 +25,30 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:text="Item / Produk " />
+            android:text="Kategori Pemenang " />
+        <TextView
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:id="@+id/textItemRight"
+            style="@style/text_style"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/button_blue"
+            android:text="5 Kategori" />
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@id/textItem"
             android:id="@+id/recycleViewProduk"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_185sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_25sdp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
             android:scrollbars="horizontal"
             app:layoutManager="LinearLayoutManager"
-            tools:listitem="@layout/list_produk" />
-        <TextView
-            android:layout_alignParentBottom="true"
-            android:id="@+id/textItemWajib"
-            android:textColor="@color/red"
-            android:layout_margin="@dimen/_10sdp"
-            android:text="* Item Wajib "
-            android:layout_width="wrap_content"
-            style="@style/text_style"
-            android:layout_height="wrap_content"/>
+            tools:listitem="@layout/list_juara" />
+
     </RelativeLayout>
 </RelativeLayout>

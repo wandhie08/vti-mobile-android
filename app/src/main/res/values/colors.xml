@@ -8,9 +8,16 @@
     <color name="black">#FF343F4B</color>
     <color name="grey">#E8C0CCDA</color>
     <color name="blue">#FF1B9DFB</color>
-    <color name="green">#4CAF50</color>
+    <color name="green">#77D353</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue_white">#F7FAFF</color>
     <color name="red">#F95F62</color>
+    <color name="yellow">#FFD185</color>
+    <color name="purple">#976DD0</color>
+    <color name="green_bg">#5B77D353</color>
+    <color name="blue_bg">#401B9DFB</color>
+    <color name="yellow_bg">#4DFFD185</color>
+    <color name="red_bg">#4DF95F62</color>
+    <color name="purple_bg">#4D976DD0</color>
 
 </resources>
