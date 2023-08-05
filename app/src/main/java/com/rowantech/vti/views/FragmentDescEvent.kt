@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
@@ -37,8 +38,7 @@ import com.rowantech.vti.di.Injectable
 import com.rowantech.vti.utilities.Constant
 import com.rowantech.vti.utilities.autoCleared
 import com.rowantech.vti.viewmodels.MainViewModel
-import com.rowantech.vti.views.adapter.ListAdapterBanner
-import com.rowantech.vti.views.adapter.ListAdapterEvent
+import com.rowantech.vti.views.adapter.*
 import javax.inject.Inject
 
 
@@ -63,6 +63,8 @@ class FragmentDescEvent : BaseFragment(), Injectable {
     internal lateinit var dataLogin: LoginResponse
     var registerEventRequest = RegisterEventRequest()
     var getStatusTemplateRequest = GetStatusTemplateRequest()
+    private var adapterPendaftaran by autoCleared<ListAdapterFromPendaftaran>()
+
     @SuppressLint("HardwareIds")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -102,34 +104,48 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             binding.btnHadiah.visibility = View.GONE
         } else if (data.winningPrize == "Y") {
             binding.btnHadiah.visibility = View.VISIBLE
-
+            binding.btnHadiah.setOnClickListener {
+                dialogHadiah()
+            }
         }
 
         if (data.eventType == "free") {
             binding.textBerbayar.text = "Gratis"
         } else if (data.eventType == "paid") {
             binding.textBerbayar.text = "Berbayar"
-
         }
 
         if (data.eventType == "paid") {
-            binding.btnBerbayar.setOnClickListener{
-
+            binding.btnBerbayar.setOnClickListener {
+                dialogProduct()
             }
         }
         if (data.formRegistration == "N") {
             binding.btnPendaftaran.visibility = View.GONE
         } else if (data.formRegistration == "Y") {
             binding.btnPendaftaran.visibility = View.VISIBLE
-
+            binding.btnPendaftaran.setOnClickListener({
+                dialogFormPendaftaran()
+            })
         }
 
+        binding.btnCheckIn.setOnClickListener({
+            dialogCheckIn()
+        })
         if (data.formValidation == "N") {
             binding.btnVerifikasi.visibility = View.GONE
         } else if (data.formValidation == "Y") {
             binding.btnVerifikasi.visibility = View.VISIBLE
 
         }
+
+        binding.btnUpload.setOnClickListener({
+            dialogFormUpload()
+        })
+        binding.btnDateEvent.setOnClickListener({
+            dialogDateEvent()
+        })
+
         // binding.textDateEvent.text = data.
         getAllBanner(binding, data)
         //Glide.with(this).load(data.avatar).into(binding.iconBrand)
@@ -165,14 +181,14 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
         }
         binding.btnRegistrasi.setBackgroundResource(R.drawable.button_blue)
-        println("data.type :"+data.type)
+        println("data.type :" + data.type)
         if (data.type == "CLOSED") {
-            println("data.type SELESAI:"+data.type)
+            println("data.type SELESAI:" + data.type)
             binding.btnRegistrasi.visibility = View.VISIBLE
             binding.btnRegistrasi.setBackgroundResource(R.drawable.button_grey)
             binding.btnRegistrasi.setText("SELESAI")
             //binding.btnRegistrasi.isEnabled =false
-        } else  if (data.type == "ONGOING|REGISTRATION"){
+        } else if (data.type == "ONGOING|REGISTRATION") {
             binding.btnRegistrasi.visibility = View.VISIBLE
             binding.btnRegistrasi.setBackgroundResource(R.drawable.button_blue)
         }
@@ -197,7 +213,10 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
                             if (result.status == Status.SUCCESS) {
                                 val response =
-                                    Gson().fromJson(result.data, GetStatusRegisterEventResponse::class.java)
+                                    Gson().fromJson(
+                                        result.data,
+                                        GetStatusRegisterEventResponse::class.java
+                                    )
                                 if (response.status == "Y") {
 
                                     if (data.eventType == "paid") {
@@ -214,8 +233,11 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
                                     }
 
-                                }else{
-                                    findNavController().navigate(R.id.fragmentCreateTemplate, bundle)
+                                } else {
+                                    findNavController().navigate(
+                                        R.id.fragmentCreateTemplate,
+                                        bundle
+                                    )
                                 }
                             } else {
                                 if (!TextUtils.isEmpty(result.data)) {
@@ -367,6 +389,231 @@ class FragmentDescEvent : BaseFragment(), Injectable {
         findNavController().navigate(R.id.fragmentDescEvent, bundle)
     }
 
+    private fun dialogDateEvent() {
+        val dialogView =
+            Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
+
+        dialogView.requestWindowFeature(
+            Window.FEATURE_NO_TITLE
+        )
+        dialogView.setContentView(R.layout.dialog_tanggal)
+
+        dialogView.getWindow()!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+        dialogView.getWindow()!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialogView.show()
+    }
+
+    private fun dialogLocation() {
+        val dialogView =
+            Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
+
+        dialogView.requestWindowFeature(
+            Window.FEATURE_NO_TITLE
+        )
+        dialogView.setContentView(R.layout.dialog_location)
+
+        dialogView.getWindow()!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+        dialogView.getWindow()!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialogView.show()
+    }
+    var getEventTerkaitResponse = GetFormTemplateResponse()
+
+    private fun dialogFormPendaftaran() {
+        val dialogView =
+            Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
+
+        dialogView.requestWindowFeature(
+            Window.FEATURE_NO_TITLE
+        )
+        dialogView.setContentView(R.layout.dialog_pendaftaran)
+
+        dialogView.getWindow()!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+        dialogView.getWindow()!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+        val recycleViewProduk = dialogView.findViewById<RecyclerView>(R.id.recycleViewProduk)
+        val adapterPendaftaran = ListAdapterFromPendaftaran(
+            dataBindingComponent,
+            requireContext(),
+            appExecutors,
+        ) { contributor, imageView ->
+        }
+
+        this.adapterPendaftaran = adapterPendaftaran
+
+        recycleViewProduk.adapter = adapterPendaftaran
+        recycleViewProduk.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        postponeEnterTransition()
+        recycleViewProduk.getViewTreeObserver()
+            .addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+        getEventTerkaitRequest.eventId = data.eventId
+        getEventTerkaitRequest.page = 0
+        getEventTerkaitRequest.size = 100
+        mainViewModel.paramWithBody(
+            "",
+            Constant.FORM_TEMPLATE,
+            Gson().toJson(getEventTerkaitRequest)
+        )
+        mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
+
+            if (result.status == Status.SUCCESS) {
+                getEventTerkaitResponse =
+                    Gson().fromJson(result.data, GetFormTemplateResponse::class.java)
+
+                adapterPendaftaran.submitList(getEventTerkaitResponse.templates)
+            }
+        })
+        dialogView.show()
+    }
+
+    private fun dialogFormUpload() {
+        val dialogView =
+            Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
+
+        dialogView.requestWindowFeature(
+            Window.FEATURE_NO_TITLE
+        )
+        dialogView.setContentView(R.layout.dialog_upload)
+
+        dialogView.getWindow()!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+        dialogView.getWindow()!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialogView.show()
+    }
+
+    private fun dialogHadiah() {
+        val dialogView =
+            Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
+
+        dialogView.requestWindowFeature(
+            Window.FEATURE_NO_TITLE
+        )
+        dialogView.setContentView(R.layout.dialog_hadiah)
+
+        dialogView.getWindow()!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+        dialogView.getWindow()!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialogView.show()
+    }
+
+    internal lateinit var getProductEventResponse: GetProductEventResponse
+    private var adapterProduct by autoCleared<ListAdapterProductPaid>()
+    var pageRequest = GetDiscussionRequest()
+
+    private fun dialogProduct() {
+        val dialogView =
+            Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
+
+        dialogView.requestWindowFeature(
+            Window.FEATURE_NO_TITLE
+        )
+        dialogView.setContentView(R.layout.dialog_berbayar)
+
+        dialogView.getWindow()!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+        val recycleViewProduk = dialogView.findViewById<RecyclerView>(R.id.recycleViewProduk)
+        val adapterProduct = ListAdapterProductPaid(
+            dataBindingComponent,
+            requireContext(),
+            appExecutors,
+        ) { contributor, imageView ->
+        }
+
+        this.adapterProduct = adapterProduct
+
+        recycleViewProduk.adapter = adapterProduct
+        recycleViewProduk.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        postponeEnterTransition()
+        recycleViewProduk.getViewTreeObserver()
+            .addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+        pageRequest.eventId = data.eventId
+        pageRequest.page = 0
+        pageRequest.size = 100
+        mainViewModel.paramWithBody(
+            "",
+            Constant.PRODUCT,
+            Gson().toJson(pageRequest)
+        )
+
+        mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
+            if (result.status == Status.SUCCESS) {
+                getProductEventResponse =
+                    Gson().fromJson(result.data, GetProductEventResponse::class.java)
+                adapterProduct.submitList(getProductEventResponse.products)
+
+            }
+        })
+        dialogView.getWindow()!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialogView.show()
+    }
+
+    private fun dialogCheckIn() {
+        val dialogView =
+            Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
+
+        dialogView.requestWindowFeature(
+            Window.FEATURE_NO_TITLE
+        )
+        dialogView.setContentView(R.layout.dialog_checkin)
+
+        dialogView.getWindow()!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+        dialogView.getWindow()!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialogView.show()
+    }
 
     private fun onClickDataBanner(binding: FragmentDescEventBinding, partItem: BannersItem) {
 //        val bundle = Bundle()
@@ -400,15 +647,15 @@ class FragmentDescEvent : BaseFragment(), Injectable {
                     val h = bitmap.height
                     imageBanner.setImageBitmap(bitmap)
 
-                    if (w >h){
+                    if (w > h) {
 
-                    }else{
+                    } else {
 
                     }
                 }
 
             })
-       // partItem.banner?.let { imageBanner.loadUrl(it) }
+        // partItem.banner?.let { imageBanner.loadUrl(it) }
         btnClose.setOnClickListener({
             dialogView.dismiss()
         })
@@ -494,4 +741,6 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
         imageLoader.enqueue(request)
     }
+
+
 }

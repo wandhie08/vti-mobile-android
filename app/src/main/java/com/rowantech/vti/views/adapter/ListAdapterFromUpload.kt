@@ -17,41 +17,41 @@ import coil.request.ImageRequest
 import com.rowantech.vti.R
 import com.rowantech.vti.data.AppExecutors
 import com.rowantech.vti.data.model.response.BannersItem
-import com.rowantech.vti.data.model.response.ProductsItem
-import com.rowantech.vti.databinding.ListProductPaymentBinding
+import com.rowantech.vti.data.model.response.TemplatesItem
+import com.rowantech.vti.databinding.ListFormPendaftaranBinding
 import com.rowantech.vti.utilities.NumberUtil
 import com.rowantech.vti.views.commons.DataBoundListAdapter
 
-class ListAdapterProductPaid (
+class ListAdapterFromUpload (
     private val dataBindingComponent: DataBindingComponent,
     private val context: Context,
     appExecutors: AppExecutors,
     private val callback: ((BannersItem, ImageView) -> Unit)?
 
-) : DataBoundListAdapter<ProductsItem, ListProductPaymentBinding>(
+) : DataBoundListAdapter<TemplatesItem, ListFormPendaftaranBinding>(
     appExecutors = appExecutors,
-    diffCallback = object : DiffUtil.ItemCallback<ProductsItem>() {
+    diffCallback = object : DiffUtil.ItemCallback<TemplatesItem>() {
         override fun areItemsTheSame(
-            oldItem: ProductsItem,
-            newItem: ProductsItem
+            oldItem: TemplatesItem,
+            newItem: TemplatesItem
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: ProductsItem,
-            newItem: ProductsItem
+            oldItem: TemplatesItem,
+            newItem: TemplatesItem
         ): Boolean {
             return oldItem == newItem
         }
     }
 ) {
 
-    override fun createBinding(parent: ViewGroup): ListProductPaymentBinding {
+    override fun createBinding(parent: ViewGroup): ListFormPendaftaranBinding {
         val binding = DataBindingUtil
-            .inflate<ListProductPaymentBinding>(
+            .inflate<ListFormPendaftaranBinding>(
                 LayoutInflater.from(parent.context),
-                R.layout.list_product_payment,
+                R.layout.list_form_pendaftaran,
                 parent,
                 false,
                 dataBindingComponent
@@ -61,16 +61,15 @@ class ListAdapterProductPaid (
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun bind(binding: ListProductPaymentBinding, item: ProductsItem) {
-        binding.nameProduct.text = item.title
+    override fun bind(binding: ListFormPendaftaranBinding, item: TemplatesItem) {
+        binding.textNamaForm.text = item.question
 
-        binding.priceProduk.text = NumberUtil.moneyFormat(item.price.toString())
-        if (item.optional =="N"){
-            binding.itemWajib.visibility =View.VISIBLE
+        //binding.textDetailNamaForm.text = NumberUtil.moneyFormat(item.price.toString())
+        if (item.required =="N"){
+            binding.textItemWajib.visibility =View.VISIBLE
         }else  if (item.optional =="Y"){
-            binding.itemWajib.visibility =View.GONE
+            binding.textItemWajib.visibility =View.GONE
         }
-        item.photo?.let { binding.iconBrand.loadUrl(it) }
 
 
     }
