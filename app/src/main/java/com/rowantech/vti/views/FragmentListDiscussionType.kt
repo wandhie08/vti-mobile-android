@@ -1,6 +1,7 @@
 package com.rowantech.vti.views
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import com.rowantech.vti.data.model.request.LoginRequest
 import com.rowantech.vti.data.model.response.DiscussionsItem
 import com.rowantech.vti.data.model.response.EventsItem
 import com.rowantech.vti.data.model.response.GetDiscussionResponse
+import com.rowantech.vti.databinding.FragmentCreateDiscussionBinding
 import com.rowantech.vti.databinding.FragmentDetailDiscussionBinding
 import com.rowantech.vti.databinding.FragmentListDiscussionTypeBinding
 import com.rowantech.vti.databinding.FragmentLoginBinding
@@ -66,6 +68,45 @@ class FragmentListDiscussionType : BaseFragment(), Injectable {
                 bundle
             )
         })
+
+        binding.btnjadwal.setOnClickListener({
+            resetButton(binding)
+            binding.btnjadwal.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnjadwal.setTextColor(Color.parseColor("#FFFFFFFF"))
+
+        })
+
+        binding.btnHadiah.setOnClickListener({
+            resetButton(binding)
+            binding.btnHadiah.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnHadiah.setTextColor(Color.parseColor("#FFFFFFFF"))
+
+        })
+        binding.btnPendaftaran.setOnClickListener({
+            resetButton(binding)
+            binding.btnPendaftaran.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnPendaftaran.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
+
+        binding.btnPengumpulanData.setOnClickListener({
+            resetButton(binding)
+            binding.btnPengumpulanData.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnPengumpulanData.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
+
+
+        binding.btnPeraturan.setOnClickListener({
+            resetButton(binding)
+            binding.btnPeraturan.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnPeraturan.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
+
+        binding.btnLainnya.setOnClickListener({
+            resetButton(binding)
+            binding.btnLainnya.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnLainnya.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
+
         return binding.root
     }
 
@@ -74,6 +115,26 @@ class FragmentListDiscussionType : BaseFragment(), Injectable {
     internal lateinit var getDiscussionResponse: GetDiscussionResponse
     var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
 
+    fun resetButton(binding: FragmentListDiscussionTypeBinding){
+        binding.btnHadiah.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnHadiah.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnjadwal.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnjadwal.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnPendaftaran.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnPendaftaran.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnPengumpulanData.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnPengumpulanData.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnPeraturan.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnPeraturan.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnLainnya.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnLainnya.setTextColor(Color.parseColor("#FF343F4B"))
+
+    }
     private fun onClickDataDiscussion(
         binding: FragmentListDiscussionTypeBinding,
         partItem: DiscussionsItem
@@ -95,7 +156,7 @@ class FragmentListDiscussionType : BaseFragment(), Injectable {
 
         binding.recycleViewProduk.adapter = adapterDiscussion
         binding.recycleViewProduk.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         postponeEnterTransition()
         binding.recycleViewProduk.getViewTreeObserver()

@@ -377,7 +377,7 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
         binding.recycleViewDiscussion.adapter = adapterDiscussion
         binding.recycleViewDiscussion.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         postponeEnterTransition()
         binding.recycleViewDiscussion.getViewTreeObserver()

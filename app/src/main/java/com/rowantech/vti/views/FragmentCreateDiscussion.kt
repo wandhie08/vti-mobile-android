@@ -112,6 +112,12 @@ class FragmentCreateDiscussion : BaseFragment(), Injectable {
 
         })
 
+        binding.btnHadiah.setOnClickListener({
+            resetButton(binding)
+            binding.btnHadiah.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnHadiah.setTextColor(Color.parseColor("#FFFFFFFF"))
+
+        })
         binding.btnPendaftaran.setOnClickListener({
             resetButton(binding)
             binding.btnPendaftaran.setBackgroundResource(R.drawable.btn_shape_blue)

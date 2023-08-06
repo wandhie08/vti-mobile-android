@@ -110,6 +110,7 @@
                         android:layout_height="@dimen/_30sdp"/>
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnHadiah"
+                        android:visibility="gone"
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:layout_toRightOf="@id/btnItemProduct"
                         android:background="@drawable/btn_shape_blue_white"
