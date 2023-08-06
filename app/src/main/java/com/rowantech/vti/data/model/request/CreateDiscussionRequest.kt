@@ -5,20 +5,20 @@ import com.google.gson.annotations.SerializedName
 data class CreateDiscussionRequest(
 
 	@field:SerializedName("is_read")
-	val isRead: String? = null,
+	var isRead: String? = null,
 
 	@field:SerializedName("event_id")
-	val eventId: String? = null,
+	var eventId: String? = null,
 
 	@field:SerializedName("customer_id")
-	val customerId: String? = null,
+	var customerId: String? = null,
 
 	@field:SerializedName("title")
-	val title: String? = null,
+	var title: String? = null,
 
 	@field:SerializedName("type")
-	val type: String? = null,
+	var type: String? = null,
 
 	@field:SerializedName("content")
-	val content: String? = null
+	var content: String? = null
 )

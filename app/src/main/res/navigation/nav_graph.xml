@@ -48,6 +48,12 @@
         <action
             android:id="@+id/action_fragmentDescEvent_to_fragmentCreateTemplate"
             app:destination="@id/fragmentCreateTemplate" />
+        <action
+            android:id="@+id/action_fragmentDescEvent_to_fragmentListDiscussion"
+            app:destination="@id/fragmentListDiscussion" />
+        <action
+            android:id="@+id/action_fragmentDescEvent_to_fragmentListDiscussionType"
+            app:destination="@id/fragmentListDiscussionType" />
     </fragment>
     <fragment
         tools:layout="@layout/dialog_login"
@@ -182,5 +188,35 @@
         <argument
             android:name="data"
             app:argType="string" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_detail_discussion"
+        android:id="@+id/fragmentListDiscussion"
+        android:name="com.rowantech.vti.views.FragmentListDiscussion"
+        android:label="FragmentListDiscussion" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_create_discussion"
+        android:id="@+id/fragmentCreateDiscussion"
+        android:name="com.rowantech.vti.views.FragmentCreateDiscussion"
+        android:label="FragmentCreateDiscussion" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_list_discussion_type"
+        android:id="@+id/fragmentListDiscussionType"
+        android:name="com.rowantech.vti.views.FragmentListDiscussionType"
+        android:label="FragmentListDiscussionType" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentListDiscussionType_to_fragmentCreateDiscussion"
+            app:destination="@id/fragmentCreateDiscussion" />
     </fragment>
 </navigation>

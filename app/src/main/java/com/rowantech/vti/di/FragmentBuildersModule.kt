@@ -84,4 +84,13 @@ abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
     abstract fun contributeFragmentDetailBanner(): FragmentDetailBanner
 
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentListDiscussion(): FragmentListDiscussion
+
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentCreateDiscussion(): FragmentCreateDiscussion
+
+    @ContributesAndroidInjector
+    abstract fun contributeFragmentListDiscussionType(): FragmentListDiscussionType
+
 }

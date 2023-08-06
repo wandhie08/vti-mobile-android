@@ -36,6 +36,8 @@ object Constant {
     val EVENT_BYTYPE ="event/byTypeMB"
     val PRODUCT="product/byEvent"
     val UNIQUE_CODE="parameter/unique-code"
+    val PRIZE="participant/prize"
+    val SUBMISSION="participant/formSubmissionEvent"
 
     val MESSAGE_CEK_KONEKSI = "Please check your connection"
     val GET_POSTAL_CODE ="parameter/integration/v1/master/locations/postalcode"

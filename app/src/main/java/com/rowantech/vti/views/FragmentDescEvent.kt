@@ -11,6 +11,7 @@ import android.view.*
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingComponent
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -59,11 +60,13 @@ class FragmentDescEvent : BaseFragment(), Injectable {
     var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
     private var adapterEvent by autoCleared<ListAdapterEvent>()
     private var adapterBanner by autoCleared<ListAdapterBanner>()
+    private var adapterDiscussion by autoCleared<ListAdapterDiscussion>()
     var getEventTerkaitRequest = GetEventTerkaitRequest()
     internal lateinit var dataLogin: LoginResponse
     var registerEventRequest = RegisterEventRequest()
     var getStatusTemplateRequest = GetStatusTemplateRequest()
     private var adapterPendaftaran by autoCleared<ListAdapterFromPendaftaran>()
+    private var adapterUpload by autoCleared<ListAdapterFromUpload>()
 
     @SuppressLint("HardwareIds")
     override fun onCreateView(
@@ -146,6 +149,15 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             dialogDateEvent()
         })
 
+        binding.btnComment.setOnClickListener({
+            val bundle = Bundle()
+            bundle.putString("data", Gson().toJson(data))
+            findNavController().navigate(
+                R.id.fragmentListDiscussionType,
+                bundle
+            )
+        })
+        getAllDiscussion(binding, data)
         // binding.textDateEvent.text = data.
         getAllBanner(binding, data)
         //Glide.with(this).load(data.avatar).into(binding.iconBrand)
@@ -330,6 +342,53 @@ class FragmentDescEvent : BaseFragment(), Injectable {
 
     }
 
+    fun getAllDiscussion(binding: FragmentDescEventBinding, eventsItem: EventsItem) {
+        val adapterDiscussion = ListAdapterDiscussion(
+            dataBindingComponent,
+            requireContext(),
+            appExecutors,
+            { partItem: DiscussionsItem ->
+                onClickDataDiscussion(
+                    binding,
+                    partItem
+                )
+            })
+
+        this.adapterDiscussion = adapterDiscussion
+
+        binding.recycleViewDiscussion.adapter = adapterDiscussion
+        binding.recycleViewDiscussion.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        postponeEnterTransition()
+        binding.recycleViewDiscussion.getViewTreeObserver()
+            .addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+        pageRequest.eventId = data.eventId
+        pageRequest.page = 0
+        pageRequest.size = 100
+        mainViewModel.paramWithBody(
+            "",
+            Constant.LIST_DISCUSSION,
+            Gson().toJson(pageRequest)
+        )
+
+        mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
+            if (result.status == Status.SUCCESS) {
+                getDiscussionResponse =
+                    Gson().fromJson(result.data, GetDiscussionResponse::class.java)
+                if (getDiscussionResponse.discussions!!.size>0){
+                    binding.recycleViewDiscussion.visibility =View.VISIBLE
+                }
+                adapterDiscussion.submitList(getDiscussionResponse.discussions)
+            }
+        })
+
+
+    }
+
     fun getEventByType(binding: FragmentDescEventBinding, typeEvent: String) {
 
         val adapterEvent = ListAdapterEvent(
@@ -430,6 +489,7 @@ class FragmentDescEvent : BaseFragment(), Injectable {
         )
         dialogView.show()
     }
+
     var getEventTerkaitResponse = GetFormTemplateResponse()
 
     private fun dialogFormPendaftaran() {
@@ -504,6 +564,44 @@ class FragmentDescEvent : BaseFragment(), Injectable {
                 Color.TRANSPARENT
             )
         )
+
+        val recycleViewProduk = dialogView.findViewById<RecyclerView>(R.id.recycleViewProduk)
+        val adapterUpload = ListAdapterFromUpload(
+            dataBindingComponent,
+            requireContext(),
+            appExecutors,
+        ) { contributor, imageView ->
+        }
+
+        this.adapterUpload = adapterUpload
+
+        recycleViewProduk.adapter = adapterUpload
+        recycleViewProduk.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        postponeEnterTransition()
+        recycleViewProduk.getViewTreeObserver()
+            .addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+        getEventTerkaitRequest.eventId = data.eventId
+        getEventTerkaitRequest.page = 0
+        getEventTerkaitRequest.size = 100
+        mainViewModel.paramWithBody(
+            "",
+            Constant.SUBMISSION,
+            Gson().toJson(getEventTerkaitRequest)
+        )
+        mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
+
+            if (result.status == Status.SUCCESS) {
+                getEventTerkaitResponse =
+                    Gson().fromJson(result.data, GetFormTemplateResponse::class.java)
+
+                adapterUpload.submitList(getEventTerkaitResponse.templates)
+            }
+        })
         dialogView.getWindow()!!.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
@@ -525,6 +623,43 @@ class FragmentDescEvent : BaseFragment(), Injectable {
                 Color.TRANSPARENT
             )
         )
+        val recycleViewProduk = dialogView.findViewById<RecyclerView>(R.id.recycleViewProduk)
+        val adapterPrize = ListAdapterPrize(
+            dataBindingComponent,
+            requireContext(),
+            appExecutors,
+        ) { contributor, imageView ->
+        }
+
+        this.adapterPrize = adapterPrize
+
+        recycleViewProduk.adapter = adapterPrize
+        recycleViewProduk.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        postponeEnterTransition()
+        recycleViewProduk.getViewTreeObserver()
+            .addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+        pageRequest.eventId = data.eventId
+        pageRequest.page = 0
+        pageRequest.size = 100
+        mainViewModel.paramWithBody(
+            "",
+            Constant.PRIZE,
+            Gson().toJson(pageRequest)
+        )
+
+        mainViewModel.data!!.observe(viewLifecycleOwner, Observer { result ->
+            if (result.status == Status.SUCCESS) {
+                getParameterResponse =
+                    Gson().fromJson(result.data, GetParameterResponse::class.java)
+                adapterPrize.submitList(getParameterResponse.parameters)
+
+            }
+        })
         dialogView.getWindow()!!.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
@@ -533,8 +668,13 @@ class FragmentDescEvent : BaseFragment(), Injectable {
     }
 
     internal lateinit var getProductEventResponse: GetProductEventResponse
+    internal lateinit var getParameterResponse: GetParameterResponse
+
     private var adapterProduct by autoCleared<ListAdapterProductPaid>()
+    private var adapterPrize by autoCleared<ListAdapterPrize>()
+
     var pageRequest = GetDiscussionRequest()
+    internal lateinit var getDiscussionResponse: GetDiscussionResponse
 
     private fun dialogProduct() {
         val dialogView =
@@ -602,7 +742,8 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             Window.FEATURE_NO_TITLE
         )
         dialogView.setContentView(R.layout.dialog_checkin)
-
+        val qrisLogo = dialogView.findViewById<ImageView>(R.id.qrisLogo)
+        data.locationCheckIn?.let { qrisLogo.loadUrl(it) }
         dialogView.getWindow()!!.setBackgroundDrawable(
             ColorDrawable(
                 Color.TRANSPARENT
@@ -613,6 +754,17 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             WindowManager.LayoutParams.MATCH_PARENT
         )
         dialogView.show()
+    }
+
+    private fun onClickDataDiscussion(
+        binding: FragmentDescEventBinding,
+        partItem: DiscussionsItem
+    ) {
+        val bundle = Bundle()
+        bundle.putString("data", Gson().toJson(partItem))
+        bundle.putString("dataEvent", Gson().toJson(data))
+        findNavController().navigate(R.id.fragmentListDiscussion, bundle)
+
     }
 
     private fun onClickDataBanner(binding: FragmentDescEventBinding, partItem: BannersItem) {

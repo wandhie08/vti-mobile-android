@@ -14,73 +14,54 @@ import androidx.recyclerview.widget.DiffUtil
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
-import com.google.gson.Gson
 import com.rowantech.vti.R
 import com.rowantech.vti.data.AppExecutors
 import com.rowantech.vti.data.model.response.BannersItem
-import com.rowantech.vti.data.model.response.GetParameterResponse
-import com.rowantech.vti.data.model.response.GetValidationResponse
-import com.rowantech.vti.data.model.response.TemplatesItem
-import com.rowantech.vti.databinding.ListFormUploadBinding
-import com.rowantech.vti.utilities.NumberUtil
+import com.rowantech.vti.data.model.response.ParametersItem
+import com.rowantech.vti.databinding.ListJuaraBinding
 import com.rowantech.vti.views.commons.DataBoundListAdapter
 
-class ListAdapterFromUpload (
+class ListAdapterPrize (
     private val dataBindingComponent: DataBindingComponent,
     private val context: Context,
     appExecutors: AppExecutors,
     private val callback: ((BannersItem, ImageView) -> Unit)?
 
-) : DataBoundListAdapter<TemplatesItem, ListFormUploadBinding>(
+) : DataBoundListAdapter<ParametersItem, ListJuaraBinding>(
     appExecutors = appExecutors,
-    diffCallback = object : DiffUtil.ItemCallback<TemplatesItem>() {
+    diffCallback = object : DiffUtil.ItemCallback<ParametersItem>() {
         override fun areItemsTheSame(
-            oldItem: TemplatesItem,
-            newItem: TemplatesItem
+            oldItem: ParametersItem,
+            newItem: ParametersItem
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: TemplatesItem,
-            newItem: TemplatesItem
+            oldItem: ParametersItem,
+            newItem: ParametersItem
         ): Boolean {
             return oldItem == newItem
         }
     }
 ) {
 
-    override fun createBinding(parent: ViewGroup): ListFormUploadBinding {
+    override fun createBinding(parent: ViewGroup): ListJuaraBinding {
         val binding = DataBindingUtil
-            .inflate<ListFormUploadBinding>(
+            .inflate<ListJuaraBinding>(
                 LayoutInflater.from(parent.context),
-                R.layout.list_form_upload,
+                R.layout.list_juara,
                 parent,
                 false,
                 dataBindingComponent
             )
         return binding
     }
-    internal lateinit var getParameterResponse: GetValidationResponse
+
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun bind(binding: ListFormUploadBinding, item: TemplatesItem) {
-        binding.textNamaForm.text = item.question
-        binding.textDetailNamaForm.text = item.description
-
-        if (item.templateType=="File Upload"){
-            if (item.validation!=""){
-                getParameterResponse =
-                    Gson().fromJson(item.validation, GetValidationResponse::class.java)
-                binding.textJumlahFileValue.text = getParameterResponse.numberOfFiles.toString()
-                binding.textBerkasFileValue.text = getParameterResponse.fileExtension
-            }
-        }
-        if (item.required =="N"){
-            binding.textItemWajib.visibility =View.VISIBLE
-        }else  if (item.optional =="Y"){
-            binding.textItemWajib.visibility =View.GONE
-        }
+    override fun bind(binding: ListJuaraBinding, item: ParametersItem) {
+        binding.nameProduct.text = item.parameterName
 
 
     }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/header"
+                layout="@layout/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <HorizontalScrollView
+                android:layout_below="@id/header"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_margin="@dimen/_5sdp"
+                    android:id="@+id/layoutSearch"
+                    android:padding="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnjadwal"
+                        android:background="@drawable/btn_shape_blue_white"
+                        android:layout_width="@dimen/_90sdp"
+                        android:text="Jadwal"
+                        android:textAllCaps="false"
+                        style="@style/text_style"
+                        android:textColor="@color/black"
+                        android:layout_height="@dimen/_30sdp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnPendaftaran"
+                        android:background="@drawable/btn_shape_blue_white"
+                        android:layout_width="@dimen/_90sdp"
+                        android:text="Pendaftaran"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:textAllCaps="false"
+                        style="@style/text_style"
+                        android:textColor="@color/black"
+                        android:layout_height="@dimen/_30sdp"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnPengumpulanData"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:background="@drawable/btn_shape_blue_white"
+                        android:layout_width="@dimen/_110sdp"
+                        android:text="Pengumpulan Data"
+                        android:textAllCaps="false"
+                        style="@style/text_style"
+                        android:textColor="@color/black"
+                        android:layout_height="@dimen/_30sdp"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnPeraturan"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:layout_toRightOf="@id/btnBerlangsung"
+                        android:background="@drawable/btn_shape_blue_white"
+                        android:layout_width="@dimen/_90sdp"
+                        android:text="Peraturan"
+                        android:textAllCaps="false"
+                        style="@style/text_style"
+                        android:textColor="@color/black"
+                        android:layout_height="@dimen/_30sdp"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnHadiah"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:layout_toRightOf="@id/btnBerlangsung"
+                        android:background="@drawable/btn_shape_blue_white"
+                        android:layout_width="@dimen/_90sdp"
+                        android:text="Hadiah"
+                        android:textAllCaps="false"
+                        style="@style/text_style"
+                        android:textColor="@color/black"
+                        android:layout_height="@dimen/_30sdp"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnLainnya"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:layout_toRightOf="@id/btnBerlangsung"
+                        android:background="@drawable/btn_shape_blue_white"
+                        android:layout_width="@dimen/_90sdp"
+                        android:text="Lainnya"
+                        android:textAllCaps="false"
+                        style="@style/text_style"
+                        android:textColor="@color/black"
+                        android:layout_height="@dimen/_30sdp"/>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/horizontalScrollView"
+                android:background="#F9FAFC"
+                android:id="@+id/recycleViewProduk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:scrollbars="horizontal"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/list_discussion" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:id="@+id/btnAddComment"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/ic_plus" />
+
+        </RelativeLayout>
+    </ScrollView>
+</layout>
