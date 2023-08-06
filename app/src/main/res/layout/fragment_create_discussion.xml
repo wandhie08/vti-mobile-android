@@ -18,158 +18,327 @@
                 layout="@layout/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
             <TextView
-                android:fontFamily="@font/roboto_condensed_bold"
                 android:id="@+id/textItem"
                 style="@style/text_style"
-                android:textSize="@dimen/_14sdp"
-                android:layout_below="@id/header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/header"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:text="Pilih Topik" />
-                <RelativeLayout
-                    android:layout_below="@id/textItem"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:id="@+id/layoutSearch"
-                    android:padding="@dimen/_5sdp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnjadwal"
-                        android:background="@drawable/btn_shape_blue_white"
-                        android:layout_width="@dimen/_90sdp"
-                        android:text="Jadwal"
-                        android:textAllCaps="false"
-                        style="@style/text_style"
-                        android:textColor="@color/black"
-                        android:layout_height="@dimen/_30sdp"/>
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="Pilih Topik"
+                android:textSize="@dimen/_14sdp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_toRightOf="@id/btnjadwal"
-                        android:id="@+id/btnPendaftaran"
-                        android:background="@drawable/btn_shape_blue_white"
-                        android:layout_width="@dimen/_90sdp"
-                        android:text="Pendaftaran"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:textAllCaps="false"
-                        style="@style/text_style"
-                        android:textColor="@color/black"
-                        android:layout_height="@dimen/_30sdp"/>
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_toRightOf="@id/btnPendaftaran"
-
-                        android:id="@+id/btnPengumpulanData"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:background="@drawable/btn_shape_blue_white"
-                        android:layout_width="@dimen/_110sdp"
-                        android:text="Pengumpulan \nData"
-                        android:textAllCaps="false"
-                        style="@style/text_style"
-                        android:textColor="@color/black"
-                        android:layout_height="@dimen/_38sdp"/>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnItemProduct"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_below="@id/btnjadwal"
-                        android:background="@drawable/btn_shape_blue_white"
-                        android:layout_width="@dimen/_90sdp"
-                        android:text="Item/Product"
-                        android:textAllCaps="false"
-                        style="@style/text_style"
-                        android:textColor="@color/black"
-                        android:layout_height="@dimen/_30sdp"/>
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_toRightOf="@id/btnItemProduct"
-                        android:layout_below="@id/btnjadwal"
-                        android:id="@+id/btnPemenang"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:background="@drawable/btn_shape_blue_white"
-                        android:layout_width="@dimen/_110sdp"
-                        android:text="Pemenang / Hadiah"
-                        android:textAllCaps="false"
-                        style="@style/text_style"
-                        android:textColor="@color/black"
-                        android:layout_height="@dimen/_30sdp"/>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnPeraturan"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_below="@id/btnItemProduct"
-                        android:background="@drawable/btn_shape_blue_white"
-                        android:layout_width="@dimen/_90sdp"
-                        android:text="Peraturan"
-                        android:textAllCaps="false"
-                        style="@style/text_style"
-                        android:textColor="@color/black"
-                        android:layout_height="@dimen/_30sdp"/>
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnHadiah"
-                        android:visibility="gone"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:layout_toRightOf="@id/btnItemProduct"
-                        android:background="@drawable/btn_shape_blue_white"
-                        android:layout_width="@dimen/_90sdp"
-                        android:text="Hadiah"
-                        android:textAllCaps="false"
-                        style="@style/text_style"
-                        android:textColor="@color/black"
-                        android:layout_height="@dimen/_30sdp"/>
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnLainnya"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_toRightOf="@id/btnPeraturan"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:layout_below="@id/btnItemProduct"
-                        android:background="@drawable/btn_shape_blue_white"
-                        android:layout_width="@dimen/_90sdp"
-                        android:text="Lainnya"
-                        android:textAllCaps="false"
-                        style="@style/text_style"
-                        android:textColor="@color/black"
-                        android:layout_height="@dimen/_30sdp"/>
-
-                </RelativeLayout>
-            <View
-                android:id="@+id/view1"
-                android:layout_margin="@dimen/_5sdp"
-                android:background="@color/grey"
-                android:layout_below="@id/layoutSearch"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_1sdp"/>
             <RelativeLayout
-                android:id="@+id/contentLayout"
-                android:layout_margin="@dimen/_5sdp"
-                android:layout_below="@id/view1"
-                android:layout_above="@id/view2"
+                android:id="@+id/layoutSearch"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textItem"
+                android:layout_margin="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnjadwal"
+                    style="@style/text_style"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:text="Jadwal"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnPendaftaran"
+                    style="@style/text_style"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_toRightOf="@id/btnjadwal"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:text="Pendaftaran"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnPengumpulanData"
+
+                    style="@style/text_style"
+                    android:layout_width="@dimen/_110sdp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_toRightOf="@id/btnPendaftaran"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:text="Pengumpulan \nData"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnItemProduct"
+                    style="@style/text_style"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/btnjadwal"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:text="Item/Product"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnPemenang"
+                    style="@style/text_style"
+                    android:layout_width="@dimen/_110sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/btnjadwal"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/btnItemProduct"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:text="Pemenang / Hadiah"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnPeraturan"
+                    style="@style/text_style"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/btnItemProduct"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:text="Peraturan"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnHadiah"
+                    style="@style/text_style"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_toRightOf="@id/btnItemProduct"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:text="Hadiah"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLainnya"
+                    style="@style/text_style"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/btnItemProduct"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/btnPeraturan"
+                    android:background="@drawable/btn_shape_blue_white"
+                    android:text="Lainnya"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
 
             </RelativeLayout>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@id/layoutSearch"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@color/grey" />
+
+            <RelativeLayout
+                android:id="@+id/contentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/view2"
+                android:layout_below="@id/view1"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp">
+
+                <RelativeLayout
+                    android:id="@+id/jadwalLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+                    <TextView
+                        android:id="@+id/textPendaftaran"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:text="Pendaftaran"
+                        />
+                    <TextView
+                        android:layout_below="@id/textPendaftaran"
+                        android:id="@+id/textPengumpulanData"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:text="Pengumpulan Data"
+                        />
+                    <TextView
+                        android:layout_below="@id/textPengumpulanData"
+                        android:id="@+id/textAcara"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:text="Acara"
+                        />
+                    <TextView
+                        android:layout_below="@id/textAcara"
+                        android:id="@+id/textEvaluasi"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:text="Evaluasi"
+                        />
+                    <TextView
+                        android:layout_below="@id/textEvaluasi"
+                        android:id="@+id/textPengumuman"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:text="Pengumuman Pemenang"
+                        />
+
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/textPendaftaranValue"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+
+                        />
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/textPendaftaran"
+                        android:id="@+id/textPengumpulanDataValue"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+
+                        />
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/textPengumpulanData"
+                        android:id="@+id/textAcaraValue"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+
+                        />
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/textAcara"
+                        android:id="@+id/textEvaluasiValue"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+
+                        />
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/textEvaluasi"
+                        android:id="@+id/textPengumumanValue"
+                        style="@style/text_style"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+
+                        />
+                </RelativeLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleViewProduk"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:scrollbars="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:listitem="@layout/list_produk" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleViewUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:scrollbars="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:listitem="@layout/list_form_upload" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/recycleViewPendaftaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:listitem="@layout/list_form_pendaftaran" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/recycleViewHadiah"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:listitem="@layout/list_juara" />
+                <TextView
+                    android:id="@+id/textLainnya"
+                    style="@style/text_style"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.39"
+                    />
+
+            </RelativeLayout>
+
             <View
                 android:id="@+id/view2"
-                android:layout_margin="@dimen/_5sdp"
-                android:background="@color/grey"
-                android:layout_above="@id/footerLayout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_1sdp"/>
+                android:layout_height="@dimen/_1sdp"
+                android:layout_above="@id/footerLayout"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@color/grey" />
+
             <RelativeLayout
                 android:id="@+id/footerLayout"
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_80sdp">
+                android:layout_height="@dimen/_80sdp"
+                android:layout_alignParentBottom="true">
+
                 <RelativeLayout
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_centerVertical="true"
                     android:id="@+id/imageProfile"
-                    android:background="@drawable/circle"
                     android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp">
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@drawable/circle">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -179,25 +348,27 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/_14sdp" />
                 </RelativeLayout>
+
                 <EditText
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:background="@null"
-                    android:textSize="@dimen/_12sdp"
                     android:id="@+id/formMessage"
-                    android:fontFamily="@font/roboto_condensed_regular"
-                    android:hint="Tulis Balasan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_toLeftOf="@id/btnSend"
                     android:layout_toRightOf="@id/imageProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:background="@null"
+                    android:fontFamily="@font/roboto_condensed_regular"
+                    android:hint="Tulis Balasan"
+                    android:textSize="@dimen/_12sdp" />
+
                 <androidx.appcompat.widget.AppCompatButton
-                    android:layout_centerVertical="true"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_alignParentRight="true"
                     android:id="@+id/btnSend"
-                    android:background="@drawable/send"
-                    android:layout_height="@dimen/_40sdp"/>
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/send" />
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>

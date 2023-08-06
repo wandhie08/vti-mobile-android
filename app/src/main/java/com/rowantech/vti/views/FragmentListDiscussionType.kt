@@ -49,6 +49,7 @@ class FragmentListDiscussionType : BaseFragment(), Injectable {
 
     var loginRequest = LoginRequest()
     internal lateinit var data: EventsItem
+    var discussionType : String="JADWAL"
 
     @SuppressLint("HardwareIds")
     override fun onCreateView(
@@ -68,6 +69,8 @@ class FragmentListDiscussionType : BaseFragment(), Injectable {
                 bundle
             )
         })
+        binding.btnjadwal.setBackgroundResource(R.drawable.btn_shape_blue)
+        binding.btnjadwal.setTextColor(Color.parseColor("#FFFFFFFF"))
 
         binding.btnjadwal.setOnClickListener({
             resetButton(binding)
