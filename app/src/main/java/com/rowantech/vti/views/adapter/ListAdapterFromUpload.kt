@@ -68,13 +68,26 @@ class ListAdapterFromUpload (
         binding.textNamaForm.text = item.question
         binding.textDetailNamaForm.text = item.description
 
-        if (item.templateType=="File Upload"){
+        if (item.questionType=="File Upload"){
             if (item.validation!=""){
                 getParameterResponse =
                     Gson().fromJson(item.validation, GetValidationResponse::class.java)
                 binding.textJumlahFileValue.text = getParameterResponse.numberOfFiles.toString()
-                binding.textBerkasFileValue.text = getParameterResponse.fileExtension
+                binding.textBerkasFileValue.text = getParameterResponse.extensions!![0]
+                binding.imageVideo.setBackgroundResource(R.drawable.baseline_video_library_24)
+                if (getParameterResponse.extensions!![0] =="image/*"){
+                    binding.imageVideo.setBackgroundResource(R.drawable.baseline_image_24)
+                }else{
+                    binding.imageVideo.setBackgroundResource(R.drawable.baseline_video_library_24)
+                }
             }
+        }else{
+            binding.textJumlahFileValue.visibility =View.GONE
+            binding.textBerkasFileValue.visibility =View.GONE
+            binding.imageVideo.visibility =View.GONE
+            binding.textJumlahFile.visibility =View.GONE
+            binding.textBerkasFile.visibility =View.GONE
+
         }
         if (item.required =="N"){
             binding.textItemWajib.visibility =View.VISIBLE

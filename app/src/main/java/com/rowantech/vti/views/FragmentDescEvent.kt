@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -139,6 +140,13 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             binding.btnVerifikasi.visibility = View.GONE
         } else if (data.formValidation == "Y") {
             binding.btnVerifikasi.visibility = View.VISIBLE
+
+        }
+
+        if (data.submission == "N") {
+            binding.btnUpload.visibility = View.GONE
+        } else if (data.submission == "Y") {
+            binding.btnUpload.visibility = View.VISIBLE
 
         }
 
@@ -624,6 +632,7 @@ class FragmentDescEvent : BaseFragment(), Injectable {
             )
         )
         val recycleViewProduk = dialogView.findViewById<RecyclerView>(R.id.recycleViewProduk)
+        val textItemRight = dialogView.findViewById<TextView>(R.id.textItemRight)
         val adapterPrize = ListAdapterPrize(
             dataBindingComponent,
             requireContext(),
@@ -657,7 +666,7 @@ class FragmentDescEvent : BaseFragment(), Injectable {
                 getParameterResponse =
                     Gson().fromJson(result.data, GetParameterResponse::class.java)
                 adapterPrize.submitList(getParameterResponse.parameters)
-
+                textItemRight.text = getParameterResponse.parameters!!.size.toString()+" kategori"
             }
         })
         dialogView.getWindow()!!.setLayout(

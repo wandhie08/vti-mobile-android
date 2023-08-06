@@ -8,7 +8,7 @@
         android:background="@drawable/layout_rounded"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_460sdp">
+        android:layout_height="@dimen/_360sdp">
 
         <View
             android:layout_marginTop="@dimen/_10sdp"

@@ -69,7 +69,6 @@
         style="@style/text_style_large"/>
     <ImageView
         android:id="@+id/imageVideo"
-        android:background="@drawable/baseline_image_24"
         android:layout_below="@id/textDetailNamaForm"
         android:layout_alignParentRight="true"
         android:layout_width="@dimen/_50sdp"
