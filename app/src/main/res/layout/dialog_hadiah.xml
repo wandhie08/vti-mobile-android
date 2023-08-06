@@ -8,7 +8,7 @@
         android:background="@drawable/layout_rounded"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_360sdp">
+        android:layout_height="wrap_content">
 
         <View
             android:layout_marginTop="@dimen/_10sdp"
@@ -44,7 +44,7 @@
             android:layout_below="@id/textItem"
             android:id="@+id/recycleViewProduk"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
             android:scrollbars="horizontal"
             app:layoutManager="LinearLayoutManager"

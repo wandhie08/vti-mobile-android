@@ -86,13 +86,14 @@
             android:layout_height="wrap_content"
             app:tabGravity="fill"
             app:tabMode="fixed"
+            app:tabIndicatorColor="@color/blue"
+            app:tabIndicatorHeight="@dimen/_5sdp"
+            app:tabSelectedTextColor="@color/blue"
+            app:tabTextColor="@color/blue"
             android:background="@color/white"
             android:minHeight="?attr/actionBarSize"
             android:textSize="12sp"
-            app:tabIndicatorColor="@color/blue"
-            app:tabIndicatorHeight="3dp"
-            app:tabSelectedTextColor="@color/blue"
-            app:tabTextColor="@color/blue"
+
             />
 
         <androidx.viewpager.widget.ViewPager

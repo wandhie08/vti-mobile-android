@@ -105,19 +105,41 @@ class FragmentHome : BaseFragment(), Injectable {
 //
 //        }
         binding.btnAkanDatang.setOnClickListener {
-            findNavController().navigate(R.id.fragmentSearchEvent)
+            val bundle = Bundle()
+            bundle.putBoolean("ongoing",false)
+            bundle.putBoolean("register",false)
+            bundle.putBoolean("closed",false)
+            bundle.putBoolean("isUpcoming",true)
+            findNavController().navigate(R.id.fragmentSearchEvent,bundle)
         }
 
         binding.btnSelesai.setOnClickListener {
-            findNavController().navigate(R.id.fragmentSearchEvent)
+            val bundle = Bundle()
+            bundle.putBoolean("ongoing",false)
+            bundle.putBoolean("register",false)
+            bundle.putBoolean("closed",true)
+            bundle.putBoolean("isUpcoming",false)
+
+            findNavController().navigate(R.id.fragmentSearchEvent,bundle)
         }
 
         binding.btnDaftarSekarang.setOnClickListener {
-            findNavController().navigate(R.id.fragmentSearchEvent)
+            val bundle = Bundle()
+            bundle.putBoolean("ongoing",false)
+            bundle.putBoolean("register",true)
+            bundle.putBoolean("closed",false)
+            bundle.putBoolean("isUpcoming",false)
+
+            findNavController().navigate(R.id.fragmentSearchEvent,bundle)
         }
 
         binding.btnSedangBerlangsung.setOnClickListener {
-            findNavController().navigate(R.id.fragmentSearchEvent)
+            val bundle = Bundle()
+            bundle.putBoolean("ongoing",true)
+            bundle.putBoolean("register",false)
+            bundle.putBoolean("closed",false)
+            bundle.putBoolean("isUpcoming",false)
+            findNavController().navigate(R.id.fragmentSearchEvent,bundle)
         }
 
 

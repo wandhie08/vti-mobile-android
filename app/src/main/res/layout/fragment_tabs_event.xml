@@ -28,7 +28,7 @@
                 android:minHeight="?attr/actionBarSize"
                 android:textSize="12sp"
                 app:tabIndicatorColor="@color/blue"
-                app:tabIndicatorHeight="3dp"
+                app:tabIndicatorHeight="@dimen/_5sdp"
                 app:tabSelectedTextColor="@color/blue"
                 app:tabTextColor="@color/blue"
                 />

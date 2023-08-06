@@ -66,11 +66,11 @@
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:background="@drawable/btn_shape_blue_white"
                         android:layout_width="@dimen/_110sdp"
-                        android:text="Pengumpulan Data"
+                        android:text="Pengumpulan \nData"
                         android:textAllCaps="false"
                         style="@style/text_style"
                         android:textColor="@color/black"
-                        android:layout_height="@dimen/_30sdp"/>
+                        android:layout_height="@dimen/_38sdp"/>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnItemProduct"

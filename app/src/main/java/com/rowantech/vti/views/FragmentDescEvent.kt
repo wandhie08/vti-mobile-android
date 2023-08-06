@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
@@ -79,16 +80,26 @@ class FragmentDescEvent : BaseFragment(), Injectable {
         context ?: return binding.root
 
         data = Gson().fromJson(arguments?.getString("data"), EventsItem::class.java)
-
+        getDateEventResponse =
+            Gson().fromJson(data.freeData2, GetDateEventResponse::class.java)
+        getTotalDateEventResponse =
+            Gson().fromJson(data.freeData1, GetTotalDateEventResponse::class.java)
         binding.nameBrand.text = data.title
         binding.companyBrand.text = data.companyName
         binding.descEvent.text = data.shortDescription
         getEventTerkaitRequest.companyId = data.companyId
         getEventTerkaitRequest.eventId = data.eventId
 
-
-
         binding.textDateEvent.text = data.periodeDate
+
+        if (data.type =="DRAFT"||data.type =="REGISTRATION"){
+            binding.textDateEvent.text = getDateEventResponse.regP
+
+        }else if (data.type =="CLOSED"||data.type =="ANNOUNCEMENT") {
+            binding.textDateEvent.text = getDateEventResponse.winP
+        }else if (data.type =="ONGOING"||data.type =="SUBMISSION"||data.type =="EVALUATION EVENT"||data.type =="EVALUATION REGISTRATION") {
+            binding.textDateEvent.text = getDateEventResponse.evtP
+        }
 
         if (data.location == "online") {
             binding.textLocationType.text = "Online"
@@ -470,6 +481,71 @@ class FragmentDescEvent : BaseFragment(), Injectable {
                 Color.TRANSPARENT
             )
         )
+
+        println("data.freeData1 :"+data.freeData1)
+        println("data.freeData2 :"+data.freeData2)
+
+
+
+        val textItemRight = dialogView.findViewById<TextView>(R.id.textItemRight)
+        val layoutPendaftaran = dialogView.findViewById<RelativeLayout>(R.id.layoutPendaftaran)
+        val textPenfaftaranValue = dialogView.findViewById<TextView>(R.id.textPenfaftaranValue)
+        val textSisaPenfaftaranValue = dialogView.findViewById<TextView>(R.id.textSisaPenfaftaranValue)
+        val view1 = dialogView.findViewById<View>(R.id.view1)
+        textPenfaftaranValue.text =getDateEventResponse.regP
+        textSisaPenfaftaranValue.text =getTotalDateEventResponse.regD.toString() +" hari"
+        textItemRight.text = getTotalDateEventResponse.totD.toString() +" hari"
+
+        val layoutUpload = dialogView.findViewById<RelativeLayout>(R.id.layoutUpload)
+        val textUploadValue = dialogView.findViewById<TextView>(R.id.textUploadValue)
+        val textSisaUploadValue = dialogView.findViewById<TextView>(R.id.textSisaUploadValue)
+        val view2 = dialogView.findViewById<View>(R.id.view2)
+        textUploadValue.text =getDateEventResponse.subP
+        textSisaUploadValue.text =getTotalDateEventResponse.subD.toString() +" hari"
+
+        val layoutAcara = dialogView.findViewById<RelativeLayout>(R.id.layoutAcara)
+        val textAcaraValue = dialogView.findViewById<TextView>(R.id.textAcaraValue)
+        val textSisaAcaraValue = dialogView.findViewById<TextView>(R.id.textSisaAcaraValue)
+        val view3 = dialogView.findViewById<View>(R.id.view3)
+
+        textAcaraValue.text =getDateEventResponse.evtP
+        textSisaAcaraValue.text =getTotalDateEventResponse.evtD.toString() +" hari"
+
+        val layoutEvaluasi = dialogView.findViewById<RelativeLayout>(R.id.layoutEvaluasi)
+        val textEvaluasiValue = dialogView.findViewById<TextView>(R.id.textEvaluasiValue)
+        val textSisaEvaluasiValue = dialogView.findViewById<TextView>(R.id.textSisaEvaluasiValue)
+        val view4 = dialogView.findViewById<View>(R.id.view4)
+
+        val layoutPengumuman = dialogView.findViewById<RelativeLayout>(R.id.layoutPengumuman)
+        val textPengumumanValue = dialogView.findViewById<TextView>(R.id.textPengumumanValue)
+        val textSisaPengumumanValue = dialogView.findViewById<TextView>(R.id.textSisaPengumumanValue)
+
+
+
+        if (data.winningPrize == "N") {
+            layoutPengumuman.visibility =View.GONE
+            layoutEvaluasi.visibility =View.GONE
+            view4.visibility =View.GONE
+            view3.visibility =View.GONE
+        } else if (data.winningPrize == "Y") {
+            layoutPengumuman.visibility =View.VISIBLE
+            layoutEvaluasi.visibility =View.VISIBLE
+            view4.visibility =View.VISIBLE
+            view3.visibility =View.VISIBLE
+
+            textEvaluasiValue.text =getDateEventResponse.val2P
+            textSisaEvaluasiValue.text =getTotalDateEventResponse.val2D.toString() +" hari"
+
+            textPengumumanValue.text =getDateEventResponse.winP
+            textSisaPengumumanValue.text =getTotalDateEventResponse.winD.toString() +" hari"
+        }
+        if (data.submission == "N") {
+            layoutUpload.visibility =View.GONE
+            view2.visibility =View.GONE
+        }else  if (data.submission == "Y") {
+            layoutUpload.visibility = View.VISIBLE
+            view2.visibility = View.VISIBLE
+        }
         dialogView.getWindow()!!.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
@@ -499,7 +575,8 @@ class FragmentDescEvent : BaseFragment(), Injectable {
     }
 
     var getEventTerkaitResponse = GetFormTemplateResponse()
-
+    var getDateEventResponse = GetDateEventResponse()
+    var getTotalDateEventResponse = GetTotalDateEventResponse()
     private fun dialogFormPendaftaran() {
         val dialogView =
             Dialog(requireContext(), androidx.appcompat.R.style.ThemeOverlay_AppCompat_Dialog)
@@ -516,7 +593,7 @@ class FragmentDescEvent : BaseFragment(), Injectable {
         )
         dialogView.getWindow()!!.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT
+            WindowManager.LayoutParams.WRAP_CONTENT
         )
         val recycleViewProduk = dialogView.findViewById<RecyclerView>(R.id.recycleViewProduk)
         val adapterPendaftaran = ListAdapterFromPendaftaran(

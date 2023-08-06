@@ -49,6 +49,10 @@ class FragmentSearchEvent : BaseFragment(), Injectable {
 
         adapter!!.addFragment(seArgsForFragment(FragmentListEventOnline()), "Online")
         adapter!!.addFragment(seArgsForFragment(FragmentListEventOffline()), "Offline")
+        println("arguments?.getBoolean(\"isUpcoming\") :"+arguments?.getBoolean("isUpcoming"))
+        println("arguments?.getBoolean(\"register\") :"+arguments?.getBoolean("register"))
+        println("arguments?.getBoolean(\"closed\") :"+arguments?.getBoolean("closed"))
+        println("arguments?.getBoolean(\"ongoing\") :"+arguments?.getBoolean("ongoing"))
 
 
         binding.viewpager.setOffscreenPageLimit(2)
@@ -59,6 +63,7 @@ class FragmentSearchEvent : BaseFragment(), Injectable {
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 binding.viewpager.setCurrentItem(tab.position)
+                binding.tabs.getTabAt(tab.position)?.getCustomView()?.setSelected(true)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -83,7 +88,10 @@ class FragmentSearchEvent : BaseFragment(), Injectable {
     private fun seArgsForFragment(fragment: Fragment): Fragment {
         val bundle = Bundle()
 
-        //bundle.putBoolean("isDraft", arguments!!.getBoolean("isDraft"))
+        arguments?.getBoolean("isUpcoming")?.let { bundle.putBoolean("isUpcoming", it) }
+        arguments?.getBoolean("register")?.let { bundle.putBoolean("register", it) }
+        arguments?.getBoolean("closed")?.let { bundle.putBoolean("closed", it) }
+        arguments?.getBoolean("ongoing")?.let { bundle.putBoolean("ongoing", it) }
         fragment.setArguments(bundle)
         return fragment
     }

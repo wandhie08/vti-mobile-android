@@ -94,6 +94,18 @@
         <argument
             android:name="data"
             app:argType="string" />
+        <argument
+            android:name="ongoing"
+            app:argType="boolean" />
+        <argument
+            android:name="register"
+            app:argType="boolean" />
+        <argument
+            android:name="closed"
+            app:argType="boolean" />
+        <argument
+            android:name="isUpcoming"
+            app:argType="boolean" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_tabs_event"

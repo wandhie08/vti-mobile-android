@@ -1,6 +1,7 @@
 package com.rowantech.vti.views
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -49,7 +50,10 @@ class FragmentListEventOnline : BaseFragment(), Injectable {
 
     var getEventByTypeRequest = GetEventByTypeRequest()
     var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
-
+    var isUpcoming = false
+    var ongoing = false
+    var register = false
+    var closed = false
 
     @SuppressLint("HardwareIds")
     override fun onCreateView(
@@ -59,26 +63,91 @@ class FragmentListEventOnline : BaseFragment(), Injectable {
     ): View? {
         val binding = FragmentListEventBinding.inflate(inflater, container, false)
         context ?: return binding.root
+        if(arguments?.getBoolean("isUpcoming") == true){
+            isUpcoming =true
+            binding.btnAkanDatang.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnAkanDatang.setTextColor(Color.parseColor("#FFFFFFFF"))
+        }
 
+        if(arguments?.getBoolean("register") == true){
+            register =true
+
+            binding.btnPendaftaran.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnPendaftaran.setTextColor(Color.parseColor("#FFFFFFFF"))
+        }
+
+        if(arguments?.getBoolean("closed") == true){
+            closed =true
+            binding.btnSelesai.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnSelesai.setTextColor(Color.parseColor("#FFFFFFFF"))
+        }
+
+        if(arguments?.getBoolean("ongoing") == true){
+            ongoing =true
+            binding.btnBerlangsung.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnBerlangsung.setTextColor(Color.parseColor("#FFFFFFFF"))
+        }
         getEventByType(binding,"UPCOMING|REGISTRATION|EVALUATION REGISTRATION|SUBMISSION|ONGOING|EVALUATION EVENT|ANNOUNCEMENT|CLOSED")
 
         binding.btnAkanDatang.setOnClickListener {
+            if (!isUpcoming){
+                isUpcoming=true
+                binding.btnAkanDatang.setBackgroundResource(R.drawable.btn_shape_blue)
+                binding.btnAkanDatang.setTextColor(Color.parseColor("#FFFFFFFF"))
+            }else{
+                isUpcoming=false
+
+                binding.btnAkanDatang.setBackgroundResource(R.drawable.btn_shape_blue_white)
+                binding.btnAkanDatang.setTextColor(Color.parseColor("#FF343F4B"))
+
+            }
             getEventByType(binding,"UPCOMING")
         }
 
         binding.btnBerlangsung.setOnClickListener {
+            if (!ongoing){
+                ongoing=true
+                binding.btnBerlangsung.setBackgroundResource(R.drawable.btn_shape_blue)
+                binding.btnBerlangsung.setTextColor(Color.parseColor("#FFFFFFFF"))
+            }else{
+                ongoing=false
+                binding.btnBerlangsung.setBackgroundResource(R.drawable.btn_shape_blue_white)
+                binding.btnBerlangsung.setTextColor(Color.parseColor("#FF343F4B"))
+
+            }
             getEventByType(binding,"EVALUATION REGISTRATION|SUBMISSION|ONGOING|EVALUATION EVENT")
         }
 
         binding.btnPendaftaran.setOnClickListener {
+            if (!register){
+                register=true
+                binding.btnPendaftaran.setBackgroundResource(R.drawable.btn_shape_blue)
+                binding.btnPendaftaran.setTextColor(Color.parseColor("#FFFFFFFF"))
+            }else{
+                register=false
+                binding.btnPendaftaran.setBackgroundResource(R.drawable.btn_shape_blue_white)
+                binding.btnPendaftaran.setTextColor(Color.parseColor("#FF343F4B"))
+
+            }
             getEventByType(binding,"REGISTRATION")
 
         }
 
         binding.btnSelesai.setOnClickListener {
+            if (!closed){
+                closed=true
+                binding.btnSelesai.setBackgroundResource(R.drawable.btn_shape_blue)
+                binding.btnSelesai.setTextColor(Color.parseColor("#FFFFFFFF"))
+            }else{
+                closed=false
+                binding.btnSelesai.setBackgroundResource(R.drawable.btn_shape_blue_white)
+                binding.btnSelesai.setTextColor(Color.parseColor("#FF343F4B"))
+
+            }
             getEventByType(binding,"ANNOUNCEMENT|CLOSED")
 
         }
+
 
         return binding.root
     }
@@ -89,7 +158,7 @@ class FragmentListEventOnline : BaseFragment(), Injectable {
     }
 
     fun getEventByType(binding: FragmentListEventBinding, typeEvent: String) {
-        var evenSelected: String = typeEvent
+        var evenSelected: String = ""
 
         val adapterEvent = ListAdapterEvent(
             dataBindingComponent,
@@ -116,7 +185,33 @@ class FragmentListEventOnline : BaseFragment(), Injectable {
                 true
             }
 
+        if (isUpcoming){
+            if (evenSelected !=""){
+                evenSelected =evenSelected+"|"
+            }
+            evenSelected =evenSelected+"UPCOMING|DRAFT"
+        }
 
+        if (register){
+            if (evenSelected !=""){
+                evenSelected =evenSelected+"|"
+            }
+            evenSelected =evenSelected+"REGISTRATION"
+        }
+
+        if (closed){
+            if (evenSelected !=""){
+                evenSelected =evenSelected+"|"
+            }
+            evenSelected =evenSelected+"CLOSED|ANNOUNCEMENT|EVALUATION EVENT"
+        }
+
+        if (ongoing){
+            if (evenSelected !=""){
+                evenSelected =evenSelected+"|"
+            }
+            evenSelected =evenSelected+"ONGOING|SUBMISSION|EVALUATION REGISTRATION"
+        }
         getEventByTypeRequest.typeLocation = "online"
         getEventByTypeRequest.typeEvent = evenSelected
         getEventByTypeRequest.page = 0

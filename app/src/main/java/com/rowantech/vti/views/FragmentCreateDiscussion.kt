@@ -1,6 +1,7 @@
 package com.rowantech.vti.views
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +47,7 @@ class FragmentCreateDiscussion : BaseFragment(), Injectable {
     var loginRequest = LoginRequest()
     internal lateinit var data: EventsItem
     var createDiscussionRequest = CreateDiscussionRequest()
-    @SuppressLint("HardwareIds")
+    @SuppressLint("HardwareIds", "ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -82,9 +83,100 @@ class FragmentCreateDiscussion : BaseFragment(), Injectable {
                 }
             })
         })
+        if (data.winningPrize == "N") {
+            binding.btnHadiah.visibility = View.GONE
+            binding.btnPemenang.visibility = View.GONE
+        } else if (data.winningPrize == "Y") {
+            binding.btnHadiah.visibility = View.VISIBLE
+            binding.btnPemenang.visibility = View.VISIBLE
+        }
+
+        if (data.submission == "N") {
+            binding.btnPengumpulanData.visibility = View.GONE
+
+        } else if (data.submission == "Y") {
+            binding.btnPengumpulanData.visibility = View.VISIBLE
+        }
+
+        if (data.eventType == "free") {
+            binding.btnItemProduct.visibility = View.GONE
+
+        } else if (data.eventType == "paid") {
+            binding.btnItemProduct.visibility = View.VISIBLE
+        }
+
+        binding.btnjadwal.setOnClickListener({
+            resetButton(binding)
+            binding.btnjadwal.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnjadwal.setTextColor(Color.parseColor("#FFFFFFFF"))
+
+        })
+
+        binding.btnPendaftaran.setOnClickListener({
+            resetButton(binding)
+            binding.btnPendaftaran.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnPendaftaran.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
+
+        binding.btnPengumpulanData.setOnClickListener({
+            resetButton(binding)
+            binding.btnPengumpulanData.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnPengumpulanData.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
+
+        binding.btnItemProduct.setOnClickListener({
+            resetButton(binding)
+            binding.btnItemProduct.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnItemProduct.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
+
+        binding.btnPemenang.setOnClickListener({
+            resetButton(binding)
+            binding.btnPemenang.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnPemenang.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
+
+        binding.btnPeraturan.setOnClickListener({
+            resetButton(binding)
+            binding.btnPeraturan.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnPeraturan.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
+
+        binding.btnLainnya.setOnClickListener({
+            resetButton(binding)
+            binding.btnLainnya.setBackgroundResource(R.drawable.btn_shape_blue)
+            binding.btnLainnya.setTextColor(Color.parseColor("#FFFFFFFF"))
+        })
         return binding.root
     }
 
+    @SuppressLint("ResourceAsColor")
+    fun resetButton(binding: FragmentCreateDiscussionBinding){
+        binding.btnHadiah.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnHadiah.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnjadwal.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnjadwal.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnPendaftaran.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnPendaftaran.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnPengumpulanData.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnPengumpulanData.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnItemProduct.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnItemProduct.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnPemenang.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnPemenang.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnPeraturan.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnPeraturan.setTextColor(Color.parseColor("#FF343F4B"))
+
+        binding.btnLainnya.setBackgroundResource(R.drawable.btn_shape_blue_white)
+        binding.btnLainnya.setTextColor(Color.parseColor("#FF343F4B"))
+
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
