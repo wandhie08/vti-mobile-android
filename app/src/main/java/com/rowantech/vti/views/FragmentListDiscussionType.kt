@@ -76,25 +76,31 @@ class FragmentListDiscussionType : BaseFragment(), Injectable {
             resetButton(binding)
             binding.btnjadwal.setBackgroundResource(R.drawable.btn_shape_blue)
             binding.btnjadwal.setTextColor(Color.parseColor("#FFFFFFFF"))
-
+            discussionType="JADWAL"
+            getAllDiscussion(binding,data)
         })
 
         binding.btnHadiah.setOnClickListener({
             resetButton(binding)
             binding.btnHadiah.setBackgroundResource(R.drawable.btn_shape_blue)
             binding.btnHadiah.setTextColor(Color.parseColor("#FFFFFFFF"))
-
+            discussionType= "PRIZE"
+            getAllDiscussion(binding,data)
         })
         binding.btnPendaftaran.setOnClickListener({
             resetButton(binding)
             binding.btnPendaftaran.setBackgroundResource(R.drawable.btn_shape_blue)
             binding.btnPendaftaran.setTextColor(Color.parseColor("#FFFFFFFF"))
+            discussionType= "FORM_REGISTRATION"
+            getAllDiscussion(binding,data)
         })
 
         binding.btnPengumpulanData.setOnClickListener({
             resetButton(binding)
             binding.btnPengumpulanData.setBackgroundResource(R.drawable.btn_shape_blue)
             binding.btnPengumpulanData.setTextColor(Color.parseColor("#FFFFFFFF"))
+            discussionType= "FORM_SUBMISSION"
+            getAllDiscussion(binding,data)
         })
 
 
@@ -102,12 +108,16 @@ class FragmentListDiscussionType : BaseFragment(), Injectable {
             resetButton(binding)
             binding.btnPeraturan.setBackgroundResource(R.drawable.btn_shape_blue)
             binding.btnPeraturan.setTextColor(Color.parseColor("#FFFFFFFF"))
+            discussionType= "PRODUCT"
+            getAllDiscussion(binding,data)
         })
 
         binding.btnLainnya.setOnClickListener({
+            discussionType= "LAINNYA"
             resetButton(binding)
             binding.btnLainnya.setBackgroundResource(R.drawable.btn_shape_blue)
             binding.btnLainnya.setTextColor(Color.parseColor("#FFFFFFFF"))
+            getAllDiscussion(binding,data)
         })
 
         return binding.root
@@ -170,9 +180,10 @@ class FragmentListDiscussionType : BaseFragment(), Injectable {
         pageRequest.eventId = data.eventId
         pageRequest.page = 0
         pageRequest.size = 100
+        pageRequest.type = discussionType
         mainViewModel.paramWithBody(
             "",
-            Constant.LIST_DISCUSSION,
+            Constant.LIST_DISCUSSION_TYPE,
             Gson().toJson(pageRequest)
         )
 

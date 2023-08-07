@@ -14,6 +14,8 @@ object Constant {
     val BUGS_REPORT ="bugs/create"
     val UPDATE_ACCOUNT ="customer/update"
     val LIST_DISCUSSION ="discussion/byEvent"
+    val LIST_DISCUSSION_TYPE ="discussion/byEventAndType"
+
     val CREATE_COMMENT ="comments/create"
     val CREATE_DISCUSSION ="discussion/create"
     val CREATE_TEMPLATE ="participant/createTemplate"

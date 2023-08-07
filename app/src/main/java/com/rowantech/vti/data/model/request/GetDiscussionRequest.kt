@@ -10,6 +10,9 @@ data class GetDiscussionRequest(
 	@field:SerializedName("size")
 	var size: Int? = null,
 
+	@field:SerializedName("type")
+	var type: String? = null,
+
 	@field:SerializedName("page")
 	var page: Int? = null
 )
