@@ -68,7 +68,7 @@
                         android:layout_toRightOf="@id/btnBerlangsung"
                         android:background="@drawable/btn_shape_blue_white"
                         android:layout_width="@dimen/_90sdp"
-                        android:text="Peraturan"
+                        android:text="Item/Produk"
                         android:textAllCaps="false"
                         style="@style/text_style"
                         android:textColor="@color/black"

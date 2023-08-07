@@ -66,9 +66,9 @@ android {
 }
 
 dependencies {
-//    implementation 'com.cloudinary:cloudinary-android:2.3.1'
-//    implementation 'com.cloudinary:cloudinary-android-download:2.3.1'
-//    implementation 'com.cloudinary:cloudinary-android-preprocess:2.3.1'
+    implementation 'com.cloudinary:cloudinary-android:2.3.1'
+    implementation 'com.cloudinary:cloudinary-android-download:2.3.1'
+    implementation 'com.cloudinary:cloudinary-android-preprocess:2.3.1'
     //implementation 'com.github.androidmads:QRGenerator:1.0.1'
     implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
     implementation 'com.google.zxing:core:3.5.0'
